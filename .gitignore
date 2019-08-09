@@ -1,0 +1,8 @@
+*
+!*/
+!.gitignore
+!*.cs
+!*.xaml
+!*.xaml.cs
+*/ARM/Debug/
+*/x86/Debug/
