@@ -1315,6 +1315,18 @@
             Grid.ColumnSpan="3"
             Fill="DarkGreen"
         />
+        <TextBlock
+            x:Name="DiscardPile"
+            Text="0"
+            Grid.Row="6"
+            Grid.Column="4"
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="3"
+            FontSize="60"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            
+        />
         <Button
             x:Name="FaceUpCard"
             Grid.Row="4"
