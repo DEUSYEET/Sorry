@@ -25,10 +25,11 @@ namespace Sorry
     public sealed partial class Board : Page
     {
         static Pawn p1 = new Pawn(Color.FromArgb(255, 0, 0, 255));
-        static Pawn p2 = new Pawn(Color.FromArgb(255, 255, 0, 0));
+        static Pawn p2 = new Pawn(Color.FromArgb(255, 0, 0, 255));
+        static CardDeck cardDeck = new CardDeck();
+        int discardnum = 0;
         Pawn pc = p1;
-        int oX;
-        int oY;
+        public enum Card { One, Two, Three, Four, Five, Seven, Eight, Ten, Eleven, Twelve, Sorry };
 
         public Board()
 
@@ -111,6 +112,19 @@ namespace Sorry
 
 
 
+        }
+
+        private void FaceUpCard_Click(object sender, RoutedEventArgs e)
+        {
+            Card card;
+            card = (Card) cardDeck.drawCard();
+            FaceUpCard.Content = card.ToString();
+            discardnum++;
+            if (discardnum >= 45)
+            {
+                discardnum = 0;
+            }
+            DiscardPile.Text = discardnum.ToString();
         }
     }
 }
