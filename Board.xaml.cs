@@ -24,11 +24,36 @@ namespace Sorry
     /// </summary>
     public sealed partial class Board : Page
     {
-        static Pawn p1 = new Pawn(Color.FromArgb(255, 0, 0, 255));
-        static Pawn p2 = new Pawn(Color.FromArgb(255, 0, 0, 255));
+        static Pawn yp1 = new Pawn(Color.FromArgb(255, 255, 0, 255));
+        static Pawn yp2 = new Pawn(Color.FromArgb(255, 255, 0, 255));
+        static Pawn yp3 = new Pawn(Color.FromArgb(255, 255, 0, 255));
+        static Pawn yp4 = new Pawn(Color.FromArgb(255, 255, 0, 255));
+
+        static Pawn gp1 = new Pawn(Color.FromArgb(255, 0, 255, 0));
+        static Pawn gp2 = new Pawn(Color.FromArgb(255, 0, 255, 0));
+        static Pawn gp3 = new Pawn(Color.FromArgb(255, 0, 255, 0));
+        static Pawn gp4 = new Pawn(Color.FromArgb(255, 0, 255, 0));
+
+        static Pawn rp1 = new Pawn(Color.FromArgb(255, 255, 0, 0));
+        static Pawn rp2 = new Pawn(Color.FromArgb(255, 255, 0, 0));
+        static Pawn rp3 = new Pawn(Color.FromArgb(255, 255, 0, 0));
+        static Pawn rp4 = new Pawn(Color.FromArgb(255, 255, 0, 0));
+
+        static Pawn bp1 = new Pawn(Color.FromArgb(255, 0, 0, 255));
+        static Pawn bp2 = new Pawn(Color.FromArgb(255, 0, 0, 255));
+        static Pawn bp3 = new Pawn(Color.FromArgb(255, 0, 0, 255));
+        static Pawn bp4 = new Pawn(Color.FromArgb(255, 0, 0, 255));
         static CardDeck cardDeck = new CardDeck();
+
+        List<Pawn> rPawns = new List<Pawn>();
+        List<Pawn> gPawns = new List<Pawn>();
+        List<Pawn> yPawns = new List<Pawn>();
+        List<Pawn> bPawns = new List<Pawn>();
+
+        List<List<Pawn>> allPawns = new List<List<Pawn>>();
+
+
         int discardnum = 0;
-        Pawn pc = p1;
         public enum Card { One, Two, Three, Four, Five, Seven, Eight, Ten, Eleven, Twelve, Sorry };
 
         public Board()
@@ -36,8 +61,30 @@ namespace Sorry
 
         {
 
+            yPawns.Add(yp1);
+            yPawns.Add(yp2);
+            yPawns.Add(yp3);
+            yPawns.Add(yp4);
 
+            gPawns.Add(gp1);
+            gPawns.Add(gp2);
+            gPawns.Add(gp3);
+            gPawns.Add(gp4);
 
+            rPawns.Add(rp1);
+            rPawns.Add(rp2);
+            rPawns.Add(rp3);
+            rPawns.Add(rp4);
+
+            bPawns.Add(bp1);
+            bPawns.Add(bp2);
+            bPawns.Add(bp3);
+            bPawns.Add(bp4);
+
+            allPawns.Add(yPawns);
+            allPawns.Add(gPawns);
+            allPawns.Add(rPawns);
+            allPawns.Add(bPawns);
 
             this.InitializeComponent();
 
@@ -75,17 +122,6 @@ namespace Sorry
 
 
 
-            pc.SetPosition(sender);
-            if (pc.Equals(p1))
-            {
-                pc = p2;
-            }
-            else if (pc.Equals(p2))
-            {
-                pc = p1;
-            }
-
-
 
 
 
@@ -99,79 +135,37 @@ namespace Sorry
         }
         private void MiniButton_Click(object sender, RoutedEventArgs e)
         {
-            pc.SetPosition(sender);
-            //p.SetSize(20, 20);
-            CheckWin((Button)sender);
-            if (pc.Equals(p1))
-            {
-                pc = p2;
-            }
-            else if (pc.Equals(p2))
-            {
-                pc = p1;
-            }
-
-
 
         }
 
 
         private void CheckWin(Button b)
         {
-
-
             var name = b.Name;
-
-            var g1 = (Grid)p1.pawnRect.Parent;
-            var g2 = (Grid)p2.pawnRect.Parent;
-
-            if (g1.Name.Contains("Home")&& g2.Name.Contains("Home"))
+            bool allIn = true;
+            if (name.Contains("Home"))
             {
-
-
-
-
-
-                if (name.Contains("Red"))
+                foreach (var pl in allPawns)
                 {
-                    if (g1.Name.Contains("Red") && g2.Name.Contains("Red"))
-                    {
-                        this.Frame.Navigate(typeof(WinPage));
-                    }
 
-                }
-                else if (name.Contains("Blue"))
-                {
-                    if (g1.Name.Contains("Blue") && g2.Name.Contains("Blue"))
+                    foreach (var p in pl)
                     {
-                        this.Frame.Navigate(typeof(WinPage));
+                        string spotName = ((Button)p.pawnRect.Parent).Name;
+
+                        if (!spotName.Contains("Home"))
+                        {
+                            allIn = false;
+                        }
                     }
                 }
-                else if (name.Contains("Green"))
-                {
-                    if (g1.Name.Contains("Green") && g2.Name.Contains("Green"))
-                    {
-                        this.Frame.Navigate(typeof(WinPage));
-                    }
-                }
-                else if (name.Contains("Yellow"))
-                {
-                    if (g1.Name.Contains("Yellow") && g2.Name.Contains("Yellow"))
-                    {
-                        this.Frame.Navigate(typeof(WinPage));
-                    }
-                }
-
-
             }
 
-
-
-
-
-
-
+            if (allIn)
+            {
+                this.Frame.Navigate(typeof(WinPage));
+            }
         }
+
 
 
 
