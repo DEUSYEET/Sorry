@@ -25,7 +25,7 @@ namespace Sorry
     public sealed partial class Board : Page
     {
         static Pawn p1 = new Pawn(Color.FromArgb(255, 0, 0, 255));
-        static Pawn p2 = new Pawn(Color.FromArgb(255, 0, 0, 255));
+        static Pawn p2 = new Pawn(Color.FromArgb(255, 255, 0, 0));
         Pawn pc = p1;
 
         public Board()
@@ -72,6 +72,9 @@ namespace Sorry
             {
                 pc = p1;
             }
+
+
+
             //p.SetSize(30, 30);
 
 

@@ -64,9 +64,29 @@ namespace Sorry.Assets
 
             }
             catch (Exception)
-            {}
+            { }
 
             g.Children.Add(pawnRect);
+
+            Grid.SetColumn(pawnRect, X);
+            Grid.SetRow(pawnRect, Y);
+            position[0] = X;
+            position[1] = Y;
+        }
+        public void SetPosition(int X, int Y)
+        {
+
+
+            try
+            {
+                var GridParent = (Grid)pawnRect.Parent;
+                GridParent.Children.Remove(pawnRect);
+                GridParent.Children.Add(pawnRect);
+
+            }
+            catch (Exception)
+            { }
+
 
             Grid.SetColumn(pawnRect, X);
             Grid.SetRow(pawnRect, Y);
