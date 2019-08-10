@@ -101,7 +101,14 @@ namespace Sorry
                     var cg = (Grid)g;
 
 
+                    foreach (var pl in allPawns)
+                    {
 
+                        foreach (var p in pl)
+                        {
+                            p.SetPosition(0, 0);
+                        }
+                    }
 
 
 
