@@ -26,18 +26,5 @@ namespace Sorry
         {
             this.InitializeComponent();
         }
-
-
-        private void TestPawn_Click(object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(PawnTest));
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-            this.Frame.Navigate(typeof(Board));
-        }
     }
 }
