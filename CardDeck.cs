@@ -38,10 +38,12 @@ namespace Sorry
             for (int i = count; i < (count + 4); i++)
             {
                 cardDeck.Add(card);
+                count++;
             }
             shuffle();
-            count += 4;
         }
+
+
 
         public void shuffle()
         {
@@ -49,11 +51,11 @@ namespace Sorry
             int size = cardDeck.Count;
             while (size > 1)
             {
+                int index = rand.Next(size);
                 size--;
-                int index = rand.Next(size + 1);
-                Card value = cardDeck[index];
+                Card newCard = cardDeck[index];
                 cardDeck[index] = cardDeck[size];
-                cardDeck[size] = value;
+                cardDeck[size] = newCard;
             }
         }
 
@@ -83,14 +85,14 @@ namespace Sorry
                 newcard = cardDeck[0];
                 cardDeck.RemoveAt(0);
                 discardDeck.Add(newcard);
+                count--;
                 return newcard;
             }
             else
-            { 
+            {
                 reshuffle();
                 return cardDeck[1];
             }
-            return newcard;
         }
     }
 }
