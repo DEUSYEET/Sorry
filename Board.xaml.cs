@@ -35,9 +35,10 @@ namespace Sorry
 
             
         {
-            oX = 0;
-            oY = 0;
             this.InitializeComponent();
+
+
+
             foreach (var g in BoardGrid.Children)
             {
                 if (g.GetType().Equals(typeof(Button)))
@@ -94,12 +95,16 @@ namespace Sorry
         }
         private void MiniButton_Click(object sender, RoutedEventArgs e)
         {
-
+            var send = (Button)sender;
             pc.SetPosition(sender);
             //p.SetSize(20, 20);
             if ((p2.position[0] == 0 || p2.position[0] == 1 )&& (p2.position[1] == 0 || p2.position[1] == 1 )&& (p1.position[0] == 0 || p1.position[0] == 1 )&& (p1.position[1] == 0 || p1.position[1] == 1))
             {
+                if(send.Name.Equals("RedHome1")|| send.Name.Equals("RedHome2")) {
                 this.Frame.Navigate(typeof(WinPage));
+                }
+
+
             }
             if (pc.Equals(p1))
             {
