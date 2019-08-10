@@ -5,7 +5,7 @@ using System.Collections.Generic;
 /// Generate Cards for the Deck, Stores them and has a way of drawing the cards
 /// </summary>
 
-namespace Sorry.Assets
+namespace Sorry
 {
     public class CardDeck
     {
