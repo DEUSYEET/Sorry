@@ -13,8 +13,6 @@ namespace Sorry
         private List<Card> cardDeck = new List<Card>();
         private List<Card> discardDeck = new List<Card>();
         private int count = 0;
-        private int MAX_VALUE = 11;
-        private int MIN_VALUE = 1;
         public enum Card { One, Two, Three, Four, Five, Seven, Eight, Ten, Eleven, Twelve, Sorry };
 
         public CardDeck()
@@ -75,79 +73,12 @@ namespace Sorry
             cardDeck.Add(newCard);
         }
 
-        public Card rdrawCard(Card card)
+        public Card drawCard()
         {
             Card newcard;
-            if (card == Card.One)
-            {
-                cardDeck.Remove(Card.One);
-                discardDeck.Add(Card.One);
-                newcard = Card.One;
-                return newcard;
-            }
-            else if (card == Card.Two)
-            {
-                cardDeck.Remove(Card.Two);
-                discardDeck.Add(Card.Two);
-                newcard = Card.Two;
-                return newcard;
-            }
-            else if (card == Card.Three)
-            {
-                cardDeck.Remove(Card.Three);
-                discardDeck.Add(Card.Three);
-                newcard = Card.Three;
-                return newcard;
-            }
-            else if (card == Card.Four)
-            {
-                cardDeck.Remove(Card.Four);
-                discardDeck.Add(Card.Four);
-                newcard = Card.Four;
-                return newcard;
-            }
-            else if (card == Card.Five)
-            {
-                cardDeck.Remove(Card.Five);
-                discardDeck.Add(Card.Five);
-                newcard = Card.Five;
-                return newcard;
-            }
-            else if (card == Card.Seven)
-            {
-                cardDeck.Remove(Card.Seven);
-                discardDeck.Add(Card.Seven);
-                newcard = Card.Seven;
-                return newcard;
-            }
-            else if (card == Card.Eight)
-            {
-                cardDeck.Remove(Card.Eight);
-                discardDeck.Add(Card.Eight);
-                newcard = Card.Eight;
-                return newcard;
-            }
-            else if (card == Card.Ten)
-            {
-                cardDeck.Remove(Card.Ten);
-                discardDeck.Add(Card.Ten);
-                newcard = Card.Ten;
-                return newcard;
-            }
-            else if (card == Card.Eleven)
-            {
-                cardDeck.Remove(Card.Eleven);
-                discardDeck.Add(Card.Eleven);
-                newcard = Card.Eleven;
-                return newcard;
-            }
-            else 
-            {
-                cardDeck.Remove(Card.Sorry);
-                discardDeck.Add(Card.Sorry);
-                newcard = Card.Sorry;
-                return newcard;
-            }
+            newcard = cardDeck[1];
+            cardDeck.RemoveAt(1);
+            return newcard;
         }
     }
 }
