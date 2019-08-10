@@ -43,6 +43,12 @@ namespace Sorry
         static Pawn bp2 = new Pawn(Color.FromArgb(255, 0, 0, 255));
         static Pawn bp3 = new Pawn(Color.FromArgb(255, 0, 0, 255));
         static Pawn bp4 = new Pawn(Color.FromArgb(255, 0, 0, 255));
+        List<Pawn> rPawns = new List<Pawn>();
+        List<Pawn> gPawns = new List<Pawn>();
+        List<Pawn> yPawns = new List<Pawn>();
+        List<Pawn> bPawns = new List<Pawn>();
+
+        List<List<Pawn>> allPawns = new List<List<Pawn>>();
         Pawn pc = yp1;
 
         static CardDeck cardDeck = new CardDeck();
@@ -51,11 +57,44 @@ namespace Sorry
 
 
 
+
+
+
+
+
+
         public Board()
         {
-            
+
             //pc.SetPosition(sender);
             this.InitializeComponent();
+
+
+
+            yPawns.Add(yp1);
+            yPawns.Add(yp2);
+            yPawns.Add(yp3);
+            yPawns.Add(yp4);
+
+            gPawns.Add(gp1);
+            gPawns.Add(gp2);
+            gPawns.Add(gp3);
+            gPawns.Add(gp4);
+
+            rPawns.Add(rp1);
+            rPawns.Add(rp2);
+            rPawns.Add(rp3);
+            rPawns.Add(rp4);
+
+            bPawns.Add(bp1);
+            bPawns.Add(bp2);
+            bPawns.Add(bp3);
+            bPawns.Add(bp4);
+
+            allPawns.Add(yPawns);
+            allPawns.Add(gPawns);
+            allPawns.Add(rPawns);
+            allPawns.Add(bPawns);
             foreach (var g in BoardGrid.Children)
             {
                 if (g.GetType().Equals(typeof(Button)))
@@ -85,31 +124,31 @@ namespace Sorry
             // {
             pc.SetPosition(sender);
             //if (pc.Equals(yp1) || pc.Equals(yp2) || pc.Equals(yp3) || pc.Equals(yp4))
-                if (pc.Equals(yp1))
-                {
+            if (pc.Equals(yp1))
+            {
                 //pc = gp1;
                 pc = yp2;
                 TurnLabel.Text = "Turn: Green";
-                }
+            }
             //else if (pc.Equals(gp1) || pc.Equals(gp2) || pc.Equals(gp3) || pc.Equals(gp4))
-           else if (pc.Equals(yp2))
+            else if (pc.Equals(yp2))
             {
                 //pc = rp1;
                 pc = yp3;
                 TurnLabel.Text = "Turn: Red";
-                }
-           // else if (pc.Equals(rp1) || pc.Equals(rp2) || pc.Equals(rp3) || pc.Equals(rp4))
+            }
+            // else if (pc.Equals(rp1) || pc.Equals(rp2) || pc.Equals(rp3) || pc.Equals(rp4))
             else if (pc.Equals(yp3))
-                    {
-                        pc = yp4;
+            {
+                pc = yp4;
                 TurnLabel.Text = "Turn: Blue";
-                }
+            }
             else if (pc.Equals(yp4))
-                //else if (pc.Equals(bp1) || pc.Equals(bp2) || pc.Equals(bp3) || pc.Equals(bp4))
-                {
-                    pc = yp1;
-                    TurnLabel.Text = "Turn: Yellow";
-                }
+            //else if (pc.Equals(bp1) || pc.Equals(bp2) || pc.Equals(bp3) || pc.Equals(bp4))
+            {
+                pc = yp1;
+                TurnLabel.Text = "Turn: Yellow";
+            }
 
             // }
 
@@ -120,8 +159,38 @@ namespace Sorry
         private void MiniButton_Click(object sender, RoutedEventArgs e)
         {
 
-            pc.SetPosition(sender);
 
+            //  if (pc == sender)
+            // {
+            pc.SetPosition(sender);
+            //if (pc.Equals(yp1) || pc.Equals(yp2) || pc.Equals(yp3) || pc.Equals(yp4))
+            if (pc.Equals(yp1))
+            {
+                //pc = gp1;
+                pc = yp2;
+                TurnLabel.Text = "Turn: Green";
+            }
+            //else if (pc.Equals(gp1) || pc.Equals(gp2) || pc.Equals(gp3) || pc.Equals(gp4))
+            else if (pc.Equals(yp2))
+            {
+                //pc = rp1;
+                pc = yp3;
+                TurnLabel.Text = "Turn: Red";
+            }
+            // else if (pc.Equals(rp1) || pc.Equals(rp2) || pc.Equals(rp3) || pc.Equals(rp4))
+            else if (pc.Equals(yp3))
+            {
+                pc = yp4;
+                TurnLabel.Text = "Turn: Blue";
+            }
+            else if (pc.Equals(yp4))
+            //else if (pc.Equals(bp1) || pc.Equals(bp2) || pc.Equals(bp3) || pc.Equals(bp4))
+            {
+                pc = yp1;
+                TurnLabel.Text = "Turn: Yellow";
+            }
+
+            CheckWin((Button)sender);
 
         }
 
@@ -144,5 +213,46 @@ namespace Sorry
             }
             DiscardPile.Text = discardnum.ToString();
         }
+
+
+        private void CheckWin(Button b)
+        {
+            var name = b.Name;
+            bool allIn = true;
+            string homeColor = "Red";
+            if (name.Contains("Home"))
+            {
+                foreach (var pl in allPawns)
+                {
+                    foreach (var p in pl)
+                    {
+                        try
+                        {
+
+                            string spotName = ((Grid)p.pawnRect.Parent).Name;
+
+                            if (!spotName.Contains(homeColor) || !spotName.Contains("Home"))
+                            {
+                                allIn = false;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                        }
+                    }
+
+                }
+            }
+
+            if (allIn)
+            {
+                this.Frame.Navigate(typeof(WinPage));
+            }
+        }
+
+
     }
 }
+
+
+
