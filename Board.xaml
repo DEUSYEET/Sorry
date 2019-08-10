@@ -721,9 +721,8 @@
             Grid.Row="2"
             Grid.Column="13"
             Background="BlanchedAlmond" 
-            HorizontalAlignment="Center" 
-            Width="94" 
-            Height="62"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
             Content="BlueSafe2"
             BorderBrush="Black"
         />
@@ -1316,21 +1315,17 @@
             Grid.ColumnSpan="3"
             Fill="DarkGreen"
         />
-        <Rectangle 
+        <Button
+            x:Name="FaceUpCard"
             Grid.Row="4"
             Grid.Column="9"
             Grid.RowSpan="6"
             Grid.ColumnSpan="3"
-            Fill="LightGreen"
-        />
-        <TextBlock
-            x:Name="CardValueDisplay"
-            Grid.Row="6"
-            Grid.Column="10"
-            Text="Sorry!"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Bottom"
-            FontSize="25"
+            Background="LightGreen"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Content="" 
+            FontSize="60"
         />
         <!--#endregion-->
         <!--#region SlideShapes-->
