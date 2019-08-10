@@ -33,8 +33,12 @@ namespace Sorry
 
         public Board()
 
-            
+
         {
+
+
+
+
             this.InitializeComponent();
 
 
@@ -95,17 +99,9 @@ namespace Sorry
         }
         private void MiniButton_Click(object sender, RoutedEventArgs e)
         {
-            var send = (Button)sender;
             pc.SetPosition(sender);
             //p.SetSize(20, 20);
-            if ((p2.position[0] == 0 || p2.position[0] == 1 )&& (p2.position[1] == 0 || p2.position[1] == 1 )&& (p1.position[0] == 0 || p1.position[0] == 1 )&& (p1.position[1] == 0 || p1.position[1] == 1))
-            {
-                if(send.Name.Equals("RedHome1")|| send.Name.Equals("RedHome2")) {
-                this.Frame.Navigate(typeof(WinPage));
-                }
-
-
-            }
+            CheckWin((Button)sender);
             if (pc.Equals(p1))
             {
                 pc = p2;
@@ -119,10 +115,70 @@ namespace Sorry
 
         }
 
+
+        private void CheckWin(Button b)
+        {
+
+
+            var name = b.Name;
+
+            var g1 = (Grid)p1.pawnRect.Parent;
+            var g2 = (Grid)p2.pawnRect.Parent;
+
+            if (g1.Name.Contains("Home")&& g2.Name.Contains("Home"))
+            {
+
+
+
+
+
+                if (name.Contains("Red"))
+                {
+                    if (g1.Name.Contains("Red") && g2.Name.Contains("Red"))
+                    {
+                        this.Frame.Navigate(typeof(WinPage));
+                    }
+
+                }
+                else if (name.Contains("Blue"))
+                {
+                    if (g1.Name.Contains("Blue") && g2.Name.Contains("Blue"))
+                    {
+                        this.Frame.Navigate(typeof(WinPage));
+                    }
+                }
+                else if (name.Contains("Green"))
+                {
+                    if (g1.Name.Contains("Green") && g2.Name.Contains("Green"))
+                    {
+                        this.Frame.Navigate(typeof(WinPage));
+                    }
+                }
+                else if (name.Contains("Yellow"))
+                {
+                    if (g1.Name.Contains("Yellow") && g2.Name.Contains("Yellow"))
+                    {
+                        this.Frame.Navigate(typeof(WinPage));
+                    }
+                }
+
+
+            }
+
+
+
+
+
+
+
+        }
+
+
+
         private void FaceUpCard_Click(object sender, RoutedEventArgs e)
         {
             Card card;
-            card = (Card) cardDeck.drawCard();
+            card = (Card)cardDeck.drawCard();
             FaceUpCard.Content = card.ToString();
             discardnum++;
             if (discardnum >= 45)
