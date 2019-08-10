@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="RoyalBlue">
 
     <Grid x:Name="BoardGrid">
         <!--#region RowColumnDefinitions-->
@@ -48,11 +48,6 @@
         </Grid.ColumnDefinitions>
         <!--#endregion-->
         <!--#region PerimeterSpaces-->
-        <Rectangle 
-            Fill="RoyalBlue"
-            Grid.RowSpan="16"
-            Grid.ColumnSpan="16"
-        />
         <Button
             x:Name="TopLeftCorner"
             Grid.Row="0"
@@ -659,7 +654,7 @@
             x:Name="RedSafe1"
             Grid.Row="1"
             Grid.Column="2"
-            Background="BlanchedAlmond" 
+            Background="PaleVioletRed" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="RedSafe1"
@@ -669,7 +664,7 @@
             x:Name="RedSafe2"
             Grid.Row="2"
             Grid.Column="2"
-            Background="BlanchedAlmond" 
+            Background="PaleVioletRed" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="RedSafe2"
@@ -679,7 +674,7 @@
             x:Name="RedSafe3"
             Grid.Row="3"
             Grid.Column="2"
-            Background="BlanchedAlmond" 
+            Background="PaleVioletRed" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="RedSafe3"
@@ -689,7 +684,7 @@
             x:Name="RedSafe4"
             Grid.Row="4"
             Grid.Column="2"
-            Background="BlanchedAlmond" 
+            Background="PaleVioletRed" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="RedSafe4"
@@ -699,7 +694,7 @@
             x:Name="RedSafe5"
             Grid.Row="5"
             Grid.Column="2"
-            Background="BlanchedAlmond" 
+            Background="PaleVioletRed" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="RedSafe5"
@@ -709,7 +704,7 @@
             x:Name="BlueSafe1"
             Grid.Row="2"
             Grid.Column="14"
-            Background="BlanchedAlmond" 
+            Background="SkyBlue" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="BlueSafe1"
@@ -719,7 +714,7 @@
             x:Name="BlueSafe2"
             Grid.Row="2"
             Grid.Column="13"
-            Background="BlanchedAlmond" 
+            Background="SkyBlue" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="BlueSafe2"
@@ -729,7 +724,7 @@
             x:Name="BlueSafe3"
             Grid.Row="2"
             Grid.Column="12"
-            Background="BlanchedAlmond" 
+            Background="SkyBlue" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="BlueSafe3"
@@ -739,7 +734,7 @@
             x:Name="BlueSafe4"
             Grid.Row="2"
             Grid.Column="11"
-            Background="BlanchedAlmond" 
+            Background="SkyBlue" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="BlueSafe4"
@@ -749,7 +744,7 @@
             x:Name="BlueSafe5"
             Grid.Row="2"
             Grid.Column="10"
-            Background="BlanchedAlmond" 
+            Background="SkyBlue" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="BlueSafe5"
@@ -759,7 +754,7 @@
             x:Name="YellowSafe1"
             Grid.Row="14"
             Grid.Column="13"
-            Background="BlanchedAlmond" 
+            Background="PaleGoldenrod" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="YellowSafe1"
@@ -769,7 +764,7 @@
             x:Name="YellowSafe2"
             Grid.Row="13"
             Grid.Column="13"
-            Background="BlanchedAlmond" 
+            Background="PaleGoldenrod" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="YellowSafe2"
@@ -779,7 +774,7 @@
             x:Name="YellowSafe3"
             Grid.Row="12"
             Grid.Column="13"
-            Background="BlanchedAlmond" 
+            Background="PaleGoldenrod" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="YellowSafe3"
@@ -789,7 +784,7 @@
             x:Name="YellowSafe4"
             Grid.Row="11"
             Grid.Column="13"
-            Background="BlanchedAlmond" 
+            Background="PaleGoldenrod" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="YellowSafe4"
@@ -799,7 +794,7 @@
             x:Name="YellowSafe5"
             Grid.Row="10"
             Grid.Column="13"
-            Background="BlanchedAlmond" 
+            Background="PaleGoldenrod" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="YellowSafe5"
@@ -809,7 +804,7 @@
             x:Name="GreenSafe1"
             Grid.Row="13"
             Grid.Column="1"
-            Background="BlanchedAlmond" 
+            Background="Chartreuse" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="GreenSafe1"
@@ -819,7 +814,7 @@
             x:Name="GreenSafe2"
             Grid.Row="13"
             Grid.Column="2"
-            Background="BlanchedAlmond" 
+            Background="Chartreuse" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="GreenSafe2"
@@ -829,7 +824,7 @@
             x:Name="GreenSafe3"
             Grid.Row="13"
             Grid.Column="3"
-            Background="BlanchedAlmond" 
+            Background="Chartreuse" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="GreenSafe3"
@@ -839,7 +834,7 @@
             x:Name="GreenSafe4"
             Grid.Row="13"
             Grid.Column="4"
-            Background="BlanchedAlmond" 
+            Background="Chartreuse" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="GreenSafe4"
@@ -849,7 +844,7 @@
             x:Name="GreenSafe5"
             Grid.Row="13"
             Grid.Column="5"
-            Background="BlanchedAlmond" 
+            Background="Chartreuse" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="GreenSafe5"
@@ -858,7 +853,8 @@
         <Grid
             x:Name="RedHomeGrid"
             Grid.Row="6" 
-            Grid.Column="2" >
+            Grid.Column="2"
+            Background="PaleVioletRed">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -871,7 +867,6 @@
                 x:Name="RedHome1"
                 Grid.Row="0"
                 Grid.Column="0"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="RedHome"
@@ -882,7 +877,6 @@
                 x:Name="RedHome2"
                 Grid.Row="0"
                 Grid.Column="1"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="RedHome"
@@ -893,7 +887,6 @@
                 x:Name="RedHome3"
                 Grid.Row="1"
                 Grid.Column="0"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="RedHome"
@@ -904,7 +897,6 @@
                 x:Name="RedHome4"
                 Grid.Row="1"
                 Grid.Column="1"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="RedHome"
@@ -915,7 +907,8 @@
         <Grid
             x:Name="BlueHomeGrid"
             Grid.Row="2" 
-            Grid.Column="9" >
+            Grid.Column="9"
+            Background="SkyBlue">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -928,7 +921,6 @@
                 x:Name="BlueHome1"
                 Grid.Row="0"
                 Grid.Column="0"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="BlueHome"
@@ -939,7 +931,6 @@
                 x:Name="BlueHome2"
                 Grid.Row="0"
                 Grid.Column="1"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="BlueHome"
@@ -950,7 +941,6 @@
                 x:Name="BlueHome3"
                 Grid.Row="1"
                 Grid.Column="0"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="BlueHome"
@@ -961,7 +951,6 @@
                 x:Name="BlueHome4"
                 Grid.Row="1"
                 Grid.Column="1"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="BlueHome"
@@ -972,7 +961,8 @@
         <Grid
             x:Name="YellowHomeGrid"
             Grid.Row="9" 
-            Grid.Column="13" >
+            Grid.Column="13"
+            Background="PaleGoldenrod">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -985,7 +975,6 @@
                 x:Name="YellowHome1"
                 Grid.Row="0"
                 Grid.Column="0"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="YellowHome"
@@ -996,7 +985,6 @@
                 x:Name="YellowHome2"
                 Grid.Row="0"
                 Grid.Column="1"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="YellowHome"
@@ -1007,7 +995,6 @@
                 x:Name="YellowHome3"
                 Grid.Row="1"
                 Grid.Column="0"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="YellowHome"
@@ -1018,7 +1005,6 @@
                 x:Name="YellowHome4"
                 Grid.Row="1"
                 Grid.Column="1"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="YellowHome"
@@ -1029,7 +1015,8 @@
         <Grid
             x:Name="GreenHomeGrid"
             Grid.Row="13" 
-            Grid.Column="6" >
+            Grid.Column="6"
+            Background="Chartreuse">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -1042,7 +1029,6 @@
                 x:Name="GreenHome1"
                 Grid.Row="0"
                 Grid.Column="0"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="GreenHome"
@@ -1053,7 +1039,6 @@
                 x:Name="GreenHome2"
                 Grid.Row="0"
                 Grid.Column="1"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="GreenHome"
@@ -1064,7 +1049,6 @@
                 x:Name="GreenHome3"
                 Grid.Row="1"
                 Grid.Column="0"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="GreenHome"
@@ -1075,7 +1059,6 @@
                 x:Name="GreenHome4"
                 Grid.Row="1"
                 Grid.Column="1"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="GreenHome"
@@ -1088,7 +1071,8 @@
         <Grid 
             x:Name="RedStartGrid"
             Grid.Row="1" 
-            Grid.Column="4" >
+            Grid.Column="4" 
+            Background="PaleVioletRed">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -1101,7 +1085,6 @@
                 x:Name="RedStart1"
                 Grid.Row="0"
                 Grid.Column="0"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="RedStart"
@@ -1112,7 +1095,6 @@
                 x:Name="RedStart2"
                 Grid.Row="0"
                 Grid.Column="1"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="RedStart"
@@ -1123,7 +1105,6 @@
                 x:Name="RedStart3"
                 Grid.Row="1"
                 Grid.Column="0"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="RedStart"
@@ -1134,7 +1115,6 @@
                 x:Name="RedStart4"
                 Grid.Row="1"
                 Grid.Column="1"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="RedStart"
@@ -1145,7 +1125,8 @@
         <Grid 
             x:Name="BlueStartGrid"
             Grid.Row="4" 
-            Grid.Column="14" >
+            Grid.Column="14"
+            Background="SkyBlue">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -1158,7 +1139,6 @@
                 x:Name="BlueStart1"
                 Grid.Row="0"
                 Grid.Column="0"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="BlueStart"
@@ -1169,7 +1149,6 @@
                 x:Name="BlueStart2"
                 Grid.Row="0"
                 Grid.Column="1"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="BlueStart"
@@ -1180,7 +1159,6 @@
                 x:Name="BlueStart3"
                 Grid.Row="1"
                 Grid.Column="0"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="BlueStart"
@@ -1191,7 +1169,6 @@
                 x:Name="BlueStart4"
                 Grid.Row="1"
                 Grid.Column="1"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="BlueStart"
@@ -1202,7 +1179,8 @@
         <Grid 
             x:Name="YellowStartGrid"
             Grid.Row="14" 
-            Grid.Column="11" >
+            Grid.Column="11" 
+            Background="PaleGoldenrod">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -1215,7 +1193,6 @@
                 x:Name="YellowStart1"
                 Grid.Row="0"
                 Grid.Column="0"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="YellowStart"
@@ -1226,7 +1203,6 @@
                 x:Name="YellowStart2"
                 Grid.Row="0"
                 Grid.Column="1"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="YellowStart"
@@ -1237,7 +1213,6 @@
                 x:Name="YellowStart3"
                 Grid.Row="1"
                 Grid.Column="0"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="YellowStart"
@@ -1248,7 +1223,6 @@
                 x:Name="YellowStart4"
                 Grid.Row="1"
                 Grid.Column="1"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="YellowStart"
@@ -1259,7 +1233,8 @@
         <Grid 
             x:Name="GreenStartGrid"
             Grid.Row="11" 
-            Grid.Column="1" >
+            Grid.Column="1" 
+            Background="Chartreuse">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -1272,7 +1247,6 @@
                 x:Name="GreenStart1"
                 Grid.Row="0"
                 Grid.Column="0"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="GreenStart"
@@ -1283,7 +1257,6 @@
                 x:Name="GreenStart2"
                 Grid.Row="0"
                 Grid.Column="1"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="GreenStart"
@@ -1294,7 +1267,6 @@
                 x:Name="GreenStart3"
                 Grid.Row="1"
                 Grid.Column="0"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="GreenStart"
@@ -1305,7 +1277,6 @@
                 x:Name="GreenStart4"
                 Grid.Row="1"
                 Grid.Column="1"
-                Background="BlanchedAlmond" 
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 Content="GreenStart"
@@ -1617,7 +1588,7 @@
             Fill="green"
         />
         <!--#endregion-->
-        <!--#region TurnLabel-->
+        <!--#region TurnLabel&StartGameButton-->
         <TextBlock 
             x:Name="TurnLabel"
             Grid.Row="11" 
@@ -1626,6 +1597,17 @@
             Text="Turn: Yellow"
             HorizontalAlignment="Center"
             FontSize="30"
+        />
+        <Button 
+            x:Name="StartGameButton"
+            Grid.Row="10"
+            Grid.Column="6"
+            Grid.ColumnSpan="4"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Content="Press To Start Game"
+            FontSize="35"
+            Background="BlanchedAlmond"
         />
         <!--#endregion-->
     </Grid>
