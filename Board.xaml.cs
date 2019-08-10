@@ -26,7 +26,9 @@ namespace Sorry
     {
         static Pawn p1 = new Pawn(Color.FromArgb(255, 0, 0, 255));
         static Pawn p2 = new Pawn(Color.FromArgb(255, 0, 0, 255));
+        static CardDeck cardDeck = new CardDeck();
         Pawn pc = p1;
+        public enum Card { One, Two, Three, Four, Five, Seven, Eight, Ten, Eleven, Twelve, Sorry };
 
         public Board()
         {
@@ -85,6 +87,13 @@ namespace Sorry
             //p.SetSize(20, 20);
 
 
+        }
+
+        private void FaceUpCard_Click(object sender, RoutedEventArgs e)
+        {
+            Card card;
+            card = (Card) cardDeck.drawCard();
+            FaceUpCard.Content = card.ToString();
         }
     }
 }

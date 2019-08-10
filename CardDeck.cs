@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 /// <summary>
 /// Generate Cards for the Deck, Stores them and has a way of drawing the cards
 /// </summary>
@@ -28,6 +29,7 @@ namespace Sorry
             generateAndStoreCards(Card.Eleven);
             generateAndStoreCards(Card.Twelve);
             generateAndStoreCards(Card.Sorry);
+            shuffle();
 
         }
 
@@ -75,9 +77,19 @@ namespace Sorry
 
         public Card drawCard()
         {
-            Card newcard;
-            newcard = cardDeck[1];
-            cardDeck.RemoveAt(1);
+            Card newcard = new Card();
+            if (cardDeck.Any())
+            {
+                newcard = cardDeck[0];
+                cardDeck.RemoveAt(0);
+                discardDeck.Add(newcard);
+                return newcard;
+            }
+            else
+            { 
+                reshuffle();
+                return cardDeck[1];
+            }
             return newcard;
         }
     }
