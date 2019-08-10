@@ -27,9 +27,15 @@ namespace Sorry
         static Pawn p1 = new Pawn(Color.FromArgb(255, 0, 0, 255));
         static Pawn p2 = new Pawn(Color.FromArgb(255, 255, 0, 0));
         Pawn pc = p1;
+        int oX;
+        int oY;
 
         public Board()
+
+            
         {
+            oX = 0;
+            oY = 0;
             this.InitializeComponent();
             foreach (var g in BoardGrid.Children)
             {
@@ -75,6 +81,10 @@ namespace Sorry
 
 
 
+
+
+
+
             //p.SetSize(30, 30);
 
 
@@ -86,6 +96,19 @@ namespace Sorry
 
             pc.SetPosition(sender);
             //p.SetSize(20, 20);
+            if ((p2.position[0] == 0 || p2.position[0] == 1 )&& (p2.position[1] == 0 || p2.position[1] == 1 )&& (p1.position[0] == 0 || p1.position[0] == 1 )&& (p1.position[1] == 0 || p1.position[1] == 1))
+            {
+                this.Frame.Navigate(typeof(WinPage));
+            }
+            if (pc.Equals(p1))
+            {
+                pc = p2;
+            }
+            else if (pc.Equals(p2))
+            {
+                pc = p1;
+            }
+
 
 
         }
