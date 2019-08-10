@@ -90,7 +90,7 @@ namespace Sorry
                 reshuffle();
                 return cardDeck[1];
             }
-            return newcard;
+            //return newcard;
         }
     }
 }
