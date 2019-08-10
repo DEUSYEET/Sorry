@@ -528,9 +528,8 @@
             Grid.Row="13"
             Grid.Column="0"
             Background="BlanchedAlmond" 
-            HorizontalAlignment="Center" 
-            Width="94" 
-            Height="62"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
             Content="47"
             BorderBrush="Black"
         />
@@ -856,7 +855,8 @@
             Content="GreenSafe5"
             BorderBrush="Black"
         />
-        <Grid 
+        <Grid
+            x:Name="RedHomeGrid"
             Grid.Row="6" 
             Grid.Column="2" >
             <Grid.RowDefinitions>
@@ -912,7 +912,8 @@
                 FontSize="5"
             />
         </Grid>
-        <Grid 
+        <Grid
+            x:Name="BlueHomeGrid"
             Grid.Row="2" 
             Grid.Column="9" >
             <Grid.RowDefinitions>
@@ -968,7 +969,8 @@
                 FontSize="5"
             />
         </Grid>
-        <Grid 
+        <Grid
+            x:Name="YellowHomeGrid"
             Grid.Row="9" 
             Grid.Column="13" >
             <Grid.RowDefinitions>
@@ -1024,7 +1026,8 @@
                 FontSize="5"
             />
         </Grid>
-        <Grid 
+        <Grid
+            x:Name="GreenHomeGrid"
             Grid.Row="13" 
             Grid.Column="6" >
             <Grid.RowDefinitions>
@@ -1083,6 +1086,7 @@
         <!--#endregion-->
         <!--#region StartSpaces-->
         <Grid 
+            x:Name="RedStartGrid"
             Grid.Row="1" 
             Grid.Column="4" >
             <Grid.RowDefinitions>
@@ -1139,6 +1143,7 @@
             />
         </Grid>
         <Grid 
+            x:Name="BlueStartGrid"
             Grid.Row="4" 
             Grid.Column="14" >
             <Grid.RowDefinitions>
@@ -1195,6 +1200,7 @@
             />
         </Grid>
         <Grid 
+            x:Name="YellowStartGrid"
             Grid.Row="14" 
             Grid.Column="11" >
             <Grid.RowDefinitions>
@@ -1251,6 +1257,7 @@
             />
         </Grid>
         <Grid 
+            x:Name="GreenStartGrid"
             Grid.Row="11" 
             Grid.Column="1" >
             <Grid.RowDefinitions>
@@ -1608,6 +1615,17 @@
             Width="40"
             Height="40"
             Fill="green"
+        />
+        <!--#endregion-->
+        <!--#region TurnLabel-->
+        <TextBlock 
+            x:Name="TurnLabel"
+            Grid.Row="11" 
+            Grid.Column="6" 
+            Grid.ColumnSpan="4"
+            Text="Turn: Yellow"
+            HorizontalAlignment="Center"
+            FontSize="30"
         />
         <!--#endregion-->
     </Grid>
