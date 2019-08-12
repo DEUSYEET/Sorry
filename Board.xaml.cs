@@ -1,6 +1,7 @@
-﻿﻿using Sorry.Assets;
+﻿using Sorry.Assets;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,25 +25,25 @@ namespace Sorry
     /// </summary>
     public sealed partial class Board : Page
     {
-        static Pawn yp1 = new Pawn(Color.FromArgb(255, 255, 0, 255));
-        static Pawn yp2 = new Pawn(Color.FromArgb(255, 255, 0, 255));
-        static Pawn yp3 = new Pawn(Color.FromArgb(255, 255, 0, 255));
-        static Pawn yp4 = new Pawn(Color.FromArgb(255, 255, 0, 255));
+        static Pawn yp1 = new Pawn(Color.FromArgb(255, 255, 0, 255), color.yellow);
+        static Pawn yp2 = new Pawn(Color.FromArgb(255, 255, 0, 255), color.yellow);
+        static Pawn yp3 = new Pawn(Color.FromArgb(255, 255, 0, 255), color.yellow);
+        static Pawn yp4 = new Pawn(Color.FromArgb(255, 255, 0, 255), color.yellow);
 
-        static Pawn gp1 = new Pawn(Color.FromArgb(255, 0, 255, 0));
-        static Pawn gp2 = new Pawn(Color.FromArgb(255, 0, 255, 0));
-        static Pawn gp3 = new Pawn(Color.FromArgb(255, 0, 255, 0));
-        static Pawn gp4 = new Pawn(Color.FromArgb(255, 0, 255, 0));
+        static Pawn gp1 = new Pawn(Color.FromArgb(255, 0, 255, 0), color.green);
+        static Pawn gp2 = new Pawn(Color.FromArgb(255, 0, 255, 0), color.green);
+        static Pawn gp3 = new Pawn(Color.FromArgb(255, 0, 255, 0), color.green);
+        static Pawn gp4 = new Pawn(Color.FromArgb(255, 0, 255, 0), color.green);
 
-        static Pawn rp1 = new Pawn(Color.FromArgb(255, 255, 0, 0));
-        static Pawn rp2 = new Pawn(Color.FromArgb(255, 255, 0, 0));
-        static Pawn rp3 = new Pawn(Color.FromArgb(255, 255, 0, 0));
-        static Pawn rp4 = new Pawn(Color.FromArgb(255, 255, 0, 0));
+        static Pawn rp1 = new Pawn(Color.FromArgb(255, 255, 0, 0), color.red);
+        static Pawn rp2 = new Pawn(Color.FromArgb(255, 255, 0, 0), color.red);
+        static Pawn rp3 = new Pawn(Color.FromArgb(255, 255, 0, 0), color.red);
+        static Pawn rp4 = new Pawn(Color.FromArgb(255, 255, 0, 0), color.red);
 
-        static Pawn bp1 = new Pawn(Color.FromArgb(255, 0, 0, 255));
-        static Pawn bp2 = new Pawn(Color.FromArgb(255, 0, 0, 255));
-        static Pawn bp3 = new Pawn(Color.FromArgb(255, 0, 0, 255));
-        static Pawn bp4 = new Pawn(Color.FromArgb(255, 0, 0, 255));
+        static Pawn bp1 = new Pawn(Color.FromArgb(255, 0, 0, 255), color.blue);
+        static Pawn bp2 = new Pawn(Color.FromArgb(255, 0, 0, 255), color.blue);
+        static Pawn bp3 = new Pawn(Color.FromArgb(255, 0, 0, 255), color.blue);
+        static Pawn bp4 = new Pawn(Color.FromArgb(255, 0, 0, 255), color.blue);
         List<Pawn> rPawns = new List<Pawn>();
         List<Pawn> gPawns = new List<Pawn>();
         List<Pawn> yPawns = new List<Pawn>();
@@ -232,35 +233,60 @@ namespace Sorry
         private void CheckWin(Button b)
         {
             var name = b.Name;
-            bool allIn = true;
-            string homeColor = "Red";
+            string homeColor = "";
+
+
+
             if (name.Contains("Home"))
             {
                 foreach (var pl in allPawns)
                 {
+                    int homeCount = 0;
                     foreach (var p in pl)
                     {
+                        switch (p.colorName)
+                        {
+                            case color.red:
+                                homeColor = "Red";
+                                break;
+                            case color.blue:
+                                homeColor = "Blue";
+                                break;
+                            case color.green:
+                                homeColor = "Green";
+                                break;
+                            case color.yellow:
+                                homeColor = "Yellow";
+                                break;
+                        }
+
                         try
                         {
 
                             string spotName = ((Grid)p.pawnRect.Parent).Name;
 
-                            if (!spotName.Contains(homeColor) || !spotName.Contains("Home"))
+                            if (spotName.Contains(homeColor) &&spotName.Contains("Home"))
                             {
-                                allIn = false;
+                                homeCount += 1;
                             }
                         }
                         catch (Exception)
                         {
                         }
                     }
+                            Debug.WriteLine(homeCount);
+
+                    if (homeCount == 4)
+                    {
+                        this.Frame.Navigate(typeof(WinPage));
+
+                    }
+                    else
+                    {
+                        homeCount = 0;
+                    }
 
                 }
-            }
-
-            if (allIn)
-            {
-                this.Frame.Navigate(typeof(WinPage));
             }
         }
 

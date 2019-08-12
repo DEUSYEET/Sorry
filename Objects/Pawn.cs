@@ -17,6 +17,7 @@ namespace Sorry.Assets
         public Rectangle pawnRect { get; set; }
         private Random rng = new Random();
         public int[] position { get; set; }
+        public color colorName { get; set; }
 
         public Pawn()
         {
@@ -25,13 +26,14 @@ namespace Sorry.Assets
             position[0] = 0;
             position[1] = 0;
         }
-        public Pawn(Color c)
+        public Pawn(Color c, color colorName)
         {
             pawnRect = genRect();
             position = new int[2];
             position[0] = 0;
             position[1] = 0;
             SetColor(c);
+            this.colorName = colorName;
 
         }
 
