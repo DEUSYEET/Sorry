@@ -198,10 +198,7 @@ namespace Sorry
         {
             StartGameButton.Click -= StartGameButton_Click;
             StartGameButton.Visibility = Visibility.Collapsed;
-
-            //pc.init(sender, 0, 0);
-
- pc = yp1; pc.SetPosition(YellowStart1);
+            pc = yp1; pc.SetPosition(YellowStart1);
             pc = yp2; pc.SetPosition(YellowStart2);
             pc = yp3; pc.SetPosition(YellowStart3);
             pc = yp4; pc.SetPosition(YellowStart4);
@@ -216,7 +213,7 @@ namespace Sorry
             pc = bp1; pc.SetPosition(BlueStart1);
             pc = bp2; pc.SetPosition(BlueStart2);
             pc = bp3; pc.SetPosition(BlueStart3);
-            pc = bp4; pc.SetPosition(BlueStart4); pc = yp1;            
+            pc = bp4; pc.SetPosition(BlueStart4); pc = yp1;
         }
         private void FaceUpCard_Click(object sender, RoutedEventArgs e)
         {
