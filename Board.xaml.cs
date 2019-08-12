@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
+//The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Sorry
 {
@@ -24,15 +24,37 @@ namespace Sorry
     /// </summary>
     public sealed partial class Board : Page
     {
-        static Pawn p1 = new Pawn(Color.FromArgb(255, 0, 0, 255));
-        static Pawn p2 = new Pawn(Color.FromArgb(255, 0, 0, 255));
+        static Pawn yp1 = new Pawn(Color.FromArgb(255, 255, 0, 255));
+        static Pawn yp2 = new Pawn(Color.FromArgb(255, 255, 0, 255));
+        static Pawn yp3 = new Pawn(Color.FromArgb(255, 255, 0, 255));
+        static Pawn yp4 = new Pawn(Color.FromArgb(255, 255, 0, 255));
+
+        static Pawn gp1 = new Pawn(Color.FromArgb(255, 0, 255, 0));
+        static Pawn gp2 = new Pawn(Color.FromArgb(255, 0, 255, 0));
+        static Pawn gp3 = new Pawn(Color.FromArgb(255, 0, 255, 0));
+        static Pawn gp4 = new Pawn(Color.FromArgb(255, 0, 255, 0));
+
+        static Pawn rp1 = new Pawn(Color.FromArgb(255, 255, 0, 0));
+        static Pawn rp2 = new Pawn(Color.FromArgb(255, 255, 0, 0));
+        static Pawn rp3 = new Pawn(Color.FromArgb(255, 255, 0, 0));
+        static Pawn rp4 = new Pawn(Color.FromArgb(255, 255, 0, 0));
+
+        static Pawn bp1 = new Pawn(Color.FromArgb(255, 0, 0, 255));
+        static Pawn bp2 = new Pawn(Color.FromArgb(255, 0, 0, 255));
+        static Pawn bp3 = new Pawn(Color.FromArgb(255, 0, 0, 255));
+        static Pawn bp4 = new Pawn(Color.FromArgb(255, 0, 0, 255));
+        Pawn pc = yp1;
+
         static CardDeck cardDeck = new CardDeck();
         int discardnum = 0;
-        Pawn pc = p1;
         public enum Card { One, Two, Three, Four, Five, Seven, Eight, Ten, Eleven, Twelve, Sorry };
+
+
 
         public Board()
         {
+            
+            //pc.SetPosition(sender);
             this.InitializeComponent();
             foreach (var g in BoardGrid.Children)
             {
@@ -43,11 +65,6 @@ namespace Sorry
                 else if (g.GetType().Equals(typeof(Grid)))
                 {
                     var cg = (Grid)g;
-
-
-
-
-
 
                     foreach (var gb in cg.Children)
                     {
@@ -64,18 +81,37 @@ namespace Sorry
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-
-
+            //  if (pc == sender)
+            // {
             pc.SetPosition(sender);
-            if (pc.Equals(p1))
+            //if (pc.Equals(yp1) || pc.Equals(yp2) || pc.Equals(yp3) || pc.Equals(yp4))
+                if (pc.Equals(yp1))
+                {
+                //pc = gp1;
+                pc = yp2;
+                TurnLabel.Text = "Turn: Green";
+                }
+            //else if (pc.Equals(gp1) || pc.Equals(gp2) || pc.Equals(gp3) || pc.Equals(gp4))
+           else if (pc.Equals(yp2))
             {
-                pc = p2;
-            }
-            else if (pc.Equals(p2))
-            {
-                pc = p1;
-            }
-            //p.SetSize(30, 30);
+                //pc = rp1;
+                pc = yp3;
+                TurnLabel.Text = "Turn: Red";
+                }
+           // else if (pc.Equals(rp1) || pc.Equals(rp2) || pc.Equals(rp3) || pc.Equals(rp4))
+            else if (pc.Equals(yp3))
+                    {
+                        pc = yp4;
+                TurnLabel.Text = "Turn: Blue";
+                }
+            else if (pc.Equals(yp4))
+                //else if (pc.Equals(bp1) || pc.Equals(bp2) || pc.Equals(bp3) || pc.Equals(bp4))
+                {
+                    pc = yp1;
+                    TurnLabel.Text = "Turn: Yellow";
+                }
+
+            // }
 
 
 
@@ -85,15 +121,35 @@ namespace Sorry
         {
 
             pc.SetPosition(sender);
-            //p.SetSize(20, 20);
 
 
         }
 
+        private void StartGameButton_Click(object sender, RoutedEventArgs e)
+        {
+            StartGameButton.Click -= StartGameButton_Click;
+            StartGameButton.Visibility = Visibility.Collapsed;
+            pc = yp1; pc.SetPosition(YellowStart1);
+            pc = yp2; pc.SetPosition(YellowStart2);
+            pc = yp3; pc.SetPosition(YellowStart3);
+            pc = yp4; pc.SetPosition(YellowStart4);
+            pc = gp1; pc.SetPosition(GreenStart1);
+            pc = gp2; pc.SetPosition(GreenStart2);
+            pc = gp3; pc.SetPosition(GreenStart3);
+            pc = gp4; pc.SetPosition(GreenStart4);
+            pc = rp1; pc.SetPosition(RedStart1);
+            pc = rp2; pc.SetPosition(RedStart2);
+            pc = rp3; pc.SetPosition(RedStart3);
+            pc = rp4; pc.SetPosition(RedStart4);
+            pc = bp1; pc.SetPosition(BlueStart1);
+            pc = bp2; pc.SetPosition(BlueStart2);
+            pc = bp3; pc.SetPosition(BlueStart3);
+            pc = bp4; pc.SetPosition(BlueStart4); pc = yp1;
+        }
         private void FaceUpCard_Click(object sender, RoutedEventArgs e)
         {
             Card card;
-            card = (Card) cardDeck.drawCard();
+            card = (Card)cardDeck.drawCard();
             FaceUpCard.Content = card.ToString();
             discardnum++;
             if (discardnum >= 45)

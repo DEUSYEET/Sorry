@@ -84,8 +84,5 @@ namespace Sorry.Assets
             pawnRect.Width = width;
             pawnRect.Height = height;
         }
-
-
-
     }
 }
