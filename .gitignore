@@ -4,5 +4,6 @@
 !*.cs
 !*.xaml
 !*.xaml.cs
+!*/Assets
 */ARM/Debug/
 */x86/Debug/
