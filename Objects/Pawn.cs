@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +17,6 @@ namespace Sorry.Assets
         public Rectangle pawnRect { get; set; }
         private Random rng = new Random();
         public int[] position { get; set; }
-        public color colorName { get; set; }
 
         public Pawn()
         {
@@ -26,15 +25,13 @@ namespace Sorry.Assets
             position[0] = 0;
             position[1] = 0;
         }
-        public Pawn(Color c, color colorName)
+        public Pawn(Color c)
         {
             pawnRect = genRect();
             position = new int[2];
             position[0] = 0;
             position[1] = 0;
             SetColor(c);
-            this.colorName = colorName;
-
         }
 
 
@@ -49,7 +46,7 @@ namespace Sorry.Assets
             return r;
         }
 
-        public void SetPosition(Object sender)
+        public void SetPosition(Object sender, int[] pos)
         {
             var o = (FrameworkElement)sender;
             Grid g = (Grid)o.Parent;
@@ -69,31 +66,20 @@ namespace Sorry.Assets
             { }
 
             g.Children.Add(pawnRect);
-
-            Grid.SetColumn(pawnRect, X);
-            Grid.SetRow(pawnRect, Y);
-            position[0] = X;
-            position[1] = Y;
-        }
-        public void SetPosition(int X, int Y)
-        {
-
-
-            try
+            if (pos != null)
             {
-                var GridParent = (Grid)pawnRect.Parent;
-                GridParent.Children.Remove(pawnRect);
-                GridParent.Children.Add(pawnRect);
-
+                Grid.SetColumn(pawnRect, pos[0]);
+                Grid.SetRow(pawnRect, pos[1]);
+                position[0] = pos[0];
+                position[1] = pos[1];
             }
-            catch (Exception)
-            { }
-
-
-            Grid.SetColumn(pawnRect, X);
-            Grid.SetRow(pawnRect, Y);
-            position[0] = X;
-            position[1] = Y;
+            else
+            {
+                Grid.SetColumn(pawnRect, X);
+                Grid.SetRow(pawnRect, Y);
+                position[0] = X;
+                position[1] = Y;
+            }
         }
 
         public void SetColor(Color c)
@@ -106,8 +92,5 @@ namespace Sorry.Assets
             pawnRect.Width = width;
             pawnRect.Height = height;
         }
-
-
-
     }
 }
