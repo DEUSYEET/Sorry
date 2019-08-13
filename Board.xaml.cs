@@ -1,6 +1,7 @@
 ﻿using Sorry.Assets;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,25 +25,31 @@ namespace Sorry
     /// </summary>
     public sealed partial class Board : Page
     {
-        static Pawn yp1 = new Pawn(Color.FromArgb(255, 255, 0, 255));
-        static Pawn yp2 = new Pawn(Color.FromArgb(255, 255, 0, 255));
-        static Pawn yp3 = new Pawn(Color.FromArgb(255, 255, 0, 255));
-        static Pawn yp4 = new Pawn(Color.FromArgb(255, 255, 0, 255));
+        static Pawn yp1 = new Pawn(Color.FromArgb(255, 255, 0, 255), color.yellow);
+        static Pawn yp2 = new Pawn(Color.FromArgb(255, 255, 0, 255), color.yellow);
+        static Pawn yp3 = new Pawn(Color.FromArgb(255, 255, 0, 255), color.yellow);
+        static Pawn yp4 = new Pawn(Color.FromArgb(255, 255, 0, 255), color.yellow);
 
-        static Pawn gp1 = new Pawn(Color.FromArgb(255, 0, 255, 0));
-        static Pawn gp2 = new Pawn(Color.FromArgb(255, 0, 255, 0));
-        static Pawn gp3 = new Pawn(Color.FromArgb(255, 0, 255, 0));
-        static Pawn gp4 = new Pawn(Color.FromArgb(255, 0, 255, 0));
+        static Pawn gp1 = new Pawn(Color.FromArgb(255, 0, 255, 0), color.green);
+        static Pawn gp2 = new Pawn(Color.FromArgb(255, 0, 255, 0), color.green);
+        static Pawn gp3 = new Pawn(Color.FromArgb(255, 0, 255, 0), color.green);
+        static Pawn gp4 = new Pawn(Color.FromArgb(255, 0, 255, 0), color.green);
 
-        static Pawn rp1 = new Pawn(Color.FromArgb(255, 255, 0, 0));
-        static Pawn rp2 = new Pawn(Color.FromArgb(255, 255, 0, 0));
-        static Pawn rp3 = new Pawn(Color.FromArgb(255, 255, 0, 0));
-        static Pawn rp4 = new Pawn(Color.FromArgb(255, 255, 0, 0));
+        static Pawn rp1 = new Pawn(Color.FromArgb(255, 255, 0, 0), color.red);
+        static Pawn rp2 = new Pawn(Color.FromArgb(255, 255, 0, 0), color.red);
+        static Pawn rp3 = new Pawn(Color.FromArgb(255, 255, 0, 0), color.red);
+        static Pawn rp4 = new Pawn(Color.FromArgb(255, 255, 0, 0), color.red);
 
-        static Pawn bp1 = new Pawn(Color.FromArgb(255, 0, 0, 255));
-        static Pawn bp2 = new Pawn(Color.FromArgb(255, 0, 0, 255));
-        static Pawn bp3 = new Pawn(Color.FromArgb(255, 0, 0, 255));
-        static Pawn bp4 = new Pawn(Color.FromArgb(255, 0, 0, 255));
+        static Pawn bp1 = new Pawn(Color.FromArgb(255, 0, 0, 255), color.blue);
+        static Pawn bp2 = new Pawn(Color.FromArgb(255, 0, 0, 255), color.blue);
+        static Pawn bp3 = new Pawn(Color.FromArgb(255, 0, 0, 255), color.blue);
+        static Pawn bp4 = new Pawn(Color.FromArgb(255, 0, 0, 255), color.blue);
+        List<Pawn> rPawns = new List<Pawn>();
+        List<Pawn> gPawns = new List<Pawn>();
+        List<Pawn> yPawns = new List<Pawn>();
+        List<Pawn> bPawns = new List<Pawn>();
+
+        List<List<Pawn>> allPawns = new List<List<Pawn>>();
         Pawn pc = yp1;
 
         static CardDeck cardDeck = new CardDeck();
@@ -51,11 +58,44 @@ namespace Sorry
 
 
 
+
+
+
+
+
+
         public Board()
         {
-            
+
             //pc.SetPosition(sender);
             this.InitializeComponent();
+
+
+
+            yPawns.Add(yp1);
+            yPawns.Add(yp2);
+            yPawns.Add(yp3);
+            yPawns.Add(yp4);
+
+            gPawns.Add(gp1);
+            gPawns.Add(gp2);
+            gPawns.Add(gp3);
+            gPawns.Add(gp4);
+
+            rPawns.Add(rp1);
+            rPawns.Add(rp2);
+            rPawns.Add(rp3);
+            rPawns.Add(rp4);
+
+            bPawns.Add(bp1);
+            bPawns.Add(bp2);
+            bPawns.Add(bp3);
+            bPawns.Add(bp4);
+
+            allPawns.Add(yPawns);
+            allPawns.Add(gPawns);
+            allPawns.Add(rPawns);
+            allPawns.Add(bPawns);
             foreach (var g in BoardGrid.Children)
             {
                 if (g.GetType().Equals(typeof(Button)))
@@ -85,31 +125,31 @@ namespace Sorry
             // {
             pc.SetPosition(sender);
             //if (pc.Equals(yp1) || pc.Equals(yp2) || pc.Equals(yp3) || pc.Equals(yp4))
-                if (pc.Equals(yp1))
-                {
+            if (pc.Equals(yp1))
+            {
                 //pc = gp1;
                 pc = yp2;
                 TurnLabel.Text = "Turn: Green";
-                }
+            }
             //else if (pc.Equals(gp1) || pc.Equals(gp2) || pc.Equals(gp3) || pc.Equals(gp4))
-           else if (pc.Equals(yp2))
+            else if (pc.Equals(yp2))
             {
                 //pc = rp1;
                 pc = yp3;
                 TurnLabel.Text = "Turn: Red";
-                }
-           // else if (pc.Equals(rp1) || pc.Equals(rp2) || pc.Equals(rp3) || pc.Equals(rp4))
+            }
+            // else if (pc.Equals(rp1) || pc.Equals(rp2) || pc.Equals(rp3) || pc.Equals(rp4))
             else if (pc.Equals(yp3))
-                    {
-                        pc = yp4;
+            {
+                pc = yp4;
                 TurnLabel.Text = "Turn: Blue";
-                }
+            }
             else if (pc.Equals(yp4))
-                //else if (pc.Equals(bp1) || pc.Equals(bp2) || pc.Equals(bp3) || pc.Equals(bp4))
-                {
-                    pc = yp1;
-                    TurnLabel.Text = "Turn: Yellow";
-                }
+            //else if (pc.Equals(bp1) || pc.Equals(bp2) || pc.Equals(bp3) || pc.Equals(bp4))
+            {
+                pc = yp1;
+                TurnLabel.Text = "Turn: Yellow";
+            }
 
             // }
 
@@ -120,8 +160,38 @@ namespace Sorry
         private void MiniButton_Click(object sender, RoutedEventArgs e)
         {
 
-            pc.SetPosition(sender);
 
+            //  if (pc == sender)
+            // {
+            pc.SetPosition(sender);
+            //if (pc.Equals(yp1) || pc.Equals(yp2) || pc.Equals(yp3) || pc.Equals(yp4))
+            if (pc.Equals(yp1))
+            {
+                //pc = gp1;
+                pc = yp2;
+                TurnLabel.Text = "Turn: Green";
+            }
+            //else if (pc.Equals(gp1) || pc.Equals(gp2) || pc.Equals(gp3) || pc.Equals(gp4))
+            else if (pc.Equals(yp2))
+            {
+                //pc = rp1;
+                pc = yp3;
+                TurnLabel.Text = "Turn: Red";
+            }
+            // else if (pc.Equals(rp1) || pc.Equals(rp2) || pc.Equals(rp3) || pc.Equals(rp4))
+            else if (pc.Equals(yp3))
+            {
+                pc = yp4;
+                TurnLabel.Text = "Turn: Blue";
+            }
+            else if (pc.Equals(yp4))
+            //else if (pc.Equals(bp1) || pc.Equals(bp2) || pc.Equals(bp3) || pc.Equals(bp4))
+            {
+                pc = yp1;
+                TurnLabel.Text = "Turn: Yellow";
+            }
+
+            CheckWin((Button)sender);
 
         }
 
@@ -146,7 +216,7 @@ namespace Sorry
             pc = bp3; pc.SetPosition(BlueStart3);
             pc = bp4; pc.SetPosition(BlueStart4); pc = yp1;
         }
-        private void FaceUpCard_Click(object sender, RoutedEventArgs e)
+        private void FaceUpCard_Click(object sender, RoutedEventArgs e, Pawn pawn)
         {
             Card card;
             card = (Card)cardDeck.drawCard();
@@ -157,6 +227,118 @@ namespace Sorry
                 discardnum = 0;
             }
             DiscardPile.Text = discardnum.ToString();
+
+            //get position of pawn
+            int[] tempPosition = pawn.position;
+            int value = cardDeck.GetNumFromCard();
+            //check for in corners
+            //add/sub number of card based on position to position
+            //if corners add/sub based on position to postion
+            if (tempPosition[1] == 0 && tempPosition[2] == 0)
+            {
+                tempPosition[1] += value;
+                if(tempPosition[1] > 15)
+                {
+                    //add remaing to tempPosition[2]
+                    int temp = tempPosition[1];
+                    temp -= 15;
+                    tempPosition[2] += temp;
+                }
+            }
+            else if (tempPosition[1] == 15 && tempPosition[2] == 0)
+            {
+                tempPosition[2] += value;
+                if(tempPosition[2]> 15)
+                {
+                    //sub remaing from tempPosition[1]
+                }
+            }
+            else if (tempPosition[1] == 15 && tempPosition[2] == 15)
+            {
+                tempPosition[1] -= value;
+                if(tempPosition[1] < 0)
+                {
+                    //sub remaing from tempPosition[2]
+
+                }
+            }
+            else if (tempPosition[1] == 0 && tempPosition[2] == 15)
+            {
+                tempPosition[2] -= value;
+                if(tempPosition[2] < 0)
+                {
+                    //multiple the remaing by -1 then add remaing to tempPosition[1]
+                }
+            }
+            //highlight to show possible position
+            //click moves to that positon
         }
+
+      
+
+        private void CheckWin(Button b)
+        {
+            var name = b.Name;
+            string homeColor = "";
+
+
+
+            if (name.Contains("Home"))
+            {
+                foreach (var pl in allPawns)
+                {
+                    int homeCount = 0;
+                    foreach (var p in pl)
+                    {
+                        switch (p.colorName)
+                        {
+                            case color.red:
+                                homeColor = "Red";
+                                break;
+                            case color.blue:
+                                homeColor = "Blue";
+                                break;
+                            case color.green:
+                                homeColor = "Green";
+                                break;
+                            case color.yellow:
+                                homeColor = "Yellow";
+                                break;
+                        }
+
+                        try
+                        {
+
+                            string spotName = ((Grid)p.pawnRect.Parent).Name;
+
+                            if (spotName.Contains(homeColor) &&spotName.Contains("Home"))
+                            {
+                                homeCount += 1;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                        }
+                    }
+                            Debug.WriteLine(homeCount);
+
+                    if (homeCount == 4)
+                    {
+                        this.Frame.Navigate(typeof(WinPage));
+
+                    }
+                    else
+                    {
+                        homeCount = 0;
+                    }
+
+                }
+            }
+        }
+
+
     }
 }
+
+
+

@@ -38,12 +38,10 @@ namespace Sorry
             for (int i = count; i < (count + 4); i++)
             {
                 cardDeck.Add(card);
-                count++;
             }
             shuffle();
+            count += 4;
         }
-
-
 
         public void shuffle()
         {
@@ -51,11 +49,11 @@ namespace Sorry
             int size = cardDeck.Count;
             while (size > 1)
             {
-                int index = rand.Next(size);
                 size--;
-                Card newCard = cardDeck[index];
+                int index = rand.Next(size + 1);
+                Card value = cardDeck[index];
                 cardDeck[index] = cardDeck[size];
-                cardDeck[size] = newCard;
+                cardDeck[size] = value;
             }
         }
 
@@ -85,13 +83,53 @@ namespace Sorry
                 newcard = cardDeck[0];
                 cardDeck.RemoveAt(0);
                 discardDeck.Add(newcard);
-                count--;
                 return newcard;
             }
             else
-            {
+            { 
                 reshuffle();
                 return cardDeck[1];
+            }
+            //return newcard;
+        }
+
+        public int GetNumFromCard()
+        {
+            if(cardDeck[1] == Card.One)
+            {
+                return 1;
+            }
+            else if (cardDeck[1] == Card.Two)
+            {
+                return 2;
+            }
+            else if (cardDeck[1] == Card.Three)
+            {
+                return 3;
+            }
+            else if (cardDeck[1] == Card.Four)
+            {
+                return 4;
+            }
+            else if (cardDeck[1] == Card.Five)
+            {
+                return 5;
+            }
+            else if (cardDeck[1] == Card.Seven)
+            {
+                return 7;
+            }
+            else if (cardDeck[1] == Card.Eight)
+            {
+                return 8;
+            }
+            else if (cardDeck[1] == Card.Ten)
+            {
+                return 10;
+            }
+            else
+            {
+                return 11;
             }
         }
     }

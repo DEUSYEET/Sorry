@@ -9,8 +9,8 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Button Width="500" Height="500" Content="TestPawn" x:Name="TestPawn" FontSize="100" Margin="124,0,0,0" Click="TestPawn_Click"></Button>
-        <Button Width="500" Height="500" Content="TestBoard"  FontSize="100" x:Name="TestBoard" Margin="870,0,0,0" Click="Button_Click"></Button>
+        <Button Width="500" Height="500" Content="TestPawn" x:Name="TestPawn" FontSize="100" Margin="215,0,0,0" Click="TestPawn_Click"></Button>
+        <Button Width="500" Height="500" Content="TestBoard"  FontSize="100" x:Name="TestBoard" Margin="801,0,0,0" Click="Button_Click"></Button>
 
     </Grid>
 </Page>

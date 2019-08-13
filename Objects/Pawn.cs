@@ -17,6 +17,7 @@ namespace Sorry.Assets
         public Rectangle pawnRect { get; set; }
         private Random rng = new Random();
         public int[] position { get; set; }
+        public color colorName { get; set; }
 
         public Pawn()
         {
@@ -25,13 +26,14 @@ namespace Sorry.Assets
             position[0] = 0;
             position[1] = 0;
         }
-        public Pawn(Color c)
+        public Pawn(Color c, color colorName)
         {
             pawnRect = genRect();
             position = new int[2];
             position[0] = 0;
             position[1] = 0;
             SetColor(c);
+            this.colorName = colorName;
 
         }
 
@@ -64,9 +66,29 @@ namespace Sorry.Assets
 
             }
             catch (Exception)
-            {}
+            { }
 
             g.Children.Add(pawnRect);
+
+            Grid.SetColumn(pawnRect, X);
+            Grid.SetRow(pawnRect, Y);
+            position[0] = X;
+            position[1] = Y;
+        }
+        public void SetPosition(int X, int Y)
+        {
+
+
+            try
+            {
+                var GridParent = (Grid)pawnRect.Parent;
+                GridParent.Children.Remove(pawnRect);
+                GridParent.Children.Add(pawnRect);
+
+            }
+            catch (Exception)
+            { }
+
 
             Grid.SetColumn(pawnRect, X);
             Grid.SetRow(pawnRect, Y);
@@ -84,5 +106,8 @@ namespace Sorry.Assets
             pawnRect.Width = width;
             pawnRect.Height = height;
         }
+
+
+
     }
 }

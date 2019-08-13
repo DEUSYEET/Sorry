@@ -1315,7 +1315,8 @@
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="" 
-            FontSize="60" Click="FaceUpCard_Click"
+            FontSize="60" 
+            Click="FaceUpCard_Click"
         />
         <!--#endregion-->
         <!--#region SlideShapes-->
