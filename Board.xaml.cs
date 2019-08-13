@@ -290,6 +290,23 @@ namespace Sorry
             }
         }
 
+        private void GreenSlider1Start_Click(object sender, RoutedEventArgs e)
+        {
+            Slider(color.green);
+        }
+
+        private void Slider(color slideColor)
+        {
+
+
+
+
+
+        }
+
+
+
+
 
     }
 }
