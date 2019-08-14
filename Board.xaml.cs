@@ -368,7 +368,28 @@ namespace Sorry
             return colorMatch;
         }
 
+        private string checkColor(Pawn pawn)
+        {
+            string c = "";
+            switch (pawn.pawnColor)
+            {
+                case color.blue:
+                    c = "Blue";
+                    break;
+                case color.red:
+                    c = "Red";
+                    break;
+                case color.green:
+                    c = "Green";
+                    break;
+                case color.yellow:
+                    c = "Yellow";
+                    break;
+            }
 
+                return c;
+            
+        }
 
 
 
