@@ -137,13 +137,13 @@ namespace Sorry
         {
             Card card;
             card = (Card)cardDeck.drawCard();
-            FaceUpCard.Content = card.ToString();
+            string cardLink = "Images/"+card.ToString()+"Card.png";
+            FaceUpCard.Source = (new BitmapImage(new Uri("ms-appx:///"+cardLink)));
             discardnum++;
             if (discardnum >= 45)
             {
                 discardnum = 0;
             }
-            DiscardPile.Text = discardnum.ToString();
         }
     }
 }
