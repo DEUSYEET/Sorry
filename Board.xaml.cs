@@ -1,4 +1,4 @@
-using Sorry.Assets;
+﻿using Sorry.Assets;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
 
 //The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
@@ -24,25 +25,25 @@ namespace Sorry
     /// </summary>
     public sealed partial class Board : Page
     {
-        static Pawn yp1 = new Pawn(Color.FromArgb(255, 255, 0, 255));
-        static Pawn yp2 = new Pawn(Color.FromArgb(255, 255, 0, 255));
-        static Pawn yp3 = new Pawn(Color.FromArgb(255, 255, 0, 255));
-        static Pawn yp4 = new Pawn(Color.FromArgb(255, 255, 0, 255));
+        static Pawn yp1 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/YellowPawn.png")));
+        static Pawn yp2 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/YellowPawn.png")));
+        static Pawn yp3 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/YellowPawn.png")));
+        static Pawn yp4 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/YellowPawn.png")));
 
-        static Pawn gp1 = new Pawn(Color.FromArgb(255, 0, 255, 0));
-        static Pawn gp2 = new Pawn(Color.FromArgb(255, 0, 255, 0));
-        static Pawn gp3 = new Pawn(Color.FromArgb(255, 0, 255, 0));
-        static Pawn gp4 = new Pawn(Color.FromArgb(255, 0, 255, 0));
+        static Pawn gp1 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/GreenPawn.png")));
+        static Pawn gp2 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/GreenPawn.png")));
+        static Pawn gp3 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/GreenPawn.png")));
+        static Pawn gp4 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/GreenPawn.png")));
 
-        static Pawn rp1 = new Pawn(Color.FromArgb(255, 255, 0, 0));
-        static Pawn rp2 = new Pawn(Color.FromArgb(255, 255, 0, 0));
-        static Pawn rp3 = new Pawn(Color.FromArgb(255, 255, 0, 0));
-        static Pawn rp4 = new Pawn(Color.FromArgb(255, 255, 0, 0));
+        static Pawn rp1 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/RedPawn.png")));
+        static Pawn rp2 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/RedPawn.png")));
+        static Pawn rp3 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/RedPawn.png")));
+        static Pawn rp4 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/RedPawn.png")));
 
-        static Pawn bp1 = new Pawn(Color.FromArgb(255, 0, 0, 255));
-        static Pawn bp2 = new Pawn(Color.FromArgb(255, 0, 0, 255));
-        static Pawn bp3 = new Pawn(Color.FromArgb(255, 0, 0, 255));
-        static Pawn bp4 = new Pawn(Color.FromArgb(255, 0, 0, 255));
+        static Pawn bp1 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/BluePawn.png")));
+        static Pawn bp2 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/BluePawn.png")));
+        static Pawn bp3 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/BluePawn.png")));
+        static Pawn bp4 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/BluePawn.png")));
         Pawn pc = yp1;
         Pawn selectedP;
 
@@ -81,38 +82,38 @@ namespace Sorry
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-//Yellow, Green, Red, Blue
+            //Yellow, Green, Red, Blue
 
             //Identify turn
             //Get selected pawn
-                //set pc = to selected pawn of appropriate color
+            //set pc = to selected pawn of appropriate color
             //Alternate through selected pawns
             //Move to allowed space.
             //End Turn
 
             //if (TurnLabel.Text.Equals("Turn: Yellow"))
             //{
-                turn t = new turn();
-                Pawn p = new Pawn();
-                int[] checkTurn = t.turns(sender);
-                int[] pawnpos = yp1.position;
+            turn t = new turn();
+            //Pawn p = new Pawn();
+            int[] checkTurn = t.turns(sender);
+            int[] pawnpos = yp1.position;
             TurnLabel.Text = "Pawn Pos" + pawnpos[0] + "||" + pawnpos[1] + "\nClickPos" + checkTurn[0] + "||" + checkTurn[1];
             // p.position = ;
             pc = yp1;
-           pc.SetPosition(sender, checkTurn);
+            pc.SetPosition(sender, checkTurn);
 
 
             //}
         }
         private void MiniButton_Click(object sender, RoutedEventArgs e)
         { //Don't think we need miniButton click?
-//  
- //           pc.SetPosition(sender);
+          //  
+          //           pc.SetPosition(sender);
         }
 
         private void StartGameButton_Click(object sender, RoutedEventArgs e)
         {
-            int[] pos=null;
+            int[] pos = null;
             StartGameButton.Click -= StartGameButton_Click;
             StartGameButton.Visibility = Visibility.Collapsed;
             pc = yp1; pc.SetPosition(YellowStart1, pos);
