@@ -56,14 +56,6 @@ namespace Sorry
         int discardnum = 0;
         public enum Card { One, Two, Three, Four, Five, Seven, Eight, Ten, Eleven, Twelve, Sorry };
 
-
-
-
-
-
-
-
-
         public Board()
         {
 
@@ -216,7 +208,7 @@ namespace Sorry
             pc = bp3; pc.SetPosition(BlueStart3);
             pc = bp4; pc.SetPosition(BlueStart4); pc = yp1;
         }
-        private void FaceUpCard_Click(object sender, RoutedEventArgs e, Pawn pawn)
+        private void FaceUpCard_Click(object sender, RoutedEventArgs e)
         {
             Card card;
             card = (Card)cardDeck.drawCard();
@@ -227,54 +219,167 @@ namespace Sorry
                 discardnum = 0;
             }
             DiscardPile.Text = discardnum.ToString();
+        }
 
-            //get position of pawn
+        private void RedPawnHomeMovement(int[] pawn)
+        {
+            int[] tempPosition = pawn;
+
+            //Red Pawn Home Movement
+
+            //when tempPosition[0] >= 2 move down towards home 
+            if (tempPosition[0] > 2)
+            {
+                int temp = tempPosition[0];
+                temp -= 2;
+                if (temp > 6)
+                {
+                    //Player skips turn
+                    // break or return pawn.position not sure yet if need to return
+                }
+                else
+                {
+                    //sudo code fro now need check for actual home position since that spot is its own mini grid
+                    tempPosition[0] = 2;
+                    tempPosition[1] += temp;
+                }
+            }
+
+
+        }
+        private void MovePawn(Pawn pawn)
+        {
             int[] tempPosition = pawn.position;
             int value = cardDeck.GetNumFromCard();
-            //check for in corners
-            //add/sub number of card based on position to position
-            //if corners add/sub based on position to postion
-            if (tempPosition[1] == 0 && tempPosition[2] == 0)
+
+            if (tempPosition[0] >= 0 && tempPosition[1] == 0)
+            {
+                tempPosition[0] += value;
+
+                if (tempPosition[0] > 15)
+                {
+                    int temp = tempPosition[0];
+                    temp -= 15;
+                    tempPosition[0] = 15;
+                    tempPosition[1] += temp;
+                }
+            }
+            else if (tempPosition[0] == 15 && tempPosition[1] >= 0)
             {
                 tempPosition[1] += value;
-                if(tempPosition[1] > 15)
+
+                // Blue Home Movement
+                if (pawn.colorName == color.blue)
                 {
-                    //add remaing to tempPosition[2]
+                    //when tempPosition[1] > 2 move left towards home
+                    if (tempPosition[1] > 2)
+                    {
+                        int temp = tempPosition[1];
+                        temp -= 2;
+                        if (temp > 6)
+                        {
+                            //Player skips turn
+                            // break or return pawn.position not sure yet if need to return
+                        }
+                        else
+                        {
+                            //sudo code fro now need check for actual home position since that spot is its own mini grid
+                            tempPosition[1] = 2;
+                            tempPosition[0] -= temp;
+                        }
+                    }
+                    else
+                    {
+                        //break or return position of tempPosisition
+                    }
+                }
+
+                if (tempPosition[1] > 15)
+                {
+                    //sub remaing from tempPosition[0]
                     int temp = tempPosition[1];
                     temp -= 15;
-                    tempPosition[2] += temp;
-                }
-            }
-            else if (tempPosition[1] == 15 && tempPosition[2] == 0)
-            {
-                tempPosition[2] += value;
-                if(tempPosition[2]> 15)
-                {
-                    //sub remaing from tempPosition[1]
-                }
-            }
-            else if (tempPosition[1] == 15 && tempPosition[2] == 15)
-            {
-                tempPosition[1] -= value;
-                if(tempPosition[1] < 0)
-                {
-                    //sub remaing from tempPosition[2]
+                    tempPosition[1] = 15;
+                    tempPosition[0] -= temp;
 
                 }
             }
-            else if (tempPosition[1] == 0 && tempPosition[2] == 15)
+            else if (tempPosition[0] <= 15 && tempPosition[1] == 15)
             {
-                tempPosition[2] -= value;
-                if(tempPosition[2] < 0)
+                tempPosition[0] -= value;
+
+                //Yellow Home Movement
+                if (pawn.colorName == color.yellow)
                 {
-                    //multiple the remaing by -1 then add remaing to tempPosition[1]
+                    int temp = tempPosition[0];
+
+                    if (tempPosition[0] < 13)
+                    {
+                        value -= 2;
+                        tempPosition[0] = 13;
+                        if (value > 6)
+                        {
+                            //player Skip Turn
+                            //break or return pawn.position
+                        }
+                        else
+                        {
+                            //sudo code need check for if value is 6 because home space is its own grid
+                            tempPosition[1] -= value;
+                        }
+
+                    }
+                    else
+                    {
+                        //break or return
+                    }
+
+                }
+                if (tempPosition[0] < 0)
+                {
+                    //multiple the remaining by -1 then sub remaing from tempPosition[2]
+                    int temp = tempPosition[0];
+                    temp = (temp * (-1));
+                    tempPosition[0] = 0;
+                    tempPosition[1] -= temp;
+
+                }
+            }
+            else if (tempPosition[0] == 0 && tempPosition[1] <= 15)
+            {
+                tempPosition[1] -= value;
+
+                // Green Home Movement
+                if (pawn.colorName == color.green)
+                {
+                    if (tempPosition[1] < 13)
+                    {
+                        value -= 2;
+                        tempPosition[1] = 13;
+                        if (value > 6)
+                        {
+                            //player Skip Turn
+                            //break or return pawn.position
+                        }
+                        else
+                        {
+                            //sudo code need check for if value is 6 because home space is its own grid
+                            tempPosition[0] -= value;
+                        }
+                    }
+                }
+                if (tempPosition[1] < 0)
+                {
+                    //multiple the remaining by -1 then add remaing to tempPosition[1]
+                    int temp = tempPosition[1];
+                    temp = (temp * (-1));
+                    tempPosition[1] = 0;
+                    tempPosition[0] += temp;
                 }
             }
             //highlight to show possible position
             //click moves to that positon
         }
-
-      
 
         private void CheckWin(Button b)
         {
@@ -311,7 +416,7 @@ namespace Sorry
 
                             string spotName = ((Grid)p.pawnRect.Parent).Name;
 
-                            if (spotName.Contains(homeColor) &&spotName.Contains("Home"))
+                            if (spotName.Contains(homeColor) && spotName.Contains("Home"))
                             {
                                 homeCount += 1;
                             }
@@ -320,7 +425,7 @@ namespace Sorry
                         {
                         }
                     }
-                            Debug.WriteLine(homeCount);
+                    Debug.WriteLine(homeCount);
 
                     if (homeCount == 4)
                     {
