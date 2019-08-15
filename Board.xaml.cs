@@ -42,9 +42,9 @@ namespace Sorry
         static Pawn rp4 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/RedPawn.png")), color.red);
 
         static Pawn bp1 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/BluePawn.png")), color.blue);
-        static Pawn bp2 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/BluePawn.png")),color.blue);
-        static Pawn bp3 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/BluePawn.png")),color.blue);
-        static Pawn bp4 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/BluePawn.png")),color.blue);
+        static Pawn bp2 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/BluePawn.png")), color.blue);
+        static Pawn bp3 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/BluePawn.png")), color.blue);
+        static Pawn bp4 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/BluePawn.png")), color.blue);
         Pawn pc = yp1;
         Pawn selectedP;
 
@@ -202,12 +202,12 @@ namespace Sorry
             pc = bp3; pc.SetPosition(BlueStart3, pos);
             pc = bp4; pc.SetPosition(BlueStart4, pos); pc = yp1;
         }
-        private void FaceUpCard_Click(object sender, RoutedEventArgs e)
+        private void FaceDownCard_Click(object sender, RoutedEventArgs e)
         {
             Card card;
             card = (Card)cardDeck.drawCard();
-            string cardLink = "Images/"+card.ToString()+"Card.png";
-            FaceUpCard.Source = (new BitmapImage(new Uri("ms-appx:///"+cardLink)));
+            string cardLink = "Images/" + card.ToString() + "Card.png";
+            FaceUpCard.Source = (new BitmapImage(new Uri("ms-appx:///" + cardLink)));
             discardnum++;
             if (discardnum >= 45)
             {
