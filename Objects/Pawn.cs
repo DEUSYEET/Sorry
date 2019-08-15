@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,36 +14,36 @@ namespace Sorry.Assets
 {
     class Pawn
     {
-        public Rectangle pawnRect { get; set; }
+        public Image pawnRect { get; set; }
         private Random rng = new Random();
         public int[] position { get; set; }
 
         public Pawn()
         {
-            pawnRect = genRect();
+            pawnRect = createPawn();
             position = new int[2];
             position[0] = 0;
             position[1] = 0;
         }
-        public Pawn(Color c)
+        public Pawn(ImageSource source)
         {
-            pawnRect = genRect();
+            pawnRect = createPawn();
             position = new int[2];
             position[0] = 0;
             position[1] = 0;
-            SetColor(c);
+            SetImage(source);
         }
 
 
-        public Rectangle genRect()
+        public Image createPawn()
         {
-            Rectangle r = new Rectangle();
-            r.Width = 30;
-            r.Height = 30;
-            Color c = new Color();
-            c = Color.FromArgb(255, (byte)rng.Next(1, 255), (byte)rng.Next(1, 255), (byte)rng.Next(1, 255));
-            r.Fill = new SolidColorBrush(c);
-            return r;
+            Image im = new Image();
+            im.Width = 30;
+            im.Height = 30;
+            //Color c = new Color();
+            //c = Color.FromArgb(255, (byte)rng.Next(1, 255), (byte)rng.Next(1, 255), (byte)rng.Next(1, 255));
+            //r.Fill = new SolidColorBrush(c);
+            return im;
         }
 
         public void SetPosition(Object sender, int[] pos)
@@ -82,9 +82,9 @@ namespace Sorry.Assets
             }
         }
 
-        public void SetColor(Color c)
+        public void SetImage(ImageSource source)
         {
-            pawnRect.Fill = new SolidColorBrush(c);
+            pawnRect.Source = source;
         }
 
         public void SetSize(int width, int height)
