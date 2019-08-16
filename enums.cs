@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace Sorry
 {
-    class enums
-    {
         enum cards
         {
             one = 1,
@@ -35,10 +33,10 @@ namespace Sorry
         }
         enum color
         {
-            red,
-            blue,
-            green,
-            yellow
+            red = 1,
+            blue = 2,
+            green = 3,
+            yellow = 4
         }
-    }
+    
 }
