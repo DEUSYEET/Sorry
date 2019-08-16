@@ -1,4 +1,4 @@
-<Page
+﻿<Page
     x:Class="Sorry.Board"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -55,7 +55,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="0"
             BorderBrush="Black"
         />
         <Button
@@ -65,7 +64,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="1"
             BorderBrush="Black"
         />
         <Button
@@ -75,7 +73,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="2"
             BorderBrush="Black"
         />
         <Button
@@ -85,7 +82,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="3"
             BorderBrush="Black"
         />
         <Button
@@ -95,7 +91,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="4"
             BorderBrush="Black"
         />
         <Button
@@ -105,7 +100,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="5"
             BorderBrush="Black"
         />
         <Button
@@ -114,8 +108,7 @@
             Grid.Column="6"
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            Content="6"
+            VerticalAlignment="Stretch"   
             BorderBrush="Black"
         />
         <Button
@@ -125,7 +118,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="7"
             BorderBrush="Black"
         />
         <Button
@@ -135,7 +127,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="8"
             BorderBrush="Black"
         />
         <Button
@@ -145,7 +136,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="9"
             BorderBrush="Black"
         />
         <Button
@@ -155,7 +145,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="10"
             BorderBrush="Black"
         />
         <Button
@@ -164,8 +153,7 @@
             Grid.Column="11"
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            Content="11"
+            VerticalAlignment="Stretch" 
             BorderBrush="Black"
         />
         <Button
@@ -175,7 +163,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="12"
             BorderBrush="Black"
         />
         <Button
@@ -185,7 +172,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="13"
             BorderBrush="Black"
         />
         <Button
@@ -195,7 +181,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="14"
             BorderBrush="Black"
         />
         <Button
@@ -205,7 +190,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="15"
             BorderBrush="Black"
         />
         <Button
@@ -215,7 +199,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="16"
             BorderBrush="Black"
         />
         <Button
@@ -225,7 +208,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="17"
             BorderBrush="Black"
         />
         <Button
@@ -235,7 +217,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="18"
             BorderBrush="Black"
         />
         <Button
@@ -245,7 +226,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="19"
             BorderBrush="Black"
         />
         <Button
@@ -255,7 +235,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="20"
             BorderBrush="Black"
         />
         <Button
@@ -265,7 +244,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="21"
             BorderBrush="Black"
         />
         <Button
@@ -275,7 +253,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="22"
             BorderBrush="Black"
         />
         <Button
@@ -285,7 +262,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="23"
             BorderBrush="Black"
         />
         <Button
@@ -295,7 +271,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="24"
             BorderBrush="Black"
         />
         <Button
@@ -305,7 +280,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="25"
             BorderBrush="Black"
         />
         <Button
@@ -315,7 +289,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="26"
             BorderBrush="Black"
         />
         <Button
@@ -325,7 +298,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="27"
             BorderBrush="Black"
         />
         <Button
@@ -335,7 +307,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="28"
             BorderBrush="Black"
         />
         <Button
@@ -345,7 +316,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="29"
             BorderBrush="Black"
         />
         <Button
@@ -355,7 +325,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="30"
             BorderBrush="Black"
         />
         <Button
@@ -365,7 +334,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="31"
             BorderBrush="Black"
         />
         <Button
@@ -375,7 +343,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="32"
             BorderBrush="Black"
         />
         <Button
@@ -385,7 +352,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="33"
             BorderBrush="Black"
         />
         <Button
@@ -395,7 +361,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="34"
             BorderBrush="Black"
         />
         <Button
@@ -405,7 +370,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="35"
             BorderBrush="Black"
         />
         <Button
@@ -415,7 +379,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="36"
             BorderBrush="Black"
         />
         <Button
@@ -425,7 +388,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="37"
             BorderBrush="Black"
         />
         <Button
@@ -435,7 +397,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="38"
             BorderBrush="Black"
         />
         <Button
@@ -445,7 +406,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="39"
             BorderBrush="Black"
         />
         <Button
@@ -455,7 +415,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="40"
             BorderBrush="Black"
         />
         <Button
@@ -465,7 +424,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="41"
             BorderBrush="Black"
         />
         <Button
@@ -475,7 +433,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="42"
             BorderBrush="Black"
         />
         <Button
@@ -485,7 +442,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="43"
             BorderBrush="Black"
         />
         <Button
@@ -495,7 +451,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="44"
             BorderBrush="Black"
         />
         <Button
@@ -505,7 +460,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="45"
             BorderBrush="Black"
         />
         <Button
@@ -515,7 +469,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="46"
             BorderBrush="Black"
         />
         <Button
@@ -525,7 +478,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="47"
             BorderBrush="Black"
         />
         <Button
@@ -535,7 +487,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="48"
             BorderBrush="Black"
         />
         <Button
@@ -545,7 +496,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="49"
             BorderBrush="Black"
         />
         <Button
@@ -555,7 +505,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="50"
             BorderBrush="Black"
         />
         <Button
@@ -565,7 +514,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="51"
             BorderBrush="Black"
         />
         <Button
@@ -575,7 +523,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="53"
             BorderBrush="Black"
         />
         <Button
@@ -585,7 +532,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="54"
             BorderBrush="Black"
         />
         <Button
@@ -595,7 +541,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="55"
             BorderBrush="Black"
         />
         <Button
@@ -605,7 +550,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="56"
             BorderBrush="Black"
         />
         <Button
@@ -615,7 +559,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="57"
             BorderBrush="Black"
         />
         <Button
@@ -625,7 +568,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="58"
             BorderBrush="Black"
         />
         <Button
@@ -635,7 +577,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="59"
             BorderBrush="Black"
         />
         <Button
@@ -645,7 +586,6 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="60"
             BorderBrush="Black"
         />
         <!--#endregion-->
@@ -1286,37 +1226,24 @@
         </Grid>
         <!--#endregion-->
         <!--#region Cards-->
-        <Rectangle 
+        <Image 
+            x:Name="FaceUpCard"
             Grid.Row="4"
             Grid.Column="4"
             Grid.RowSpan="6"
             Grid.ColumnSpan="3"
-            Fill="DarkGreen"
-        />
-        <TextBlock
-            x:Name="DiscardPile"
-            Text="0"
-            Grid.Row="6"
-            Grid.Column="4"
-            Grid.RowSpan="2"
-            Grid.ColumnSpan="3"
-            FontSize="60"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            
-        />
-        <Button
-            x:Name="FaceUpCard"
+            Source="Images/SorryCard.png"
+            />
+        <Image
+            x:Name="FaceDownCard"
             Grid.Row="4"
             Grid.Column="9"
             Grid.RowSpan="6"
             Grid.ColumnSpan="3"
-            Background="LightGreen"
+            Source="Images/BackOfCard.png"
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch"
-            Content="" 
-            FontSize="60" 
-            Click="FaceUpCard_Click"
+            VerticalAlignment="Stretch"  
+            Tapped="FaceDownCard_Click"
         />
         <!--#endregion-->
         <!--#region SlideShapes-->

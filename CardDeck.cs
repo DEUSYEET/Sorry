@@ -92,45 +92,5 @@ namespace Sorry
             }
             //return newcard;
         }
-
-        public int GetNumFromCard()
-        {
-            if(cardDeck[1] == Card.One)
-            {
-                return 1;
-            }
-            else if (cardDeck[1] == Card.Two)
-            {
-                return 2;
-            }
-            else if (cardDeck[1] == Card.Three)
-            {
-                return 3;
-            }
-            else if (cardDeck[1] == Card.Four)
-            {
-                return 4;
-            }
-            else if (cardDeck[1] == Card.Five)
-            {
-                return 5;
-            }
-            else if (cardDeck[1] == Card.Seven)
-            {
-                return 7;
-            }
-            else if (cardDeck[1] == Card.Eight)
-            {
-                return 8;
-            }
-            else if (cardDeck[1] == Card.Ten)
-            {
-                return 10;
-            }
-            else
-            {
-                return 11;
-            }
-        }
     }
 }

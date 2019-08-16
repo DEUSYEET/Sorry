@@ -14,42 +14,41 @@ namespace Sorry.Assets
 {
     class Pawn
     {
-        public Rectangle pawnRect { get; set; }
+        public Image pawnRect { get; set; }
         private Random rng = new Random();
         public int[] position { get; set; }
-        public color colorName { get; set; }
+        public color pawnColor { get; set; }
 
         public Pawn()
         {
-            pawnRect = genRect();
+            pawnRect = createPawn();
             position = new int[2];
             position[0] = 0;
             position[1] = 0;
         }
-        public Pawn(Color c, color colorName)
+        public Pawn(ImageSource source, color color)
         {
-            pawnRect = genRect();
+            pawnColor = color;
+            pawnRect = createPawn();
             position = new int[2];
             position[0] = 0;
             position[1] = 0;
-            SetColor(c);
-            this.colorName = colorName;
-
+            SetImage(source);
         }
 
 
-        public Rectangle genRect()
+        public Image createPawn()
         {
-            Rectangle r = new Rectangle();
-            r.Width = 30;
-            r.Height = 30;
-            Color c = new Color();
-            c = Color.FromArgb(255, (byte)rng.Next(1, 255), (byte)rng.Next(1, 255), (byte)rng.Next(1, 255));
-            r.Fill = new SolidColorBrush(c);
-            return r;
+            Image im = new Image();
+            im.Width = 30;
+            im.Height = 30;
+            //Color c = new Color();
+            //c = Color.FromArgb(255, (byte)rng.Next(1, 255), (byte)rng.Next(1, 255), (byte)rng.Next(1, 255));
+            //r.Fill = new SolidColorBrush(c);
+            return im;
         }
 
-        public void SetPosition(Object sender)
+        public void SetPosition(Object sender, int[] pos)
         {
             var o = (FrameworkElement)sender;
             Grid g = (Grid)o.Parent;
@@ -69,11 +68,20 @@ namespace Sorry.Assets
             { }
 
             g.Children.Add(pawnRect);
-
-            Grid.SetColumn(pawnRect, X);
-            Grid.SetRow(pawnRect, Y);
-            position[0] = X;
-            position[1] = Y;
+            if (pos != null)
+            {
+                Grid.SetColumn(pawnRect, pos[0]);
+                Grid.SetRow(pawnRect, pos[1]);
+                position[0] = pos[0];
+                position[1] = pos[1];
+            }
+            else
+            {
+                Grid.SetColumn(pawnRect, X);
+                Grid.SetRow(pawnRect, Y);
+                position[0] = X;
+                position[1] = Y;
+            }
         }
         public void SetPosition(int X, int Y)
         {
@@ -96,9 +104,9 @@ namespace Sorry.Assets
             position[1] = Y;
         }
 
-        public void SetColor(Color c)
+        public void SetImage(ImageSource source)
         {
-            pawnRect.Fill = new SolidColorBrush(c);
+            pawnRect.Source = source;
         }
 
         public void SetSize(int width, int height)
@@ -106,8 +114,5 @@ namespace Sorry.Assets
             pawnRect.Width = width;
             pawnRect.Height = height;
         }
-
-
-
     }
 }
