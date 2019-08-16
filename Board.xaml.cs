@@ -211,19 +211,20 @@ namespace Sorry
             int[] clickedPos = t.turns(sender);
             if (TurnLabel.Text.Contains("Turn: Yellow"))
             {
-                if (carcheck.Contains("One") || carcheck.Contains("Two"))
-                {
-                    if (sender == YellowStart1 || sender == YellowStart2 || sender == YellowStart3 || sender == YellowStart4)
+                    if (carcheck.Contains("One") || carcheck.Contains("Two"))
                     {
-                        if (yp1.position[0] == helper[0] && yp1.position[1] == helper[1]) pc = yp1; if (yp2.position[0] == helper[0] && yp2.position[1] == helper[1]) pc = yp2; if (yp3.position[0] == helper[0] && yp3.position[1] == helper[1]) pc = yp3; if (yp4.position[0] == helper[0] && yp4.position[1] == helper[1]) pc = yp4;
-                        if (carcheck.Contains("One"))
+                        if (sender == YellowStart1 || sender == YellowStart2 || sender == YellowStart3 || sender == YellowStart4)
                         {
-                            TurnLabel.Text = "Turn: Green";
-                            pc.SetPosition(YellowSlider1End, null);
+                            if (yp1.position[0] == helper[0] && yp1.position[1] == helper[1]) pc = yp1; if (yp2.position[0] == helper[0] && yp2.position[1] == helper[1]) pc = yp2; if (yp3.position[0] == helper[0] && yp3.position[1] == helper[1]) pc = yp3; if (yp4.position[0] == helper[0] && yp4.position[1] == helper[1]) pc = yp4;
+                            if (carcheck.Contains("One"))
+                            {
+                                TurnLabel.Text = "Turn: Green";
+                                pc.SetPosition(YellowSlider1End, null);
+                            }
+                            else if (carcheck.Contains("Two"))
+                                pc.SetPosition(BlankYellowSide1, null);
+                            if (clickedPos == ypc2) ypc2 = pc.position; else if (clickedPos == ypc3) ypc3 = pc.position; else if (clickedPos == ypc4) ypc4 = pc.position; else if (clickedPos == ypc1) ypc1 = pc.position;
                         }
-                        else if (carcheck.Contains("Two"))
-                            pc.SetPosition(BlankYellowSide1, null);
-                        if (clickedPos == ypc2) ypc2 = pc.position; else if (clickedPos == ypc3) ypc3 = pc.position; else if (clickedPos == ypc4) ypc4 = pc.position; else if (clickedPos == ypc1) ypc1 = pc.position;
                     }
                 }
                 if (TurnLabel.Text.Contains("Turn: Green"))
@@ -280,8 +281,6 @@ namespace Sorry
                         }
                     }
                 }
-            }
-
             pc.pawnColor = yp1.pawnColor;
         }
         private void StartGameButton_Click(object sender, RoutedEventArgs e)
