@@ -45,8 +45,8 @@ namespace Sorry
         static Pawn bp2 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/BluePawn.png")), color.blue);
         static Pawn bp3 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/BluePawn.png")), color.blue);
         static Pawn bp4 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/BluePawn.png")), color.blue);
+        int[] ypc1 = yp1.position; int[] ypc2 = yp2.position; int[] ypc3 = yp3.position; int[] ypc4 = yp4.position; int[] gpc1 = gp1.position; int[] gpc2 = gp2.position; int[] gpc3 = gp3.position; int[] gpc4 = gp4.position; int[] rpc1 = rp1.position; int[] rpc2 = rp2.position; int[] rpc3 = rp3.position; int[] rpc4 = rp4.position; int[] bpc1 = yp1.position; int[] bpc2 = yp2.position; int[] bpc3 = yp3.position; int[] bpc4 = yp4.position;
         Pawn pc = yp1;
-        Pawn selectedP;
 
         List<Pawn> rPawns = new List<Pawn>();
         List<Pawn> gPawns = new List<Pawn>();
@@ -56,14 +56,14 @@ namespace Sorry
         List<List<Pawn>> allPawns = new List<List<Pawn>>();
         List<Pawn> everyPawn = new List<Pawn>();
 
-
-
-
+        String carcheck = " ";
         static CardDeck cardDeck = new CardDeck();
         int discardnum = 0;
         public enum Card { One, Two, Three, Four, Five, Seven, Eight, Ten, Eleven, Twelve, Sorry };
 
+        List<object> availableSpots = new List<object>();
 
+        Pawn selectedP;
 
         public Board()
         {
