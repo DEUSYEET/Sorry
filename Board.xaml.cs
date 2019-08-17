@@ -213,7 +213,32 @@ namespace Sorry
             {
                 discardnum = 0;
             }
+
+            Debug.WriteLine(card);
+
+            if (card.Equals(Card.Sorry))
+            {
+
+                string pawnColor = checkColor(pc);
+
+                var ps = BoardGrid.Children;
+                ps.Cast<List<Button>>();
+                
+                
+               
+
+
+               foreach(Pawn p in everyPawn)
+                {
+
+
+                }
+
+            }
         }
+
+
+
         private void CheckWin(Button b)
         {
             var name = b.Name;
