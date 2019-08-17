@@ -1227,15 +1227,6 @@
         <!--#endregion-->
         <!--#region Cards-->
         <Image 
-            x:Name="FaceUpCard"
-            Grid.Row="4"
-            Grid.Column="4"
-            Grid.RowSpan="6"
-            Grid.ColumnSpan="3"
-            Source="Images/SorryCard.png"
-            Tapped="FaceUpCard_Click"
-            />
-        <Image
             x:Name="FaceDownCard"
             Grid.Row="4"
             Grid.Column="9"
@@ -1244,6 +1235,16 @@
             Source="Images/BackOfCard.png"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"  
+          Tapped="FaceDownCard_Click"
+            />
+        <Image
+              x:Name="FaceUpCard"
+            Grid.Row="4"
+            Grid.Column="4"
+            Grid.RowSpan="6"
+            Grid.ColumnSpan="3"
+            Source="Images/SorryCard.png"
+            
         />
         <!--#endregion-->
         <!--#region SlideShapes-->
