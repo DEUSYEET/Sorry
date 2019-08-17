@@ -1,4 +1,4 @@
-﻿﻿using Sorry.Assets;
+﻿using Sorry.Assets;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -125,7 +125,6 @@ namespace Sorry
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button sendButton = (Button)sender;
-            if (availableSpots.Contains(sender) && selectedP != null)
             var o = (FrameworkElement)sender;
             Grid g = (Grid)o.Parent;
             var b = (FrameworkElement)sender;
@@ -135,6 +134,17 @@ namespace Sorry
             int[] helper = { X, Y };
 
             //if (availableSpots.Contains(sender) && 
+           if (carcheck.Contains("Sorry"))
+            {
+
+
+                sorryPawn = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
+
+                pc.SetPosition(sender, null);
+
+
+                sendHome(sorryPawn);
+            }
             if (selectedP != null)
             {
                 pc = selectedP; pc.SetPosition(sender, null);
@@ -146,9 +156,11 @@ namespace Sorry
                 selectedP = null;
                 availableSpots = null;
                 //change turn
-                if(TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn Blue") TurnLabel.Text = "Turn: Yellow";
+                if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn Blue") TurnLabel.Text = "Turn: Yellow";
                 onGoingTurn = false;
             }
+
+
             else
             {
                 if (TurnLabel.Text == "Turn: Yellow")
@@ -162,23 +174,13 @@ namespace Sorry
                 else if (TurnLabel.Text == "Turn: Red")
                 {
                     if (rp1.position[0] == helper[0] && rp1.position[1] == helper[1]) selectedP = rp1; if (rp2.position[0] == helper[0] && rp2.position[1] == helper[1]) selectedP = rp2; if (rp3.position[0] == helper[0] && rp3.position[1] == helper[1]) selectedP = rp3; if (rp4.position[0] == helper[0] && rp4.position[1] == helper[1]) selectedP = rp4;
-                    TurnLabel.Text = "Turn: Blue";
+
                 }
                 else if (TurnLabel.Text == "Turn: Blue")
                 {
                     if (bp1.position[0] == helper[0] && bp1.position[1] == helper[1]) selectedP = bp1; if (bp2.position[0] == helper[0] && bp2.position[1] == helper[1]) selectedP = bp2; if (bp3.position[0] == helper[0] && bp3.position[1] == helper[1]) selectedP = bp3; if (bp4.position[0] == helper[0] && bp4.position[1] == helper[1]) selectedP = bp4;
                 }
             }
-
-            if (TurnLabel.Text.Contains("Turn: Yellow"))
-            {
-                sorryPawn = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
-
-                pc.position=sorryPawn.position;
-
-                sendHome(sorryPawn);
-            }
-
 
 
 
@@ -206,7 +208,15 @@ namespace Sorry
             int[] clickedPos = t.turns(sender);
             if (TurnLabel.Text.Contains("Turn: Yellow"))
             {
-                if (carcheck.Contains("One") || carcheck.Contains("Two"))
+                if (carcheck.Contains("Sorry"))
+                {
+                    if (sendButton.Name.Contains("YellowStart"))
+                    {
+                        pc = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
+                    }
+
+                }
+                else if (carcheck.Contains("One") || carcheck.Contains("Two"))
                 {
                     if (sender == YellowStart1 || sender == YellowStart2 || sender == YellowStart3 || sender == YellowStart4)
                     {
@@ -221,19 +231,19 @@ namespace Sorry
                         if (clickedPos == ypc2) ypc2 = pc.position; else if (clickedPos == ypc3) ypc3 = pc.position; else if (clickedPos == ypc4) ypc4 = pc.position; else if (clickedPos == ypc1) ypc1 = pc.position;
                     }
                 }
+            }
+
+            if (TurnLabel.Text.Contains("Turn: Green"))
+            {
                 if (carcheck.Contains("Sorry"))
                 {
-                    if (sendButton.Name.Contains("YellowHome"))
+                    if (sendButton.Name.Contains("GreenStart"))
                     {
                         pc = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
                     }
 
                 }
-            }
-
-            if (TurnLabel.Text.Contains("Turn: Green"))
-            {
-                if (carcheck.Contains("One") || carcheck.Contains("Two"))
+                else if (carcheck.Contains("One") || carcheck.Contains("Two"))
                 {
                     if (sender == GreenStart1 || sender == GreenStart2 || sender == GreenStart3 || sender == GreenStart4)
                     {
@@ -251,7 +261,15 @@ namespace Sorry
             }
             if (TurnLabel.Text.Contains("Turn: Red"))
             {
-                if (carcheck.Contains("One") || carcheck.Contains("Two"))
+                if (carcheck.Contains("Sorry"))
+                {
+                    if (sendButton.Name.Contains("RedStart"))
+                    {
+                        pc = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
+                    }
+
+                }
+                else if (carcheck.Contains("One") || carcheck.Contains("Two"))
                 {
                     if (sender == RedStart1 || sender == RedStart2 || sender == RedStart3 || sender == RedStart4)
                     {
@@ -269,7 +287,15 @@ namespace Sorry
             }
             if (TurnLabel.Text.Contains("Turn: Blue"))
             {
-                if (carcheck.Contains("One") || carcheck.Contains("Two"))
+                if (carcheck.Contains("Sorry"))
+                {
+                    if (sendButton.Name.Contains("BlueStart"))
+                    {
+                        pc = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
+                    }
+
+                }
+                else if (carcheck.Contains("One") || carcheck.Contains("Two"))
                 {
                     if (sender == BlueStart1 || sender == BlueStart2 || sender == BlueStart3 || sender == BlueStart4)
                     {
@@ -285,7 +311,9 @@ namespace Sorry
                     }
                 }
             }
-            pc.pawnColor = yp1.pawnColor;
+            //pc.pawnColor = yp1.pawnColor;
+            Debug.WriteLine(pc.pawnColor);
+
         }
 
 
@@ -315,6 +343,7 @@ namespace Sorry
         {
             Card card;
             card = (Card)cardDeck.drawCard();
+            carcheck = card.ToString();
             string cardLink = "Images/" + card.ToString() + "Card.png";
             FaceUpCard.Source = (new BitmapImage(new Uri("ms-appx:///" + cardLink)));
             discardnum++;
@@ -334,8 +363,8 @@ namespace Sorry
 
 
 
+            }
         }
-
         private void RedPawnHomeMovement(int[] pawn)
         {
             int[] tempPosition = pawn;
@@ -529,7 +558,7 @@ namespace Sorry
 
 
         private void CheckWin(Button b)
-        { 
+        {
             var name = b.Name;
             string homeColor = "";
 
