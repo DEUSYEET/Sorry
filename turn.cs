@@ -17,7 +17,7 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Sorry
 {
-    class turn
+    class turn : Page
     {
         public int[] turns(object sender)
         {
@@ -30,6 +30,23 @@ namespace Sorry
 
             int[] superHot = { X, Y };
             return superHot;
+        }
+        public string t = "";
+        public bool OnGoingTurn()
+        {
+            if (t.Equals("Y"))
+            {
+                return false;
+            }
+            else
+                return true;
+        }
+
+        public bool YellowTurn(Pawn p, int[] pos)
+        {
+            TextBlock fieldTB = (TextBlock)this.FindName("TurnLabel");
+            fieldTB.Text = "Check";
+            return true;
         }
     }
 }

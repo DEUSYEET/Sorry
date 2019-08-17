@@ -1233,7 +1233,6 @@
             Grid.RowSpan="6"
             Grid.ColumnSpan="3"
             Source="Images/SorryCard.png"
-            Tapped="FaceUpCard_Click"
             />
         <Image
             x:Name="FaceDownCard"
@@ -1244,6 +1243,7 @@
             Source="Images/BackOfCard.png"
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"  
+            Tapped="FaceDownCard_Click"
         />
         <!--#endregion-->
         <!--#region SlideShapes-->
