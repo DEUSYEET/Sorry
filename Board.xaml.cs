@@ -221,16 +221,15 @@ namespace Sorry
 
                 string pawnColor = checkColor(pc);
 
-                var ps = BoardGrid.Children;
-                ps.Cast<List<Button>>();
+                var ps = everyPawn.Where(p => p.positionName.Contains(pawnColor) && p.positionName.Contains("Home"));
                 
                 
                
 
 
-               foreach(Pawn p in everyPawn)
+               foreach(Pawn p in ps)
                 {
-
+                    
 
                 }
 
