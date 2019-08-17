@@ -132,53 +132,119 @@ namespace Sorry
 
 
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
-        {
+        { 
 
-            //Yellow, Green, Red, Blue
-
-            //Identify turn
-            //Get selected pawn
-            //set pc = to selected pawn of appropriate color
-            //Alternate through selected pawns
-            //Move to allowed space.
-            //End Turn
-
-            //if (TurnLabel.Text.Equals("Turn: Yellow"))
-            //{
-            turn t = new turn();
-            //Pawn p = new Pawn();
-            int[] checkTurn = t.turns(sender);
-            int[] pawnpos = yp1.position;
-            TurnLabel.Text = "Pawn Pos" + pawnpos[0] + "||" + pawnpos[1] + "\nClickPos" + checkTurn[0] + "||" + checkTurn[1];
-            // p.position = ;
-            pc = yp1;
-            pc.SetPosition(sender, checkTurn);
-
-            FrameworkElement button = (Button)sender;
-            if (button.Name.Contains("Slider") && button.Name.Contains("Start"))
+            if(availableSpots.Contains(sender) && selectedP != null)
             {
-                Slider(button);
-                //pc.SetPosition(1, 1);
+                pc = selectedP; pc.SetPosition(sender, null);
+                FrameworkElement button = (Button)sender;
+                if (button.Name.Contains("Slider") && button.Name.Contains("Start"))
+                {
+                    Slider(button);
+                    //pc.SetPosition(1, 1);
+                }
+                selectedP = null;
+                availableSpots = null;
             }
-            //}
+
+
+            turn t = new turn();
+            int[] clickedPos = t.turns(sender);
+
+            bool turn = t.OnGoingTurn();
+            
+            turn = false;// t.OnGoingTurn();
+        }
+       
+        private void MiniButton_Click(object sender, RoutedEventArgs e)
+        {
+            turn t = new turn();
+            var o = (FrameworkElement)sender;
+            Grid g = (Grid)o.Parent;
+            var b = (FrameworkElement)sender;
+            var X = Grid.GetColumn(b);
+            var Y = Grid.GetRow(b);
+
+            int[] helper = { X, Y };
+
+            int[] clickedPos = t.turns(sender);
+            if (TurnLabel.Text.Contains("Turn: Yellow"))
+            {
+                if (carcheck.Contains("One") || carcheck.Contains("Two"))
+                {
+                    if (sender == YellowStart1 || sender == YellowStart2 || sender == YellowStart3 || sender == YellowStart4)
+                    {
+                        if (yp1.position[0] == helper[0] && yp1.position[1] == helper[1]) pc = yp1; if (yp2.position[0] == helper[0] && yp2.position[1] == helper[1]) pc = yp2; if (yp3.position[0] == helper[0] && yp3.position[1] == helper[1]) pc = yp3; if (yp4.position[0] == helper[0] && yp4.position[1] == helper[1]) pc = yp4;
+                        if (carcheck.Contains("One"))
+                        {
+                            TurnLabel.Text = "Turn: Green";
+                            pc.SetPosition(YellowSlider1End, null);
+                        }
+                        else if (carcheck.Contains("Two"))
+                            pc.SetPosition(YellowSlider1End, null);
+                        if (clickedPos == ypc2) ypc2 = pc.position; else if (clickedPos == ypc3) ypc3 = pc.position; else if (clickedPos == ypc4) ypc4 = pc.position; else if (clickedPos == ypc1) ypc1 = pc.position;
+                    }
+                }
+            }
+            
+                if (TurnLabel.Text.Contains("Turn: Green"))
+                {
+                    if (carcheck.Contains("One") || carcheck.Contains("Two"))
+                    {
+                        if (sender == GreenStart1 || sender == GreenStart2 || sender == GreenStart3 || sender == GreenStart4)
+                        {
+                            if (gp1.position[0] == helper[0] && gp1.position[1] == helper[1]) pc = gp1; if (gp2.position[0] == helper[0] && gp2.position[1] == helper[1]) pc = gp2; if (gp3.position[0] == helper[0] && gp3.position[1] == helper[1]) pc = gp3; if (gp4.position[0] == helper[0] && gp4.position[1] == helper[1]) pc = gp4;
+                            if (carcheck.Contains("One"))
+                            {
+                                TurnLabel.Text = "Turn: Red";
+                                pc.SetPosition(GreenSlider1End, null);
+                            }
+                            else if (carcheck.Contains("Two"))
+                            pc.SetPosition(GreenSlider1End, null);
+                        if (clickedPos == gpc2) gpc2 = pc.position; else if (clickedPos == gpc3) gpc3 = pc.position; else if (clickedPos == gpc4) gpc4 = pc.position; else if (clickedPos == gpc1) gpc1 = pc.position;
+                        }
+                    }
+                }
+                if (TurnLabel.Text.Contains("Turn: Red"))
+                {
+                    if (carcheck.Contains("One") || carcheck.Contains("Two"))
+                    {
+                        if (sender == RedStart1 || sender == RedStart2 || sender == RedStart3 || sender == RedStart4)
+                        {
+                            if (rp1.position[0] == helper[0] && rp1.position[1] == helper[1]) pc = rp1; if (rp2.position[0] == helper[0] && rp2.position[1] == helper[1]) pc = rp2; if (rp3.position[0] == helper[0] && rp3.position[1] == helper[1]) pc = rp3; if (rp4.position[0] == helper[0] && rp4.position[1] == helper[1]) pc = rp4;
+                            if (carcheck.Contains("One"))
+                            {
+                                TurnLabel.Text = "Turn: Blue";
+                                pc.SetPosition(RedSlider1End, null);
+                            }
+                            else if (carcheck.Contains("Two"))
+                            pc.SetPosition(RedSlider1End, null);
+                        if (clickedPos == rpc2) rpc2 = pc.position; else if (clickedPos == rpc3) rpc3 = pc.position; else if (clickedPos == rpc4) rpc4 = pc.position; else if (clickedPos == rpc1) rpc1 = pc.position;
+                        }
+                    }
+                }
+            if (TurnLabel.Text.Contains("Turn: Blue"))
+            {
+                if (carcheck.Contains("One") || carcheck.Contains("Two"))
+                {
+                    if (sender == BlueStart1 || sender == BlueStart2 || sender == BlueStart3 || sender == BlueStart4)
+                    {
+                        if (bp1.position[0] == helper[0] && bp1.position[1] == helper[1]) pc = bp1; if (bp2.position[0] == helper[0] && bp2.position[1] == helper[1]) pc = bp2; if (bp3.position[0] == helper[0] && bp3.position[1] == helper[1]) pc = bp3; if (bp4.position[0] == helper[0] && bp4.position[1] == helper[1]) pc = bp4;
+                        if (carcheck.Contains("One"))
+                        {
+                            TurnLabel.Text = "Turn: Yellow";
+                            pc.SetPosition(BlueSlider1End, null);
+                        }
+                        else if (carcheck.Contains("Two"))
+                            pc.SetPosition(BlueSlider1End, null);
+                        if (clickedPos == bpc2) bpc2 = pc.position; else if (clickedPos == bpc3) bpc3 = pc.position; else if (clickedPos == bpc4) bpc4 = pc.position; else if (clickedPos == bpc1) bpc1 = pc.position;
+                    }
+                }
+            }
             pc.pawnColor = yp1.pawnColor;
         }
-        private void MiniButton_Click(object sender, RoutedEventArgs e)
-        { //Don't think we need miniButton click?
-          //  
-          //           pc.SetPosition(sender);
 
-            turn t = new turn();
-            //Pawn p = new Pawn();
-            int[] checkTurn = t.turns(sender);
-            int[] pawnpos = yp1.position;
-            TurnLabel.Text = "Pawn Pos" + pawnpos[0] + "||" + pawnpos[1] + "\nClickPos" + checkTurn[0] + "||" + checkTurn[1];
-            // p.position = ;
-            pc = yp1;
-            pc.SetPosition(sender, checkTurn);
-        }
 
         private void StartGameButton_Click(object sender, RoutedEventArgs e)
         {
