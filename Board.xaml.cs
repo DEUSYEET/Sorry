@@ -299,6 +299,199 @@ namespace Sorry
 
             }
         }
+
+        private void RedPawnHomeMovement(int[] pawn)
+        {
+            int[] tempPosition = pawn;
+
+            //Red Pawn Home Movement
+
+            //when tempPosition[0] >= 2 move down towards home 
+            if (tempPosition[0] > 2)
+            {
+                int temp = tempPosition[0];
+                temp -= 2;
+                if (temp > 6)
+                {
+                    //Player skips turn
+                    // break or return pawn.position not sure yet if need to return
+                }
+                else
+                {
+                    //sudo code fro now need check for actual home position since that spot is its own mini grid
+                    tempPosition[0] = 2;
+                    tempPosition[1] += temp;
+                }
+            }
+        }
+
+        private void BluePawnHomeMovement(int[] pawn)
+        {
+            int[] tempPosition = pawn;
+
+            //Red Pawn Home Movement
+
+            //when tempPosition[0] >= 2 move down towards home 
+            if (tempPosition[1] > 2)
+            {
+                int temp = tempPosition[0];
+                temp -= 2;
+                if (temp > 6)
+                {
+                    //Player skips turn
+                    // break or return pawn.position not sure yet if need to return
+                }
+                else
+                {
+                    //sudo code fro now need check for actual home position since that spot is its own mini grid
+                    tempPosition[0] = 2;
+                    tempPosition[1] += temp;
+                }
+            }
+        }
+
+        private void YellowPawnHomeMovement(int[] pawn)
+        {
+            int[] tempPosition = pawn;
+
+            if (tempPosition[0] < 13)
+            {
+                int temp = tempPosition[1];
+                temp -= 2;
+                tempPosition[0] = 13;
+                if (temp > 6)
+                {
+                    //player Skip Turn
+                    //break or return pawn.position
+                }
+                else
+                {
+                    //sudo code need check for if value is 6 because home space is its own grid
+                    tempPosition[1] -= temp;
+                }
+
+            }
+            else
+            {
+                //break or return
+            }
+        }
+
+        private void GreenPawnHomeMovement(int[] pawn)
+        {
+            int[] tempPosition = pawn;
+            int temp = tempPosition[1];
+            temp -= 2;
+            tempPosition[1] = 13;
+            if (temp > 6)
+            {
+                //player Skip Turn
+                //break or return pawn.position
+            }
+            else
+            {
+                //sudo code need check for if value is 6 because home space is its own grid
+                tempPosition[0] += temp;
+            }
+        }
+
+        private void MovePawn(Pawn pawn, int value)
+        {
+            int[] tempPosition = pawn.position;
+
+            if (tempPosition[0] >= 0 && tempPosition[1] == 0)
+            {
+                tempPosition[0] += value;
+
+                if (pawn.pawnColor == color.red && tempPosition[0] > 2 && pawn.position[0] <= 2)
+                {
+                    RedPawnHomeMovement(tempPosition);
+                }
+                if (tempPosition[0] > 15)
+                {
+                    int temp = tempPosition[0];
+                    temp -= 15;
+                    tempPosition[0] = 15;
+                    tempPosition[1] += temp;
+                    if (pawn.pawnColor == color.blue && tempPosition[1] > 2 && pawn.position[1] <= 2)
+                    {
+                        BluePawnHomeMovement(tempPosition);
+                    }
+                }
+            }
+            else if (tempPosition[0] == 15 && tempPosition[1] >= 0)
+            {
+                tempPosition[1] += value;
+
+                // Blue Home Movement
+                if (pawn.pawnColor == color.blue && tempPosition[1] > 2 && pawn.position[1] <= 2)
+                {
+                    BluePawnHomeMovement(tempPosition);
+                }
+
+                if (tempPosition[1] > 15)
+                {
+                    //sub remaing from tempPosition[0]
+                    int temp = tempPosition[1];
+                    temp -= 15;
+                    tempPosition[1] = 15;
+                    tempPosition[0] -= temp;
+                    if (pawn.pawnColor == color.yellow && tempPosition[0] < 13 && tempPosition[0] >= 13)
+                    {
+                        YellowPawnHomeMovement(tempPosition);
+                    }
+                }
+            }
+            else if (tempPosition[0] <= 15 && tempPosition[1] == 15)
+            {
+                tempPosition[0] -= value;
+
+                //Yellow Home Movement
+                if (pawn.pawnColor == color.yellow && tempPosition[0] < 13 && pawn.position[0] >= 13)
+                {
+                    YellowPawnHomeMovement(tempPosition);
+                }
+
+                if (tempPosition[0] < 0)
+                {
+                    //multiple the remaining by -1 then sub remaing from tempPosition[2]
+                    int temp = tempPosition[0];
+                    temp = (temp * (-1));
+                    tempPosition[0] = 0;
+                    tempPosition[1] -= temp;
+                    if (pawn.pawnColor == color.green && tempPosition[1] < 13 && pawn.position[1] >= 13)
+                    {
+                        GreenPawnHomeMovement(tempPosition);
+                    }
+                }
+            }
+            else if (tempPosition[0] == 0 && tempPosition[1] <= 15)
+            {
+                tempPosition[1] -= value;
+
+                // Green Home Movement
+                if (pawn.pawnColor == color.green && tempPosition[1] < 13 && pawn.position[1] >= 13)
+                {
+                    GreenPawnHomeMovement(tempPosition);
+                }
+                if (tempPosition[1] < 0)
+                {
+                    //multiple the remaining by -1 then add remaing to tempPosition[1]
+                    int temp = tempPosition[1];
+                    temp = (temp * (-1));
+                    tempPosition[1] = 0;
+                    tempPosition[0] += temp;
+                    if (pawn.pawnColor == color.red && tempPosition[0] > 2 && pawn.position[0] <= 2)
+                    {
+                        RedPawnHomeMovement(tempPosition);
+                    }
+                }
+            }
+            //highlight to show possible position
+            //click moves to that positon
+        }
+
+
         private void CheckWin(Button b)
         { 
             var name = b.Name;
