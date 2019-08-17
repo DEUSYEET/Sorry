@@ -122,5 +122,27 @@ namespace Sorry.Assets
             pawnRect.Width = width;
             pawnRect.Height = height;
         }
+        public bool checkClickPosition(Object sender, int[] pos)
+        {
+            var o = (FrameworkElement)sender;
+            Grid g = (Grid)o.Parent;
+
+            var b = (FrameworkElement)sender;
+            var X = Grid.GetColumn(b);
+            var Y = Grid.GetRow(b);
+            if (X == pos[0] && Y == pos[1])
+                return true;
+            else
+                return false;
+        }
+
+        public bool checkPawnPosition(Pawn sender, int[] pos)
+        {
+            int[] pp = sender.position;
+            if (pp == pos)
+                return true;
+            else
+                return false;
+        }
     }
 }
