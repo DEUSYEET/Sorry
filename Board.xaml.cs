@@ -1,4 +1,4 @@
-﻿﻿using Sorry.Assets;
+using Sorry.Assets;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -21,9 +21,6 @@ using Windows.UI.Xaml.Navigation;
 
 namespace Sorry
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class Board : Page
     {
         static Pawn yp1 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/YellowPawn.png")), color.yellow);
@@ -62,9 +59,8 @@ namespace Sorry
         public enum Card { One, Two, Three, Four, Five, Seven, Eight, Ten, Eleven, Twelve, Sorry };
 
         List<object> availableSpots = new List<object>();
-
+        bool onGoingTurn = false;
         Pawn selectedP;
-
         public Board()
         {
 
@@ -97,14 +93,6 @@ namespace Sorry
             everyPawn.AddRange(gPawns);
             everyPawn.AddRange(rPawns);
             everyPawn.AddRange(bPawns);
-
-
-
-
-
-
-
-
             //pc.SetPosition(sender);
             this.InitializeComponent();
             foreach (var g in BoardGrid.Children)
@@ -125,36 +113,60 @@ namespace Sorry
                         }
                     }
                 }
-
             }
-
-
-
-
+            int[] pos = { 0, 0 };
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        { 
 
-            if(availableSpots.Contains(sender) && selectedP != null)
+        //Yellow, Green, Red, Blue
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var o = (FrameworkElement)sender;
+            Grid g = (Grid)o.Parent;
+            var b = (FrameworkElement)sender;
+            var X = Grid.GetColumn(b);
+            var Y = Grid.GetRow(b);
+
+            int[] helper = { X, Y };
+
+            //if (availableSpots.Contains(sender) && 
+            if (selectedP != null)
             {
                 pc = selectedP; pc.SetPosition(sender, null);
                 FrameworkElement button = (Button)sender;
                 if (button.Name.Contains("Slider") && button.Name.Contains("Start"))
                 {
                     Slider(button);
-                    //pc.SetPosition(1, 1);
                 }
                 selectedP = null;
                 availableSpots = null;
+                //change turn
+                if(TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn Blue") TurnLabel.Text = "Turn: Yellow";
+                onGoingTurn = false;
             }
-
+            else
+            {
+                if (TurnLabel.Text == "Turn: Yellow")
+                {
+                    if (yp1.position[0] == helper[0] && yp1.position[1] == helper[1]) selectedP = yp1; if (yp2.position[0] == helper[0] && yp2.position[1] == helper[1]) selectedP = yp2; if (yp3.position[0] == helper[0] && yp3.position[1] == helper[1]) selectedP = yp3; if (yp4.position[0] == helper[0] && yp4.position[1] == helper[1]) selectedP = yp4;
+                }
+                else if (TurnLabel.Text == "Turn: Green")
+                {
+                    if (gp1.position[0] == helper[0] && gp1.position[1] == helper[1]) selectedP = gp1; if (gp2.position[0] == helper[0] && gp2.position[1] == helper[1]) selectedP = gp2; if (gp3.position[0] == helper[0] && gp3.position[1] == helper[1]) selectedP = gp3; if (gp4.position[0] == helper[0] && gp4.position[1] == helper[1]) selectedP = gp4;
+                }
+                else if (TurnLabel.Text == "Turn: Red")
+                {
+                    if (rp1.position[0] == helper[0] && rp1.position[1] == helper[1]) selectedP = rp1; if (rp2.position[0] == helper[0] && rp2.position[1] == helper[1]) selectedP = rp2; if (rp3.position[0] == helper[0] && rp3.position[1] == helper[1]) selectedP = rp3; if (rp4.position[0] == helper[0] && rp4.position[1] == helper[1]) selectedP = rp4;
+                    TurnLabel.Text = "Turn: Blue";
+                }
+                else if (TurnLabel.Text == "Turn: Blue")
+                {
+                    if (bp1.position[0] == helper[0] && bp1.position[1] == helper[1]) selectedP = bp1; if (bp2.position[0] == helper[0] && bp2.position[1] == helper[1]) selectedP = bp2; if (bp3.position[0] == helper[0] && bp3.position[1] == helper[1]) selectedP = bp3; if (bp4.position[0] == helper[0] && bp4.position[1] == helper[1]) selectedP = bp4;
+                }
+            }
 
             turn t = new turn();
             int[] clickedPos = t.turns(sender);
-
-            bool turn = t.OnGoingTurn();
-            
-            turn = false;// t.OnGoingTurn();
+            onGoingTurn = false;
         }
        
         private void MiniButton_Click(object sender, RoutedEventArgs e)
