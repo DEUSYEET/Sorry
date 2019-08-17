@@ -300,6 +300,7 @@ namespace Sorry
             }
         }
         private void CheckWin(Button b)
+        { 
             var name = b.Name;
             string homeColor = "";
 
