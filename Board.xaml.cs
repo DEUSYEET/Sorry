@@ -238,24 +238,100 @@ namespace Sorry
                     tempPosition[1] += temp;
                 }
             }
-
-
         }
-        private void MovePawn(Pawn pawn)
+
+        private void BluePawnHomeMovement(int[] pawn)
+        {
+            int[] tempPosition = pawn;
+
+            //Red Pawn Home Movement
+
+            //when tempPosition[0] >= 2 move down towards home 
+            if (tempPosition[1] > 2)
+            {
+                int temp = tempPosition[0];
+                temp -= 2;
+                if (temp > 6)
+                {
+                    //Player skips turn
+                    // break or return pawn.position not sure yet if need to return
+                }
+                else
+                {
+                    //sudo code fro now need check for actual home position since that spot is its own mini grid
+                    tempPosition[0] = 2;
+                    tempPosition[1] += temp;
+                }
+            }
+        }
+
+        private void YellowPawnHomeMovement(int[] pawn)
+        {
+            int[] tempPosition = pawn;
+
+            if (tempPosition[0] < 13)
+            {
+                int temp = tempPosition[1];
+                temp -= 2;
+                tempPosition[0] = 13;
+                if (temp > 6)
+                {
+                    //player Skip Turn
+                    //break or return pawn.position
+                }
+                else
+                {
+                    //sudo code need check for if value is 6 because home space is its own grid
+                    tempPosition[1] -= temp;
+                }
+
+            }
+            else
+            {
+                //break or return
+            }
+        }
+
+        private void GreenPawnHomeMovement(int[] pawn)
+        {
+            int[] tempPosition = pawn;
+            int temp = tempPosition[1];
+            temp -= 2;
+            tempPosition[1] = 13;
+            if (temp > 6)
+            {
+                //player Skip Turn
+                //break or return pawn.position
+            }
+            else
+            {
+                //sudo code need check for if value is 6 because home space is its own grid
+                tempPosition[0] += temp;
+            }
+        }
+
+        private void MovePawn(Pawn pawn, int value)
         {
             int[] tempPosition = pawn.position;
-            int value = cardDeck.GetNumFromCard();
 
             if (tempPosition[0] >= 0 && tempPosition[1] == 0)
             {
                 tempPosition[0] += value;
 
+                if (pawn.pawnColor == color.red && tempPosition[0] > 2 && pawn.position[0] <= 2)
+                {
+                    RedPawnHomeMovement(tempPosition);
+                }
                 if (tempPosition[0] > 15)
                 {
                     int temp = tempPosition[0];
                     temp -= 15;
                     tempPosition[0] = 15;
                     tempPosition[1] += temp;
+                    if (pawn.pawnColor == color.blue && tempPosition[1] > 2 && pawn.position[1] <= 2)
+                    {
+                        BluePawnHomeMovement(tempPosition);
+                    }
                 }
             }
             else if (tempPosition[0] == 15 && tempPosition[1] >= 0)
@@ -263,29 +339,9 @@ namespace Sorry
                 tempPosition[1] += value;
 
                 // Blue Home Movement
-                if (pawn.colorName == color.blue)
+                if (pawn.pawnColor == color.blue && tempPosition[1] > 2 && pawn.position[1] <= 2)
                 {
-                    //when tempPosition[1] > 2 move left towards home
-                    if (tempPosition[1] > 2)
-                    {
-                        int temp = tempPosition[1];
-                        temp -= 2;
-                        if (temp > 6)
-                        {
-                            //Player skips turn
-                            // break or return pawn.position not sure yet if need to return
-                        }
-                        else
-                        {
-                            //sudo code fro now need check for actual home position since that spot is its own mini grid
-                            tempPosition[1] = 2;
-                            tempPosition[0] -= temp;
-                        }
-                    }
-                    else
-                    {
-                        //break or return position of tempPosisition
-                    }
+                    BluePawnHomeMovement(tempPosition);
                 }
 
                 if (tempPosition[1] > 15)
@@ -295,7 +351,10 @@ namespace Sorry
                     temp -= 15;
                     tempPosition[1] = 15;
                     tempPosition[0] -= temp;
-
+                    if (pawn.pawnColor == color.yellow && tempPosition[0] < 13 && tempPosition[0] >= 13)
+                    {
+                        YellowPawnHomeMovement(tempPosition);
+                    }
                 }
             }
             else if (tempPosition[0] <= 15 && tempPosition[1] == 15)
@@ -303,32 +362,11 @@ namespace Sorry
                 tempPosition[0] -= value;
 
                 //Yellow Home Movement
-                if (pawn.colorName == color.yellow)
+                if (pawn.pawnColor == color.yellow && tempPosition[0] < 13 && pawn.position[0] >= 13)
                 {
-                    int temp = tempPosition[0];
-
-                    if (tempPosition[0] < 13)
-                    {
-                        value -= 2;
-                        tempPosition[0] = 13;
-                        if (value > 6)
-                        {
-                            //player Skip Turn
-                            //break or return pawn.position
-                        }
-                        else
-                        {
-                            //sudo code need check for if value is 6 because home space is its own grid
-                            tempPosition[1] -= value;
-                        }
-
-                    }
-                    else
-                    {
-                        //break or return
-                    }
-
+                    YellowPawnHomeMovement(tempPosition);
                 }
+
                 if (tempPosition[0] < 0)
                 {
                     //multiple the remaining by -1 then sub remaing from tempPosition[2]
@@ -336,7 +374,10 @@ namespace Sorry
                     temp = (temp * (-1));
                     tempPosition[0] = 0;
                     tempPosition[1] -= temp;
-
+                    if (pawn.pawnColor == color.green && tempPosition[1] < 13 && pawn.position[1] >= 13)
+                    {
+                        GreenPawnHomeMovement(tempPosition);
+                    }
                 }
             }
             else if (tempPosition[0] == 0 && tempPosition[1] <= 15)
@@ -344,23 +385,9 @@ namespace Sorry
                 tempPosition[1] -= value;
 
                 // Green Home Movement
-                if (pawn.colorName == color.green)
+                if (pawn.pawnColor == color.green && tempPosition[1] < 13 && pawn.position[1] >= 13)
                 {
-                    if (tempPosition[1] < 13)
-                    {
-                        value -= 2;
-                        tempPosition[1] = 13;
-                        if (value > 6)
-                        {
-                            //player Skip Turn
-                            //break or return pawn.position
-                        }
-                        else
-                        {
-                            //sudo code need check for if value is 6 because home space is its own grid
-                            tempPosition[0] -= value;
-                        }
-                    }
+                    GreenPawnHomeMovement(tempPosition);
                 }
                 if (tempPosition[1] < 0)
                 {
@@ -369,6 +396,10 @@ namespace Sorry
                     temp = (temp * (-1));
                     tempPosition[1] = 0;
                     tempPosition[0] += temp;
+                    if (pawn.pawnColor == color.red && tempPosition[0] > 2 && pawn.position[0] <= 2)
+                    {
+                        RedPawnHomeMovement(tempPosition);
+                    }
                 }
             }
             //highlight to show possible position
