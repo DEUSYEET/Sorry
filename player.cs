@@ -21,6 +21,16 @@ namespace Sorry
             this.Name = name;
             //pawn here
         }
+        public string t ="";
+        public bool OnGoingTurn()
+        {
+            if (t.Equals("Y")) {
+                return false;
+            }
+            else
+                return true;
+        }
+
     }
     //class pawn
     //{

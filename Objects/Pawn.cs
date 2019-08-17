@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ namespace Sorry.Assets
         private Random rng = new Random();
         public int[] position { get; set; }
         public color pawnColor { get; set; }
+        public string positionName { get; set; }
 
         public Pawn()
         {
@@ -82,6 +84,12 @@ namespace Sorry.Assets
                 position[0] = X;
                 position[1] = Y;
             }
+
+            positionName = o.Name;
+            Debug.WriteLine(positionName);
+
+
+
         }
         public void SetPosition(int X, int Y)
         {
@@ -113,6 +121,28 @@ namespace Sorry.Assets
         {
             pawnRect.Width = width;
             pawnRect.Height = height;
+        }
+        public bool checkClickPosition(Object sender, int[] pos)
+        {
+            var o = (FrameworkElement)sender;
+            Grid g = (Grid)o.Parent;
+
+            var b = (FrameworkElement)sender;
+            var X = Grid.GetColumn(b);
+            var Y = Grid.GetRow(b);
+            if (X == pos[0] && Y == pos[1])
+                return true;
+            else
+                return false;
+        }
+
+        public bool checkPawnPosition(Pawn sender, int[] pos)
+        {
+            int[] pp = sender.position;
+            if (pp == pos)
+                return true;
+            else
+                return false;
         }
     }
 }

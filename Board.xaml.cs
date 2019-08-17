@@ -279,9 +279,27 @@ namespace Sorry
             {
                 discardnum = 0;
             }
+
+            if (card.Equals(Card.Sorry))
+            {
+
+                string pawnColor = checkColor(pc);
+
+                var ps = everyPawn.Where(p => p.positionName.Contains(pawnColor) && p.positionName.Contains("Home"));
+                
+                
+               
+
+
+               foreach(Pawn p in ps)
+                {
+                    
+
+                }
+
+            }
         }
         private void CheckWin(Button b)
-        {
             var name = b.Name;
             string homeColor = "";
 
