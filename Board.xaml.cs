@@ -1,4 +1,4 @@
-﻿using Sorry.Assets;
+﻿﻿using Sorry.Assets;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -45,8 +45,6 @@ namespace Sorry
         static Pawn bp2 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/BluePawn.png")), color.blue);
         static Pawn bp3 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/BluePawn.png")), color.blue);
         static Pawn bp4 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/BluePawn.png")), color.blue);
-        int[] ypc1 = yp1.position; int[] ypc2 = yp2.position; int[] ypc3 = yp3.position; int[] ypc4 = yp4.position; int[] gpc1 = gp1.position; int[] gpc2 = gp2.position; int[] gpc3 = gp3.position; int[] gpc4 = gp4.position; int[] rpc1 = rp1.position; int[] rpc2 = rp2.position; int[] rpc3 = rp3.position; int[] rpc4 = rp4.position; int[] bpc1 = yp1.position; int[] bpc2 = yp2.position; int[] bpc3 = yp3.position; int[] bpc4 = yp4.position;
-     
         Pawn pc = yp1;
         Pawn selectedP;
 
@@ -281,6 +279,27 @@ namespace Sorry
             {
                 discardnum = 0;
             }
+
+             Debug.WriteLine(card);
+
+            if (card.Equals(Card.Sorry))
+            {
+
+                string pawnColor = checkColor(pc);
+
+                var ps = everyPawn.Where(p => p.positionName.Contains(pawnColor) && p.positionName.Contains("Home"));
+                
+                
+               
+
+
+               foreach(Pawn p in ps)
+                {
+                    
+
+                }
+
+            }
         }
         private void CheckWin(Button b)
         {
@@ -349,7 +368,7 @@ namespace Sorry
         //    Slider(color.green, send);
         //}
 
-        private void Slider(FrameworkElement space)
+      private void Slider(FrameworkElement space)
         {
             int longSlide = 4;
             int shortSlide = 3;
@@ -363,10 +382,24 @@ namespace Sorry
                     {
                         pc.SetPosition(pc.position[0], pc.position[1] - longSlide);
 
+                        var kicked = everyPawn.Where(p => (p.position[0] == Grid.GetColumn(GreenSlider2Middle3) || p.position[0] == Grid.GetColumn(GreenSlider2Middle2) || p.position[0] == Grid.GetColumn(GreenSlider2Middle1)) &&
+                       ( p.position[1] == Grid.GetRow(GreenSlider2Middle3) || p.position[1] == Grid.GetRow(GreenSlider2Middle2) || p.position[1] == Grid.GetRow(GreenSlider2Middle1)));
+                        foreach (var pk in kicked)
+                        {
+                            sendHome(pk);
+                        }
+
+
                     }
                     else
                     {
                         pc.SetPosition(GreenSlider1End, null);
+                        var kicked = everyPawn.Where(p => (p.position[0] == Grid.GetColumn(GreenSlider1Middle2) || p.position[0] == Grid.GetColumn(GreenSlider1Middle1)) &&
+                      (p.position[1] == Grid.GetRow(GreenSlider1Middle2) || p.position[1] == Grid.GetRow(GreenSlider1Middle1)));
+                        foreach (var pk in kicked)
+                        {
+                            sendHome(pk);
+                        }
 
                     }
                 }
@@ -375,11 +408,24 @@ namespace Sorry
                     if (space.Name.Contains("2"))
                     {
                         pc.SetPosition(pc.position[0], pc.position[1] + longSlide);
+                        var kicked = everyPawn.Where(p => (p.position[0] == Grid.GetColumn(BlueSlider2Middle3) || p.position[0] == Grid.GetColumn(BlueSlider2Middle2) || p.position[0] == Grid.GetColumn(BlueSlider2Middle1)) &&
+                      (p.position[1] == Grid.GetRow(BlueSlider2Middle3) || p.position[1] == Grid.GetRow(BlueSlider2Middle2) || p.position[1] == Grid.GetRow(BlueSlider2Middle1)));
+                        foreach (var pk in kicked)
+                        {
+                            sendHome(pk);
+                        }
 
                     }
                     else
                     {
                         pc.SetPosition(pc.position[0], pc.position[1] + shortSlide);
+
+                        var kicked = everyPawn.Where(p => (p.position[0] == Grid.GetColumn(BlueSlider1Middle2) || p.position[0] == Grid.GetColumn(BlueSlider1Middle1)) &&
+                   (p.position[1] == Grid.GetRow(BlueSlider1Middle2) || p.position[1] == Grid.GetRow(BlueSlider1Middle1)));
+                        foreach (var pk in kicked)
+                        {
+                            sendHome(pk);
+                        }
 
                     }
                 }
@@ -388,11 +434,24 @@ namespace Sorry
                     if (space.Name.Contains("2"))
                     {
                         pc.SetPosition(pc.position[0] - longSlide, pc.position[1]);
+                        var kicked = everyPawn.Where(p => (p.position[0] == Grid.GetColumn(YellowSlider2Middle3) || p.position[0] == Grid.GetColumn(YellowSlider2Middle2) || p.position[0] == Grid.GetColumn(YellowSlider2Middle1)) &&
+                      (p.position[1] == Grid.GetRow(YellowSlider2Middle3) || p.position[1] == Grid.GetRow(YellowSlider2Middle2) || p.position[1] == Grid.GetRow(YellowSlider2Middle1)));
+                        foreach (var pk in kicked)
+                        {
+                            sendHome(pk);
+                        }
 
                     }
                     else
                     {
                         pc.SetPosition(pc.position[0] - shortSlide, pc.position[1]);
+
+                        var kicked = everyPawn.Where(p => (p.position[0] == Grid.GetColumn(YellowSlider1Middle2) || p.position[0] == Grid.GetColumn(YellowSlider1Middle1)) &&
+                   (p.position[1] == Grid.GetRow(YellowSlider1Middle2) || p.position[1] == Grid.GetRow(YellowSlider1Middle1)));
+                        foreach (var pk in kicked)
+                        {
+                            sendHome(pk);
+                        }
 
                     }
                 }
@@ -401,11 +460,24 @@ namespace Sorry
                     if (space.Name.Contains("2"))
                     {
                         pc.SetPosition(pc.position[0] + longSlide, pc.position[1]);
+                        var kicked = everyPawn.Where(p => (p.position[0] == Grid.GetColumn(RedSlider2Middle3) || p.position[0] == Grid.GetColumn(RedSlider2Middle2) || p.position[0] == Grid.GetColumn(RedSlider2Middle1)) &&
+                      (p.position[1] == Grid.GetRow(RedSlider2Middle3) || p.position[1] == Grid.GetRow(RedSlider2Middle2) || p.position[1] == Grid.GetRow(RedSlider2Middle1)));
+                        foreach (var pk in kicked)
+                        {
+                            sendHome(pk);
+                        }
 
                     }
                     else
                     {
                         pc.SetPosition(pc.position[0] + shortSlide, pc.position[1]);
+
+                        var kicked = everyPawn.Where(p => (p.position[0] == Grid.GetColumn(RedSlider1Middle2) || p.position[0] == Grid.GetColumn(RedSlider1Middle1)) &&
+                   (p.position[1] == Grid.GetRow(RedSlider1Middle2) || p.position[1] == Grid.GetRow(RedSlider1Middle1)));
+                        foreach (var pk in kicked)
+                        {
+                            sendHome(pk);
+                        }
 
                     }
                 }
@@ -417,6 +489,27 @@ namespace Sorry
 
         }
 
+        private void sendHome(Pawn pk)
+        {
+            switch (pk.pawnColor)
+            {
+                case color.red:
+                    pk.SetPosition(RedStart1, null);
+                    break;
+                case color.blue:
+                    pk.SetPosition(BlueStart1, null);
+
+                    break;
+                case color.green:
+                    pk.SetPosition(GreenStart1, null);
+
+                    break;
+                case color.yellow:
+                    pk.SetPosition(YellowStart1, null);
+
+                    break;
+            }
+        }
 
         private bool checkColorMatch(FrameworkElement space)
         {
