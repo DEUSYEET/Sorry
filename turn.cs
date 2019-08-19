@@ -48,5 +48,14 @@ namespace Sorry
             fieldTB.Text = "Check";
             return true;
         }
+        
+        public void changeTurn()
+        {
+            TextBlock TurnLabel = (TextBlock)this.FindName("TurnLabel");
+            if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green";
+            else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red";
+            else if (TurnLabel.Text == "Turn: Red") TurnLabel.Text = "Turn: Blue";
+            else if (TurnLabel.Text == "Turn: Blue") TurnLabel.Text = "Turn: Yellow";
+        }
     }
 }
