@@ -90,7 +90,52 @@ namespace Sorry
                 reshuffle();
                 return cardDeck[1];
             }
+
             //return newcard;
         }
+        public int CardNum()
+        {
+           if(discardDeck.Last() == Card.One)
+            {
+                return 1;
+            }
+           else if (discardDeck.Last() == Card.Two)
+            {
+                return 2;
+            }
+            else if (discardDeck.Last() == Card.Three)
+            {
+                return 3;
+            }
+            else if (discardDeck.Last() == Card.Four)
+            {
+                return 4;
+            }
+            else if (discardDeck.Last() == Card.Five)
+            {
+                return 5;
+            }
+            else if (discardDeck.Last() == Card.Seven)
+            {
+                return 7;
+            }
+            else if (discardDeck.Last() == Card.Eight)
+            {
+                return 8;
+            }
+            else if (discardDeck.Last() == Card.Ten)
+            {
+                return 10;
+            }
+            else if (discardDeck.Last() == Card.Eleven)
+            {
+                return 11;
+            }
+            else
+            {
+                return 12;
+            }
+        }
+
     }
 }

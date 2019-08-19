@@ -131,7 +131,9 @@ namespace Sorry
             //if (availableSpots.Contains(sender) && 
             if (selectedP != null)
             {
-                pc = selectedP; pc.SetPosition(sender, null);
+                pc = selectedP;
+                MovePawn(pc, cardDeck.CardNum());
+                pc.SetPosition(sender, selectedP.position);
                 FrameworkElement button = (Button)sender;
                 if (button.Name.Contains("Slider") && button.Name.Contains("Start"))
                 {
@@ -140,27 +142,42 @@ namespace Sorry
                 selectedP = null;
                 availableSpots = null;
                 //change turn
-                if(TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn Blue") TurnLabel.Text = "Turn: Yellow";
+                if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green";
+                else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red";
+                else if (TurnLabel.Text == "Turn: Red")  TurnLabel.Text = "Turn: Blue";
+                else if (TurnLabel.Text == "Turn: Blue") TurnLabel.Text = "Turn: Yellow";
                 onGoingTurn = false;
             }
             else
             {
                 if (TurnLabel.Text == "Turn: Yellow")
                 {
-                    if (yp1.position[0] == helper[0] && yp1.position[1] == helper[1]) selectedP = yp1; if (yp2.position[0] == helper[0] && yp2.position[1] == helper[1]) selectedP = yp2; if (yp3.position[0] == helper[0] && yp3.position[1] == helper[1]) selectedP = yp3; if (yp4.position[0] == helper[0] && yp4.position[1] == helper[1]) selectedP = yp4;
+                    if (yp1.position[0] == helper[0] && yp1.position[1] == helper[1]) selectedP = yp1;
+                    if (yp2.position[0] == helper[0] && yp2.position[1] == helper[1]) selectedP = yp2;
+                    if (yp3.position[0] == helper[0] && yp3.position[1] == helper[1]) selectedP = yp3;
+                    if (yp4.position[0] == helper[0] && yp4.position[1] == helper[1]) selectedP = yp4;
                 }
                 else if (TurnLabel.Text == "Turn: Green")
                 {
-                    if (gp1.position[0] == helper[0] && gp1.position[1] == helper[1]) selectedP = gp1; if (gp2.position[0] == helper[0] && gp2.position[1] == helper[1]) selectedP = gp2; if (gp3.position[0] == helper[0] && gp3.position[1] == helper[1]) selectedP = gp3; if (gp4.position[0] == helper[0] && gp4.position[1] == helper[1]) selectedP = gp4;
+                    if (gp1.position[0] == helper[0] && gp1.position[1] == helper[1]) selectedP = gp1;
+                    if (gp2.position[0] == helper[0] && gp2.position[1] == helper[1]) selectedP = gp2;
+                    if (gp3.position[0] == helper[0] && gp3.position[1] == helper[1]) selectedP = gp3;
+                    if (gp4.position[0] == helper[0] && gp4.position[1] == helper[1]) selectedP = gp4;
                 }
                 else if (TurnLabel.Text == "Turn: Red")
                 {
-                    if (rp1.position[0] == helper[0] && rp1.position[1] == helper[1]) selectedP = rp1; if (rp2.position[0] == helper[0] && rp2.position[1] == helper[1]) selectedP = rp2; if (rp3.position[0] == helper[0] && rp3.position[1] == helper[1]) selectedP = rp3; if (rp4.position[0] == helper[0] && rp4.position[1] == helper[1]) selectedP = rp4;
-                    TurnLabel.Text = "Turn: Blue";
+                    if (rp1.position[0] == helper[0] && rp1.position[1] == helper[1]) selectedP = rp1;
+                    if (rp2.position[0] == helper[0] && rp2.position[1] == helper[1]) selectedP = rp2;
+                    if (rp3.position[0] == helper[0] && rp3.position[1] == helper[1]) selectedP = rp3;
+                    if (rp4.position[0] == helper[0] && rp4.position[1] == helper[1]) selectedP = rp4;
+                   
                 }
                 else if (TurnLabel.Text == "Turn: Blue")
                 {
-                    if (bp1.position[0] == helper[0] && bp1.position[1] == helper[1]) selectedP = bp1; if (bp2.position[0] == helper[0] && bp2.position[1] == helper[1]) selectedP = bp2; if (bp3.position[0] == helper[0] && bp3.position[1] == helper[1]) selectedP = bp3; if (bp4.position[0] == helper[0] && bp4.position[1] == helper[1]) selectedP = bp4;
+                    if (bp1.position[0] == helper[0] && bp1.position[1] == helper[1]) selectedP = bp1;
+                    if (bp2.position[0] == helper[0] && bp2.position[1] == helper[1]) selectedP = bp2;
+                    if (bp3.position[0] == helper[0] && bp3.position[1] == helper[1]) selectedP = bp3;
+                    if (bp4.position[0] == helper[0] && bp4.position[1] == helper[1]) selectedP = bp4;
                 }
             }
 
@@ -284,6 +301,7 @@ namespace Sorry
         {
             Card card;
             card = (Card)cardDeck.drawCard();
+            carcheck = card.ToString();
             string cardLink = "Images/" + card.ToString() + "Card.png";
             FaceUpCard.Source = (new BitmapImage(new Uri("ms-appx:///" + cardLink)));
             discardnum++;
@@ -419,7 +437,7 @@ namespace Sorry
                 {
                     RedPawnHomeMovement(tempPosition);
                 }
-                if (tempPosition[0] > 15)
+                if (tempPosition[0] >= 15)
                 {
                     int temp = tempPosition[0];
                     temp -= 15;
@@ -436,7 +454,7 @@ namespace Sorry
                 tempPosition[1] += value;
 
                 // Blue Home Movement
-                if (pawn.pawnColor == color.blue && tempPosition[1] > 2 && pawn.position[1] <= 2)
+                if (pawn.pawnColor == color.blue && tempPosition[1] > 2 && selectedP.position[1] <= 2)
                 {
                     BluePawnHomeMovement(tempPosition);
                 }
@@ -502,6 +520,8 @@ namespace Sorry
             //highlight to show possible position
             //click moves to that positon
         }
+
+       
 
 
         private void CheckWin(Button b)
@@ -766,7 +786,10 @@ namespace Sorry
         }
 
 
+        private void ForfeitTurnButton_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
 
 
 
