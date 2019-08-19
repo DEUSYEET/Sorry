@@ -134,7 +134,7 @@ namespace Sorry
             int[] helper = { X, Y };
 
             //if (availableSpots.Contains(sender) && 
-           if (carcheck.Contains("Sorry"))
+            if (carcheck.Contains("Sorry"))
             {
 
 
@@ -142,7 +142,7 @@ namespace Sorry
 
                 pc.SetPosition(sender, null);
 
-                if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn: Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn: Blue") TurnLabel.Text = "Turn: Yellow";
+                if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn Blue") TurnLabel.Text = "Turn: Yellow";
                 onGoingTurn = false;
 
                 sendHome(sorryPawn);
@@ -182,6 +182,7 @@ namespace Sorry
                 {
                     if (bp1.position[0] == helper[0] && bp1.position[1] == helper[1]) selectedP = bp1; if (bp2.position[0] == helper[0] && bp2.position[1] == helper[1]) selectedP = bp2; if (bp3.position[0] == helper[0] && bp3.position[1] == helper[1]) selectedP = bp3; if (bp4.position[0] == helper[0] && bp4.position[1] == helper[1]) selectedP = bp4;
                 }
+                
             }
 
 
@@ -341,6 +342,13 @@ namespace Sorry
             pc = bp3; pc.SetPosition(BlueStart3, pos);
             pc = bp4; pc.SetPosition(BlueStart4, pos); pc = yp1;
         }
+
+        private void ForfeitTurnButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn: Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn Blue") TurnLabel.Text = "Turn: Yellow";
+            onGoingTurn = false;
+        }
+
         private void FaceDownCard_Click(object sender, RoutedEventArgs e)
         {
             Card card;
@@ -356,16 +364,7 @@ namespace Sorry
 
             Debug.WriteLine(card);
 
-
-            if (card.Equals(Card.Sorry))
-            {
-
-
-
-
-
-
-            }
+            FaceDownCard.Tapped -= FaceDownCard_Click;
         }
         private void RedPawnHomeMovement(int[] pawn)
         {
@@ -747,6 +746,18 @@ namespace Sorry
 
         }
 
+        private FrameworkElement GetGridCell(int row, int col)
+        {
+            foreach (FrameworkElement cell in BoardGrid.Children)
+            {
+                if (Grid.GetRow(cell) == row && Grid.GetColumn(cell) == col)
+                {
+                    return cell;
+                }
+            }
+            throw new ArgumentOutOfRangeException("Row and column must be within BoardGrid");
+        }
+
         private void sendHome(Pawn pk)
         {
             switch (pk.pawnColor)
@@ -825,13 +836,10 @@ namespace Sorry
 
         }
 
-        
 
 
-        public void ForfeitTurnButton_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
+
 
 
     }
