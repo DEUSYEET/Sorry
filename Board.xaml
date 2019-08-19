@@ -11,22 +11,22 @@
     <Grid x:Name="BoardGrid">
         <!--#region RowColumnDefinitions-->
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="62*" />
+            <RowDefinition Height="62*" />
+            <RowDefinition Height="62*" />
+            <RowDefinition Height="62*" />
+            <RowDefinition Height="62*" />
+            <RowDefinition Height="62*" />
+            <RowDefinition Height="62.4" />
+            <RowDefinition Height="62*" />
+            <RowDefinition Height="62*" />
+            <RowDefinition Height="62*" />
+            <RowDefinition Height="62*" />
+            <RowDefinition Height="62*" />
+            <RowDefinition Height="62*" />
+            <RowDefinition Height="63*" />
+            <RowDefinition Height="62*" />
+            <RowDefinition Height="63*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition />
@@ -64,8 +64,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/RedSliderStart.png"/>
+        </Button>
         <Button
             x:Name="RedSlider1Middle1"
             Grid.Row="0"
@@ -73,8 +74,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/RedSliderMiddle.png"/>
+        </Button>
         <Button
             x:Name="RedSlider1Middle2"
             Grid.Row="0"
@@ -82,8 +84,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/RedSliderMiddle.png"/>
+        </Button>
         <Button
             x:Name="RedSlider1End"
             Grid.Row="0"
@@ -91,8 +94,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/RedSliderEnd.png"/>
+        </Button>
         <Button
             x:Name="BlankRedSide1"
             Grid.Row="0"
@@ -136,8 +140,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/RedSliderStart.png"/>
+        </Button>
         <Button
             x:Name="RedSlider2Middle1"
             Grid.Row="0"
@@ -145,8 +150,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/RedSliderMiddle.png"/>
+        </Button>
         <Button
             x:Name="RedSlider2Middle2"
             Grid.Row="0"
@@ -154,8 +160,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch" 
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/RedSliderMiddle.png"/>
+        </Button>
         <Button
             x:Name="RedSlider2Middle3"
             Grid.Row="0"
@@ -163,8 +170,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/RedSliderMiddle.png"/>
+        </Button>
         <Button
             x:Name="RedSlider2End"
             Grid.Row="0"
@@ -172,8 +180,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/RedSliderEnd.png"/>
+        </Button>
         <Button
             x:Name="BlankRedSide5"
             Grid.Row="0"
@@ -199,8 +208,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/BlueSliderStart.png"/>
+        </Button>
         <Button
             x:Name="BlueSlider1Middle1"
             Grid.Row="2"
@@ -208,8 +218,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/BlueSliderMiddle.png"/>
+        </Button>
         <Button
             x:Name="BlueSlider1Middle2"
             Grid.Row="3"
@@ -217,8 +228,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/BlueSliderMiddle.png"/>
+        </Button>
         <Button
             x:Name="BlueSlider1End"
             Grid.Row="4"
@@ -226,8 +238,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/BlueSliderEnd.png"/>
+        </Button>
         <Button
             x:Name="BlankBlueSide1"
             Grid.Row="5"
@@ -271,8 +284,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/BlueSliderStart.png"/>
+        </Button>
         <Button
             x:Name="BlueSlider2Middle1"
             Grid.Row="10"
@@ -280,8 +294,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/BlueSliderMiddle.png"/>
+        </Button>
         <Button
             x:Name="BlueSlider2Middle2"
             Grid.Row="11"
@@ -289,8 +304,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/BlueSliderMiddle.png"/>
+        </Button>
         <Button
             x:Name="BlueSlider2Middle3"
             Grid.Row="12"
@@ -298,8 +314,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/BlueSliderMiddle.png"/>
+        </Button>
         <Button
             x:Name="BlueSlider2End"
             Grid.Row="13"
@@ -307,8 +324,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/BlueSliderEnd.png"/>
+        </Button>
         <Button
             x:Name="BlankBlueSide5"
             Grid.Row="14"
@@ -334,8 +352,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/YellowSliderStart.png"/>
+        </Button>
         <Button
             x:Name="YellowSlider1Middle1"
             Grid.Row="15"
@@ -343,8 +362,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/YellowSliderMiddle.png"/>
+        </Button>
         <Button
             x:Name="YellowSlider1Middle2"
             Grid.Row="15"
@@ -352,8 +372,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/YellowSliderMiddle.png"/>
+        </Button>
         <Button
             x:Name="YellowSlider1End"
             Grid.Row="15"
@@ -361,8 +382,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/YellowSliderEnd.png"/>
+        </Button>
         <Button
             x:Name="BlankYellowSide1"
             Grid.Row="15"
@@ -406,8 +428,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/YellowSliderStart.png"/>
+        </Button>
         <Button
             x:Name="YellowSlider2Middle1"
             Grid.Row="15"
@@ -415,8 +438,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/YellowSliderMiddle.png"/>
+        </Button>
         <Button
             x:Name="YellowSlider2Middle2"
             Grid.Row="15"
@@ -424,8 +448,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/YellowSliderMiddle.png"/>
+        </Button>
         <Button
             x:Name="YellowSlider2Middle3"
             Grid.Row="15"
@@ -433,8 +458,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/YellowSliderMiddle.png"/>
+        </Button>
         <Button
             x:Name="YellowSlider2End"
             Grid.Row="15"
@@ -442,8 +468,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/YellowSliderEnd.png"/>
+        </Button>
         <Button
             x:Name="BlankYellowSide5"
             Grid.Row="15"
@@ -469,8 +496,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/GreenSliderStart.png"/>
+        </Button>
         <Button
             x:Name="GreenSlider1Middle1"
             Grid.Row="13"
@@ -478,8 +506,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/GreenSliderMiddle.png"/>
+        </Button>
         <Button
             x:Name="GreenSlider1Middle2"
             Grid.Row="12"
@@ -487,8 +516,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/GreenSliderMiddle.png"/>
+        </Button>
         <Button
             x:Name="GreenSlider1End"
             Grid.Row="11"
@@ -496,8 +526,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/GreenSliderEnd.png"/>
+        </Button>
         <Button
             x:Name="BlankGreenSide1"
             Grid.Row="10"
@@ -541,8 +572,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/GreenSliderStart.png"/>
+        </Button>
         <Button
             x:Name="GreenSlider2Middle1"
             Grid.Row="5"
@@ -550,8 +582,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/GreenSliderMiddle.png"/>
+        </Button>
         <Button
             x:Name="GreenSlider2Middle2"
             Grid.Row="4"
@@ -559,8 +592,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/GreenSliderMiddle.png"/>
+        </Button>
         <Button
             x:Name="GreenSlider2Middle3"
             Grid.Row="3"
@@ -568,8 +602,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/GreenSliderMiddle.png"/>
+        </Button>
         <Button
             x:Name="GreenSlider2End"
             Grid.Row="2"
@@ -577,8 +612,9 @@
             Background="BlanchedAlmond" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            BorderBrush="Black"
-        />
+            BorderBrush="Black">
+            <Image Source="Images/GreenSliderEnd.png"/>
+        </Button>
         <Button
             x:Name="BlankGreenSide5"
             Grid.Row="1"
@@ -597,7 +633,7 @@
             Background="PaleVioletRed" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="RedSafe1"
+            
             BorderBrush="Black"
         />
         <Button
@@ -607,7 +643,7 @@
             Background="PaleVioletRed" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="RedSafe2"
+            
             BorderBrush="Black"
         />
         <Button
@@ -617,7 +653,7 @@
             Background="PaleVioletRed" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="RedSafe3"
+            
             BorderBrush="Black"
         />
         <Button
@@ -627,7 +663,7 @@
             Background="PaleVioletRed" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="RedSafe4"
+            
             BorderBrush="Black"
         />
         <Button
@@ -637,7 +673,7 @@
             Background="PaleVioletRed" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="RedSafe5"
+            
             BorderBrush="Black"
         />
         <Button
@@ -647,7 +683,7 @@
             Background="SkyBlue" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="BlueSafe1"
+            
             BorderBrush="Black"
         />
         <Button
@@ -657,7 +693,7 @@
             Background="SkyBlue" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="BlueSafe2"
+            
             BorderBrush="Black"
         />
         <Button
@@ -667,7 +703,7 @@
             Background="SkyBlue" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="BlueSafe3"
+            
             BorderBrush="Black"
         />
         <Button
@@ -677,7 +713,7 @@
             Background="SkyBlue" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="BlueSafe4"
+            
             BorderBrush="Black"
         />
         <Button
@@ -687,7 +723,7 @@
             Background="SkyBlue" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="BlueSafe5"
+            
             BorderBrush="Black"
         />
         <Button
@@ -697,7 +733,7 @@
             Background="PaleGoldenrod" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="YellowSafe1"
+            
             BorderBrush="Black"
         />
         <Button
@@ -707,7 +743,7 @@
             Background="PaleGoldenrod" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="YellowSafe2"
+            
             BorderBrush="Black"
         />
         <Button
@@ -717,7 +753,7 @@
             Background="PaleGoldenrod" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="YellowSafe3"
+            
             BorderBrush="Black"
         />
         <Button
@@ -727,7 +763,7 @@
             Background="PaleGoldenrod" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="YellowSafe4"
+            
             BorderBrush="Black"
         />
         <Button
@@ -737,7 +773,7 @@
             Background="PaleGoldenrod" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="YellowSafe5"
+            
             BorderBrush="Black"
         />
         <Button
@@ -747,7 +783,7 @@
             Background="Chartreuse" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="GreenSafe1"
+            
             BorderBrush="Black"
         />
         <Button
@@ -757,7 +793,7 @@
             Background="Chartreuse" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="GreenSafe2"
+            
             BorderBrush="Black"
         />
         <Button
@@ -767,7 +803,7 @@
             Background="Chartreuse" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="GreenSafe3"
+            
             BorderBrush="Black"
         />
         <Button
@@ -777,7 +813,7 @@
             Background="Chartreuse" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="GreenSafe4"
+            
             BorderBrush="Black"
         />
         <Button
@@ -787,7 +823,7 @@
             Background="Chartreuse" 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
-            Content="GreenSafe5"
+            
             BorderBrush="Black"
         />
         <Grid
@@ -809,7 +845,7 @@
                 Grid.Column="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="RedHome"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -819,7 +855,7 @@
                 Grid.Column="1"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="RedHome"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -829,7 +865,7 @@
                 Grid.Column="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="RedHome"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -839,7 +875,7 @@
                 Grid.Column="1"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="RedHome"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -863,7 +899,7 @@
                 Grid.Column="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="BlueHome"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -873,7 +909,7 @@
                 Grid.Column="1"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="BlueHome"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -883,7 +919,7 @@
                 Grid.Column="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="BlueHome"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -893,7 +929,7 @@
                 Grid.Column="1"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="BlueHome"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -917,7 +953,7 @@
                 Grid.Column="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="YellowHome"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -927,7 +963,7 @@
                 Grid.Column="1"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="YellowHome"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -937,7 +973,7 @@
                 Grid.Column="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="YellowHome"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -947,7 +983,7 @@
                 Grid.Column="1"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="YellowHome"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -971,7 +1007,7 @@
                 Grid.Column="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="GreenHome"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -981,7 +1017,7 @@
                 Grid.Column="1"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="GreenHome"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -991,7 +1027,7 @@
                 Grid.Column="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="GreenHome"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -1001,7 +1037,7 @@
                 Grid.Column="1"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="GreenHome"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -1027,7 +1063,7 @@
                 Grid.Column="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="RedStart"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -1037,7 +1073,7 @@
                 Grid.Column="1"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="RedStart"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -1047,7 +1083,7 @@
                 Grid.Column="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="RedStart"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -1057,7 +1093,7 @@
                 Grid.Column="1"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="RedStart"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -1081,7 +1117,7 @@
                 Grid.Column="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="BlueStart"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -1091,7 +1127,7 @@
                 Grid.Column="1"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="BlueStart"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -1101,7 +1137,7 @@
                 Grid.Column="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="BlueStart"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -1111,7 +1147,7 @@
                 Grid.Column="1"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="BlueStart"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -1135,7 +1171,7 @@
                 Grid.Column="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="YellowStart"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -1145,7 +1181,7 @@
                 Grid.Column="1"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="YellowStart"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -1155,7 +1191,7 @@
                 Grid.Column="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="YellowStart"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -1165,7 +1201,7 @@
                 Grid.Column="1"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="YellowStart"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -1189,7 +1225,7 @@
                 Grid.Column="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="GreenStart"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -1199,7 +1235,7 @@
                 Grid.Column="1"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="GreenStart"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -1209,7 +1245,7 @@
                 Grid.Column="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="GreenStart"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -1219,7 +1255,7 @@
                 Grid.Column="1"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
-                Content="GreenStart"
+                
                 BorderBrush="Black"
                 FontSize="5"
             />
@@ -1246,277 +1282,7 @@
             Tapped="FaceDownCard_Click"
         />
         <!--#endregion-->
-        <!--#region SlideShapes-->
-        <Polygon 
-            Grid.Row="0"
-            Grid.Column="1"
-            Points="30,10,30,50,65,30"
-            Fill="Red"
-        />
-        <Rectangle 
-            Grid.Row="0"
-            Grid.Column="2"
-            Height="20"
-            Width="88.5"
-            Fill="Red"
-        />
-        <Rectangle 
-            Grid.Row="0"
-            Grid.Column="3"
-            Height="20"
-            Width="88.5"
-            Fill="Red"
-        />
-        <Ellipse
-            Grid.Row="0"
-            Grid.Column="4"
-            Width="40"
-            Height="40"
-            Fill="Red"
-        />
-        <Polygon 
-            Grid.Row="0"
-            Grid.Column="9"
-            Points="30,10,30,50,65,30"
-            Fill="Red"
-        />
-        <Rectangle 
-            Grid.Row="0"
-            Grid.Column="10"
-            Height="20"
-            Width="88.5"
-            Fill="Red"
-        />
-        <Rectangle 
-            Grid.Row="0"
-            Grid.Column="11"
-            Height="20"
-            Width="88.5"
-            Fill="Red"
-        />
-        <Rectangle 
-            Grid.Row="0"
-            Grid.Column="12"
-            Height="20"
-            Width="88.5"
-            Fill="Red"
-        />
-        <Ellipse
-            Grid.Row="0"
-            Grid.Column="13"
-            Width="40"
-            Height="40"
-            Fill="Red"
-        />
-        <Polygon 
-            Grid.Row="1"
-            Grid.Column="15"
-            Points="30,10,30,50,65,30"
-            Fill="Blue" RenderTransformOrigin="0.5,0.5"
-        >
-            <Polygon.RenderTransform>
-                <CompositeTransform Rotation="90"/>
-            </Polygon.RenderTransform>
-        </Polygon>
-        <Rectangle 
-            Grid.Row="2"
-            Grid.Column="15"
-            Height="58"
-            Width="20"
-            Fill="Blue"
-        />
-        <Rectangle 
-            Grid.Row="3"
-            Grid.Column="15"
-            Height="58"
-            Width="20"
-            Fill="Blue"
-        />
-        <Ellipse
-            Grid.Row="4"
-            Grid.Column="15"
-            Width="40"
-            Height="40"
-            Fill="Blue"
-        />
-        <Polygon 
-            Grid.Row="9"
-            Grid.Column="15"
-            Points="30,10,30,50,65,30"
-            Fill="Blue" RenderTransformOrigin="0.5,0.5"
-        >
-            <Polygon.RenderTransform>
-                <CompositeTransform Rotation="90"/>
-            </Polygon.RenderTransform>
-        </Polygon>
-        <Rectangle 
-            Grid.Row="10"
-            Grid.Column="15"
-            Height="58"
-            Width="20"
-            Fill="Blue"
-        />
-        <Rectangle 
-            Grid.Row="11"
-            Grid.Column="15"
-            Height="58"
-            Width="20"
-            Fill="Blue"
-        />
-        <Rectangle 
-            Grid.Row="12"
-            Grid.Column="15"
-            Height="58"
-            Width="20"
-            Fill="Blue"
-        />
-        <Ellipse
-            Grid.Row="13"
-            Grid.Column="15"
-            Width="40"
-            Height="40"
-            Fill="Blue"
-        />
-        <Polygon 
-            Grid.Row="15"
-            Grid.Column="14"
-            Points="30,10,30,50,65,30"
-            Fill="Gold" RenderTransformOrigin="0.5,0.5"
-        >
-            <Polygon.RenderTransform>
-                <CompositeTransform Rotation="180"/>
-            </Polygon.RenderTransform>
-        </Polygon>
-        <Rectangle 
-            Grid.Row="15"
-            Grid.Column="13"
-            Height="20"
-            Width="88.5"
-            Fill="Gold"
-        />
-        <Rectangle 
-            Grid.Row="15"
-            Grid.Column="12"
-            Height="20"
-            Width="88.5"
-            Fill="Gold"
-        />
-        <Ellipse
-            Grid.Row="15"
-            Grid.Column="11"
-            Width="40"
-            Height="40"
-            Fill="Gold"
-        />
-        <Polygon 
-            Grid.Row="15"
-            Grid.Column="6"
-            Points="30,10,30,50,65,30"
-            Fill="Gold" RenderTransformOrigin="0.5,0.5"
-        >
-            <Polygon.RenderTransform>
-                <CompositeTransform Rotation="180"/>
-            </Polygon.RenderTransform>
-        </Polygon>
-        <Rectangle 
-            Grid.Row="15"
-            Grid.Column="5"
-            Height="20"
-            Width="88.5"
-            Fill="Gold"
-        />
-        <Rectangle 
-            Grid.Row="15"
-            Grid.Column="4"
-            Height="20"
-            Width="88.5"
-            Fill="Gold"
-        />
-        <Rectangle 
-            Grid.Row="15"
-            Grid.Column="3"
-            Height="20"
-            Width="88.5"
-            Fill="Gold"
-        />
-        <Ellipse
-            Grid.Row="15"
-            Grid.Column="2"
-            Width="40"
-            Height="40"
-            Fill="Gold"
-        />
-        <Polygon 
-            Grid.Row="14"
-            Grid.Column="0"
-            Points="30,10,30,50,65,30"
-            Fill="Green" RenderTransformOrigin="0.5,0.5"
-        >
-            <Polygon.RenderTransform>
-                <CompositeTransform Rotation="270"/>
-            </Polygon.RenderTransform>
-        </Polygon>
-        <Rectangle 
-            Grid.Row="13"
-            Grid.Column="0"
-            Height="58"
-            Width="20"
-            Fill="Green"
-        />
-        <Rectangle 
-            Grid.Row="12"
-            Grid.Column="0"
-            Height="58"
-            Width="20"
-            Fill="green"
-        />
-        <Ellipse
-            Grid.Row="11"
-            Grid.Column="0"
-            Width="40"
-            Height="40"
-            Fill="green"
-        />
-        <Polygon 
-            Grid.Row="6"
-            Grid.Column="0"
-            Points="30,10,30,50,65,30"
-            Fill="green" RenderTransformOrigin="0.5,0.5"
-        >
-            <Polygon.RenderTransform>
-                <CompositeTransform Rotation="270"/>
-            </Polygon.RenderTransform>
-        </Polygon>
-        <Rectangle 
-            Grid.Row="5"
-            Grid.Column="0"
-            Height="58"
-            Width="20"
-            Fill="green"
-        />
-        <Rectangle 
-            Grid.Row="4"
-            Grid.Column="0"
-            Height="58"
-            Width="20"
-            Fill="green"
-        />
-        <Rectangle 
-            Grid.Row="3"
-            Grid.Column="0"
-            Height="58"
-            Width="20"
-            Fill="green"
-        />
-        <Ellipse
-            Grid.Row="2"
-            Grid.Column="0"
-            Width="40"
-            Height="40"
-            Fill="green"
-        />
-        <!--#endregion-->
-        <!--#region TurnLabel&StartGameButton-->
+        <!--#region TurnLabel&StartGameButton&ForfeitTurnButton-->
         <TextBlock 
             x:Name="TurnLabel"
             Grid.Row="11" 
@@ -1534,8 +1300,21 @@
             HorizontalAlignment="Stretch"
             VerticalAlignment="Stretch"
             Content="Press To Start Game"
-            FontSize="35"
+            FontSize="30"
             Background="BlanchedAlmond" Click="StartGameButton_Click"
+        />
+        <Button 
+            x:Name="ForfeitTurnButton"
+            Grid.Row="10"
+            Grid.Column="6"
+            Grid.ColumnSpan="4"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Content="Forfeit Turn"
+            FontSize="30"
+            Background="BlanchedAlmond"
+            Visibility="Collapsed"
+            Click="ForfeitTurnButton_Click"
         />
         <!--#endregion-->
     </Grid>
