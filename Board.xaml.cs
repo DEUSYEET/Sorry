@@ -363,8 +363,6 @@ namespace Sorry
             }
 
             Debug.WriteLine(card);
-
-            FaceDownCard.Tapped -= FaceDownCard_Click;
         }
         private void RedPawnHomeMovement(int[] pawn)
         {
