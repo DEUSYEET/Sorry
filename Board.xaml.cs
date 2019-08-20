@@ -58,7 +58,9 @@ namespace Sorry
         int discardnum = 0;
         public enum Card { One, Two, Three, Four, Five, Seven, Eight, Ten, Eleven, Twelve, Sorry };
 
-
+        List<object> availableSpots = new List<object>();
+        bool onGoingTurn = false;
+        Pawn selectedP;
         public Board()
         {
 
@@ -115,88 +117,82 @@ namespace Sorry
             int[] pos = { 0, 0 };
         }
 
+        //Yellow, Green, Red, Blue
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
-
-            FrameworkElement button = (Button)sender;
-            if (button.Name.Contains("Slider") && button.Name.Contains("Start"))
-            {
-                Slider(button);
-                //pc.SetPosition(1, 1);
-            }
-
-            //Yellow, Green, Red, Blue
             turn t = new turn();
-            int[] clickedPos = t.turns(sender);
+            var o = (FrameworkElement)sender;
+            Grid g = (Grid)o.Parent;
+            var b = (FrameworkElement)sender;
+            var X = Grid.GetColumn(b);
+            var Y = Grid.GetRow(b);
 
-            bool turn = t.OnGoingTurn();
-            if (clickedPos == ypc1)
+            int[] helper = { X, Y };
+
+            if (//availableSpots.Contains(sender) && 
+                selectedP != null)
             {
-                turn = t.YellowTurn(yp1, clickedPos);
+                if (CheckOverlap(sender) == false)
+                {
+                    pc = selectedP;
+                    pc.SetPosition(sender, null);
+                    FrameworkElement button = (Button)sender;
+                    if (button.Name.Contains("Slider") && button.Name.Contains("Start"))
+                    {
+                        Slider(button);
+                    }
+                    selectedP = null;
+                    availableSpots = null;
+                    //change turn
+                    t.changeTurn();
+                    onGoingTurn = false;
+                }
             }
-            else if (clickedPos == ypc2)
+            else
             {
-                turn = t.YellowTurn(yp2, clickedPos);
+                if (TurnLabel.Text == "Turn: Yellow")
+                {
+                    if (yp1.position[0] == helper[0] && yp1.position[1] == helper[1]) selectedP = yp1; else if (yp2.position[0] == helper[0] && yp2.position[1] == helper[1]) selectedP = yp2; else if (yp3.position[0] == helper[0] && yp3.position[1] == helper[1]) selectedP = yp3; else if (yp4.position[0] == helper[0] && yp4.position[1] == helper[1]) selectedP = yp4;
+                }
+                else if (TurnLabel.Text == "Turn: Green")
+                {
+                    if (gp1.position[0] == helper[0] && gp1.position[1] == helper[1]) selectedP = gp1; else if (gp2.position[0] == helper[0] && gp2.position[1] == helper[1]) selectedP = gp2; else if (gp3.position[0] == helper[0] && gp3.position[1] == helper[1]) selectedP = gp3; else if (gp4.position[0] == helper[0] && gp4.position[1] == helper[1]) selectedP = gp4;
+                }
+                else if (TurnLabel.Text == "Turn: Red")
+                {
+                    if (rp1.position[0] == helper[0] && rp1.position[1] == helper[1]) selectedP = rp1; else if (rp2.position[0] == helper[0] && rp2.position[1] == helper[1]) selectedP = rp2; else if (rp3.position[0] == helper[0] && rp3.position[1] == helper[1]) selectedP = rp3; else if (rp4.position[0] == helper[0] && rp4.position[1] == helper[1]) selectedP = rp4;
+                }
+                else if (TurnLabel.Text == "Turn: Blue")
+                {
+                    if (bp1.position[0] == helper[0] && bp1.position[1] == helper[1]) selectedP = bp1; else if (bp2.position[0] == helper[0] && bp2.position[1] == helper[1]) selectedP = bp2; else if (bp3.position[0] == helper[0] && bp3.position[1] == helper[1]) selectedP = bp3; else if (bp4.position[0] == helper[0] && bp4.position[1] == helper[1]) selectedP = bp4;
+                }
             }
-            else if (clickedPos == ypc3)
-            {
-                turn = t.YellowTurn(yp3, clickedPos);
-            }
-            else if (clickedPos == ypc4)
-            {
-                turn = t.YellowTurn(yp4, clickedPos);
-            }
-            else if (clickedPos == gpc1)
-            {
-                turn = t.YellowTurn(gp1, clickedPos);
-            }
-            else if (clickedPos == gpc2)
-            {
-                turn = t.YellowTurn(gp2, clickedPos);
-            }
-            else if (clickedPos == gpc3)
-            {
-                turn = t.YellowTurn(gp3, clickedPos);
-            }
-            else if (clickedPos == gpc4)
-            {
-                turn = t.YellowTurn(gp4, clickedPos);
-            }
-            else if (clickedPos == ypc1)
-            {
-                turn = t.YellowTurn(rp1, clickedPos);
-            }
-            else if (clickedPos == ypc2)
-            {
-                turn = t.YellowTurn(rp2, clickedPos);
-            }
-            else if (clickedPos == ypc3)
-            {
-                turn = t.YellowTurn(rp3, clickedPos);
-            }
-            else if (clickedPos == ypc4)
-            {
-                turn = t.YellowTurn(rp4, clickedPos);
-            }
-            else if (clickedPos == bpc1)
-            {
-                turn = t.YellowTurn(bp1, clickedPos);
-            }
-            else if (clickedPos == bpc2)
-            {
-                turn = t.YellowTurn(bp2, clickedPos);
-            }
-            else if (clickedPos == bpc3)
-            {
-                turn = t.YellowTurn(bp3, clickedPos);
-            }
-            else if (clickedPos == bpc4)
-            {
-                turn = t.YellowTurn(bp4, clickedPos);
-            }
-            turn = false;// t.OnGoingTurn();
         }
+
+        public bool CheckOverlap(object sender)
+        {
+            var o = (FrameworkElement)sender;
+            Grid g = (Grid)o.Parent;
+            var b = (FrameworkElement)sender;
+            var X = Grid.GetColumn(b);
+            var Y = Grid.GetRow(b);
+
+            int[] helper = { X, Y };
+
+
+            if (yp1.position[0] == helper[0] && yp1.position[1] == helper[1] || yp2.position[0] == helper[0] && yp2.position[1] == helper[1] || yp3.position[0] == helper[0] && yp3.position[1] == helper[1] || yp4.position[0] == helper[0] && yp4.position[1] == helper[1] ||
+                gp1.position[0] == helper[0] && gp1.position[1] == helper[1] || gp2.position[0] == helper[0] && gp2.position[1] == helper[1] || gp3.position[0] == helper[0] && gp3.position[1] == helper[1] || gp4.position[0] == helper[0] && gp4.position[1] == helper[1] ||
+                rp1.position[0] == helper[0] && rp1.position[1] == helper[1] || rp2.position[0] == helper[0] && rp2.position[1] == helper[1] || rp3.position[0] == helper[0] && rp3.position[1] == helper[1] || rp4.position[0] == helper[0] && rp4.position[1] == helper[1] ||
+                bp1.position[0] == helper[0] && bp1.position[1] == helper[1] || bp2.position[0] == helper[0] && bp2.position[1] == helper[1] || bp3.position[0] == helper[0] && bp3.position[1] == helper[1] || bp4.position[0] == helper[0] && bp4.position[1] == helper[1])
+            {
+                //ScriptManager.RegisterClientScriptBlock(this, GetType(),"alertMessage", @"alert('your Message ')", true);
+                return true;
+            } 
+            else
+                return false;
+        }
+
+
         private void MiniButton_Click(object sender, RoutedEventArgs e)
         {
             turn t = new turn();
@@ -227,42 +223,42 @@ namespace Sorry
                     }
                 }
             }
-                if (TurnLabel.Text.Contains("Turn: Green"))
+            if (TurnLabel.Text.Contains("Turn: Green"))
+            {
+                if (carcheck.Contains("One") || carcheck.Contains("Two"))
                 {
-                    if (carcheck.Contains("One") || carcheck.Contains("Two"))
+                    if (sender == GreenStart1 || sender == GreenStart2 || sender == GreenStart3 || sender == GreenStart4)
                     {
-                        if (sender == GreenStart1 || sender == GreenStart2 || sender == GreenStart3 || sender == GreenStart4)
+                        if (gp1.position[0] == helper[0] && gp1.position[1] == helper[1]) pc = gp1; if (gp2.position[0] == helper[0] && gp2.position[1] == helper[1]) pc = gp2; if (gp3.position[0] == helper[0] && gp3.position[1] == helper[1]) pc = gp3; if (gp4.position[0] == helper[0] && gp4.position[1] == helper[1]) pc = gp4;
+                        if (carcheck.Contains("One"))
                         {
-                            if (gp1.position[0] == helper[0] && gp1.position[1] == helper[1]) pc = gp1; if (gp2.position[0] == helper[0] && gp2.position[1] == helper[1]) pc = gp2; if (gp3.position[0] == helper[0] && gp3.position[1] == helper[1]) pc = gp3; if (gp4.position[0] == helper[0] && gp4.position[1] == helper[1]) pc = gp4;
-                            if (carcheck.Contains("One"))
-                            {
-                                TurnLabel.Text = "Turn: Red";
-                                pc.SetPosition(GreenSlider1End, null);
-                            }
-                            else if (carcheck.Contains("Two"))
+                            TurnLabel.Text = "Turn: Red";
+                            pc.SetPosition(GreenSlider1End, null);
+                        }
+                        else if (carcheck.Contains("Two"))
                             pc.SetPosition(GreenSlider1End, null);
                         if (clickedPos == gpc2) gpc2 = pc.position; else if (clickedPos == gpc3) gpc3 = pc.position; else if (clickedPos == gpc4) gpc4 = pc.position; else if (clickedPos == gpc1) gpc1 = pc.position;
-                        }
                     }
                 }
-                if (TurnLabel.Text.Contains("Turn: Red"))
+            }
+            if (TurnLabel.Text.Contains("Turn: Red"))
+            {
+                if (carcheck.Contains("One") || carcheck.Contains("Two"))
                 {
-                    if (carcheck.Contains("One") || carcheck.Contains("Two"))
+                    if (sender == RedStart1 || sender == RedStart2 || sender == RedStart3 || sender == RedStart4)
                     {
-                        if (sender == RedStart1 || sender == RedStart2 || sender == RedStart3 || sender == RedStart4)
+                        if (rp1.position[0] == helper[0] && rp1.position[1] == helper[1]) pc = rp1; if (rp2.position[0] == helper[0] && rp2.position[1] == helper[1]) pc = rp2; if (rp3.position[0] == helper[0] && rp3.position[1] == helper[1]) pc = rp3; if (rp4.position[0] == helper[0] && rp4.position[1] == helper[1]) pc = rp4;
+                        if (carcheck.Contains("One"))
                         {
-                            if (rp1.position[0] == helper[0] && rp1.position[1] == helper[1]) pc = rp1; if (rp2.position[0] == helper[0] && rp2.position[1] == helper[1]) pc = rp2; if (rp3.position[0] == helper[0] && rp3.position[1] == helper[1]) pc = rp3; if (rp4.position[0] == helper[0] && rp4.position[1] == helper[1]) pc = rp4;
-                            if (carcheck.Contains("One"))
-                            {
-                                TurnLabel.Text = "Turn: Blue";
-                                pc.SetPosition(RedSlider1End, null);
-                            }
-                            else if (carcheck.Contains("Two"))
+                            TurnLabel.Text = "Turn: Blue";
+                            pc.SetPosition(RedSlider1End, null);
+                        }
+                        else if (carcheck.Contains("Two"))
                             pc.SetPosition(RedSlider1End, null);
                         if (clickedPos == rpc2) rpc2 = pc.position; else if (clickedPos == rpc3) rpc3 = pc.position; else if (clickedPos == rpc4) rpc4 = pc.position; else if (clickedPos == rpc1) rpc1 = pc.position;
-                        }
                     }
                 }
+            }
             if (TurnLabel.Text.Contains("Turn: Blue"))
             {
                 if (carcheck.Contains("One") || carcheck.Contains("Two"))
@@ -306,33 +302,254 @@ namespace Sorry
             pc = bp4; pc.SetPosition(BlueStart4, pos); pc = yp1;
             ypc1 = yp1.position; ypc2 = yp2.position; ypc3 = yp3.position; ypc4 = yp4.position; gpc1 = gp1.position; gpc2 = gp2.position; gpc3 = gp3.position; gpc4 = gp4.position; rpc1 = rp1.position; rpc2 = rp2.position; rpc3 = rp3.position; rpc4 = rp4.position; bpc1 = yp1.position; bpc2 = yp2.position; bpc3 = yp3.position; int[] bpc4 = yp4.position;
         }
-        private void FaceUpCard_Click(object sender, RoutedEventArgs e)
+        private void ForfeitTurnButton_Click(object sender, RoutedEventArgs e)
         {
-            Card card;
-            card = (Card)cardDeck.drawCard();
-            //FaceUpCard.Content = card.ToString();
-            carcheck = card.ToString();
-            discardnum++;
-            if (discardnum >= 45)
-            {
-                discardnum = 0;
-            }
-            //DiscardPile.Text = discardnum.ToString();
+            int[] pos = null;
+            StartGameButton.Click -= StartGameButton_Click;
+            StartGameButton.Visibility = Visibility.Collapsed;
+            pc = yp1; pc.SetPosition(YellowStart1, pos);
+            pc = yp2; pc.SetPosition(YellowStart2, pos);
+            pc = yp3; pc.SetPosition(YellowStart3, pos);
+            pc = yp4; pc.SetPosition(YellowStart4, pos);
+            pc = gp1; pc.SetPosition(GreenStart1, pos);
+            pc = gp2; pc.SetPosition(GreenStart2, pos);
+            pc = gp3; pc.SetPosition(GreenStart3, pos);
+            pc = gp4; pc.SetPosition(GreenStart4, pos);
+            pc = rp1; pc.SetPosition(RedStart1, pos);
+            pc = rp2; pc.SetPosition(RedStart2, pos);
+            pc = rp3; pc.SetPosition(RedStart3, pos);
+            pc = rp4; pc.SetPosition(RedStart4, pos);
+            pc = bp1; pc.SetPosition(BlueStart1, pos);
+            pc = bp2; pc.SetPosition(BlueStart2, pos);
+            pc = bp3; pc.SetPosition(BlueStart3, pos);
+            pc = bp4; pc.SetPosition(BlueStart4, pos); pc = yp1;
+            ypc1 = yp1.position; ypc2 = yp2.position; ypc3 = yp3.position; ypc4 = yp4.position; gpc1 = gp1.position; gpc2 = gp2.position; gpc3 = gp3.position; gpc4 = gp4.position; rpc1 = rp1.position; rpc2 = rp2.position; rpc3 = rp3.position; rpc4 = rp4.position; bpc1 = yp1.position; bpc2 = yp2.position; bpc3 = yp3.position; int[] bpc4 = yp4.position;
         }
+
 
         private void FaceDownCard_Click(object sender, RoutedEventArgs e)
         {
-            Card card;
-            card = (Card)cardDeck.drawCard();
-            string cardLink = "Images/" + card.ToString() + "Card.png";
-            FaceUpCard.Source = (new BitmapImage(new Uri("ms-appx:///" + cardLink)));
-            carcheck = card.ToString();
-            discardnum++;
-            if (discardnum >= 45)
-            {
-                discardnum = 0;
+            turn t = new turn();
+            if (onGoingTurn == false) {
+                Card card;
+                card = (Card)cardDeck.drawCard();
+                carcheck = card.ToString();
+                string cardLink = "Images/" + card.ToString() + "Card.png";
+                FaceUpCard.Source = (new BitmapImage(new Uri("ms-appx:///" + cardLink)));
+                discardnum++;
+                if (discardnum >= 45)
+                {
+                    discardnum = 0;
+                }
+
+                Debug.WriteLine(card);
+
+
+                if (card.Equals(Card.Sorry))
+                {
+
+
+                }
+
+                if (TurnLabel.Text == "Turn: Yellow" && yp1.position[0].Equals(YellowStart1.GetValue(Grid.RowProperty)))
+                {
+                    t.changeTurn();
+                }
+                
+                else
+                    onGoingTurn = true;
             }
         }
+        private void RedPawnHomeMovement(int[] pawn)
+        {
+            int[] tempPosition = pawn;
+
+            //Red Pawn Home Movement
+
+            //when tempPosition[0] >= 2 move down towards home 
+            if (tempPosition[0] > 2)
+            {
+                int temp = tempPosition[0];
+                temp -= 2;
+                if (temp > 6)
+                {
+                    //Player skips turn
+                    // break or return pawn.position not sure yet if need to return
+                }
+                else
+                {
+                    //sudo code fro now need check for actual home position since that spot is its own mini grid
+                    tempPosition[0] = 2;
+                    tempPosition[1] += temp;
+                }
+            }
+        }
+
+        private void BluePawnHomeMovement(int[] pawn)
+        {
+            int[] tempPosition = pawn;
+
+            //Red Pawn Home Movement
+
+            //when tempPosition[0] >= 2 move down towards home 
+            if (tempPosition[1] > 2)
+            {
+                int temp = tempPosition[0];
+                temp -= 2;
+                if (temp > 6)
+                {
+                    //Player skips turn
+                    // break or return pawn.position not sure yet if need to return
+                }
+                else
+                {
+                    //sudo code fro now need check for actual home position since that spot is its own mini grid
+                    tempPosition[0] = 2;
+                    tempPosition[1] += temp;
+                }
+            }
+        }
+
+        private void YellowPawnHomeMovement(int[] pawn)
+        {
+            int[] tempPosition = pawn;
+
+            if (tempPosition[0] < 13)
+            {
+                int temp = tempPosition[1];
+                temp -= 2;
+                tempPosition[0] = 13;
+                if (temp > 6)
+                {
+                    //player Skip Turn
+                    //break or return pawn.position
+                }
+                else
+                {
+                    //sudo code need check for if value is 6 because home space is its own grid
+                    tempPosition[1] -= temp;
+                }
+            }
+            else
+            {
+                //break or return
+            }
+        }
+
+        private void GreenPawnHomeMovement(int[] pawn)
+        {
+            int[] tempPosition = pawn;
+            int temp = tempPosition[1];
+            temp -= 2;
+            tempPosition[1] = 13;
+            if (temp > 6)
+            {
+                //player Skip Turn
+                //break or return pawn.position
+            }
+            else
+            {
+                //sudo code need check for if value is 6 because home space is its own grid
+                tempPosition[0] += temp;
+            }
+        }
+
+        private void MovePawn(Pawn pawn, int value)
+        {
+            int[] tempPosition = pawn.position;
+
+            if (tempPosition[0] >= 0 && tempPosition[1] == 0)
+            {
+                tempPosition[0] += value;
+
+                if (pawn.pawnColor == color.red && tempPosition[0] > 2 && pawn.position[0] <= 2)
+                {
+                    RedPawnHomeMovement(tempPosition);
+                }
+                if (tempPosition[0] > 15)
+                {
+                    int temp = tempPosition[0];
+                    temp -= 15;
+                    tempPosition[0] = 15;
+                    tempPosition[1] += temp;
+                    if (pawn.pawnColor == color.blue && tempPosition[1] > 2 && pawn.position[1] <= 2)
+                    {
+                        BluePawnHomeMovement(tempPosition);
+                    }
+                }
+            }
+            else if (tempPosition[0] == 15 && tempPosition[1] >= 0)
+            {
+                tempPosition[1] += value;
+
+                // Blue Home Movement
+                if (pawn.pawnColor == color.blue && tempPosition[1] > 2 && pawn.position[1] <= 2)
+                {
+                    BluePawnHomeMovement(tempPosition);
+                }
+
+                if (tempPosition[1] > 15)
+                {
+                    //sub remaing from tempPosition[0]
+                    int temp = tempPosition[1];
+                    temp -= 15;
+                    tempPosition[1] = 15;
+                    tempPosition[0] -= temp;
+                    if (pawn.pawnColor == color.yellow && tempPosition[0] < 13 && tempPosition[0] >= 13)
+                    {
+                        YellowPawnHomeMovement(tempPosition);
+                    }
+                }
+            }
+            else if (tempPosition[0] <= 15 && tempPosition[1] == 15)
+            {
+                tempPosition[0] -= value;
+
+                //Yellow Home Movement
+                if (pawn.pawnColor == color.yellow && tempPosition[0] < 13 && pawn.position[0] >= 13)
+                {
+                    YellowPawnHomeMovement(tempPosition);
+                }
+
+                if (tempPosition[0] < 0)
+                {
+                    //multiple the remaining by -1 then sub remaing from tempPosition[2]
+                    int temp = tempPosition[0];
+                    temp = (temp * (-1));
+                    tempPosition[0] = 0;
+                    tempPosition[1] -= temp;
+                    if (pawn.pawnColor == color.green && tempPosition[1] < 13 && pawn.position[1] >= 13)
+                    {
+                        GreenPawnHomeMovement(tempPosition);
+                    }
+                }
+            }
+            else if (tempPosition[0] == 0 && tempPosition[1] <= 15)
+            {
+                tempPosition[1] -= value;
+
+                // Green Home Movement
+                if (pawn.pawnColor == color.green && tempPosition[1] < 13 && pawn.position[1] >= 13)
+                {
+                    GreenPawnHomeMovement(tempPosition);
+                }
+                if (tempPosition[1] < 0)
+                {
+                    //multiple the remaining by -1 then add remaing to tempPosition[1]
+                    int temp = tempPosition[1];
+                    temp = (temp * (-1));
+                    tempPosition[1] = 0;
+                    tempPosition[0] += temp;
+                    if (pawn.pawnColor == color.red && tempPosition[0] > 2 && pawn.position[0] <= 2)
+                    {
+                        RedPawnHomeMovement(tempPosition);
+                    }
+                }
+            }
+            //highlight to show possible position
+            //click moves to that positon
+        }
+
 
         private void CheckWin(Button b)
         {
@@ -413,12 +630,26 @@ namespace Sorry
                 {
                     if (space.Name.Contains("2"))
                     {
-                        //pc.SetPosition(pc.position[0], pc.position[1] - longSlide);
+                        pc.SetPosition(pc.position[0], pc.position[1] - longSlide);
+
+                        var kicked = everyPawn.Where(p => (p.position[0] == Grid.GetColumn(GreenSlider2Middle3) || p.position[0] == Grid.GetColumn(GreenSlider2Middle2) || p.position[0] == Grid.GetColumn(GreenSlider2Middle1)) &&
+                       (p.position[1] == Grid.GetRow(GreenSlider2Middle3) || p.position[1] == Grid.GetRow(GreenSlider2Middle2) || p.position[1] == Grid.GetRow(GreenSlider2Middle1)));
+                        foreach (var pk in kicked)
+                        {
+                            sendHome(pk);
+                        }
+
 
                     }
                     else
                     {
                         pc.SetPosition(GreenSlider1End, null);
+                        var kicked = everyPawn.Where(p => (p.position[0] == Grid.GetColumn(GreenSlider1Middle2) || p.position[0] == Grid.GetColumn(GreenSlider1Middle1)) &&
+                      (p.position[1] == Grid.GetRow(GreenSlider1Middle2) || p.position[1] == Grid.GetRow(GreenSlider1Middle1)));
+                        foreach (var pk in kicked)
+                        {
+                            sendHome(pk);
+                        }
 
                     }
                 }
@@ -426,12 +657,25 @@ namespace Sorry
                 {
                     if (space.Name.Contains("2"))
                     {
-                       // pc.SetPosition(pc.position[0], pc.position[1] + longSlide);
+                        pc.SetPosition(pc.position[0], pc.position[1] + longSlide);
+                        var kicked = everyPawn.Where(p => (p.position[0] == Grid.GetColumn(BlueSlider2Middle3) || p.position[0] == Grid.GetColumn(BlueSlider2Middle2) || p.position[0] == Grid.GetColumn(BlueSlider2Middle1)) &&
+                      (p.position[1] == Grid.GetRow(BlueSlider2Middle3) || p.position[1] == Grid.GetRow(BlueSlider2Middle2) || p.position[1] == Grid.GetRow(BlueSlider2Middle1)));
+                        foreach (var pk in kicked)
+                        {
+                            sendHome(pk);
+                        }
 
                     }
                     else
                     {
-                        //pc.SetPosition(pc.position[0], pc.position[1] + shortSlide);
+                        pc.SetPosition(pc.position[0], pc.position[1] + shortSlide);
+
+                        var kicked = everyPawn.Where(p => (p.position[0] == Grid.GetColumn(BlueSlider1Middle2) || p.position[0] == Grid.GetColumn(BlueSlider1Middle1)) &&
+                   (p.position[1] == Grid.GetRow(BlueSlider1Middle2) || p.position[1] == Grid.GetRow(BlueSlider1Middle1)));
+                        foreach (var pk in kicked)
+                        {
+                            sendHome(pk);
+                        }
 
                     }
                 }
@@ -439,12 +683,25 @@ namespace Sorry
                 {
                     if (space.Name.Contains("2"))
                     {
-                      //  pc.SetPosition(pc.position[0] - longSlide, pc.position[1]);
+                        pc.SetPosition(pc.position[0] - longSlide, pc.position[1]);
+                        var kicked = everyPawn.Where(p => (p.position[0] == Grid.GetColumn(YellowSlider2Middle3) || p.position[0] == Grid.GetColumn(YellowSlider2Middle2) || p.position[0] == Grid.GetColumn(YellowSlider2Middle1)) &&
+                      (p.position[1] == Grid.GetRow(YellowSlider2Middle3) || p.position[1] == Grid.GetRow(YellowSlider2Middle2) || p.position[1] == Grid.GetRow(YellowSlider2Middle1)));
+                        foreach (var pk in kicked)
+                        {
+                            sendHome(pk);
+                        }
 
                     }
                     else
                     {
-                      //  pc.SetPosition(pc.position[0] - shortSlide, pc.position[1]);
+                        pc.SetPosition(pc.position[0] - shortSlide, pc.position[1]);
+
+                        var kicked = everyPawn.Where(p => (p.position[0] == Grid.GetColumn(YellowSlider1Middle2) || p.position[0] == Grid.GetColumn(YellowSlider1Middle1)) &&
+                   (p.position[1] == Grid.GetRow(YellowSlider1Middle2) || p.position[1] == Grid.GetRow(YellowSlider1Middle1)));
+                        foreach (var pk in kicked)
+                        {
+                            sendHome(pk);
+                        }
 
                     }
                 }
@@ -452,12 +709,25 @@ namespace Sorry
                 {
                     if (space.Name.Contains("2"))
                     {
-                      //  pc.SetPosition(pc.position[0] + longSlide, pc.position[1]);
+                        pc.SetPosition(pc.position[0] + longSlide, pc.position[1]);
+                        var kicked = everyPawn.Where(p => (p.position[0] == Grid.GetColumn(RedSlider2Middle3) || p.position[0] == Grid.GetColumn(RedSlider2Middle2) || p.position[0] == Grid.GetColumn(RedSlider2Middle1)) &&
+                      (p.position[1] == Grid.GetRow(RedSlider2Middle3) || p.position[1] == Grid.GetRow(RedSlider2Middle2) || p.position[1] == Grid.GetRow(RedSlider2Middle1)));
+                        foreach (var pk in kicked)
+                        {
+                            sendHome(pk);
+                        }
 
                     }
                     else
                     {
-                      //  pc.SetPosition(pc.position[0] + shortSlide, pc.position[1]);
+                        pc.SetPosition(pc.position[0] + shortSlide, pc.position[1]);
+
+                        var kicked = everyPawn.Where(p => (p.position[0] == Grid.GetColumn(RedSlider1Middle2) || p.position[0] == Grid.GetColumn(RedSlider1Middle1)) &&
+                   (p.position[1] == Grid.GetRow(RedSlider1Middle2) || p.position[1] == Grid.GetRow(RedSlider1Middle1)));
+                        foreach (var pk in kicked)
+                        {
+                            sendHome(pk);
+                        }
 
                     }
                 }
@@ -469,6 +739,27 @@ namespace Sorry
 
         }
 
+        private void sendHome(Pawn pk)
+        {
+            switch (pk.pawnColor)
+            {
+                case color.red:
+                    pk.SetPosition(RedStart1, null);
+                    break;
+                case color.blue:
+                    pk.SetPosition(BlueStart1, null);
+
+                    break;
+                case color.green:
+                    pk.SetPosition(GreenStart1, null);
+
+                    break;
+                case color.yellow:
+                    pk.SetPosition(YellowStart1, null);
+
+                    break;
+            }
+        }
 
         private bool checkColorMatch(FrameworkElement space)
         {
@@ -481,7 +772,7 @@ namespace Sorry
             else if (space.Name.Contains("Blue"))
             {
                 spaceColor = color.blue;
-                  
+
             }
             else if (space.Name.Contains("Yellow"))
             {
@@ -520,5 +811,6 @@ namespace Sorry
             return c;
 
         }
+
     }
 }
