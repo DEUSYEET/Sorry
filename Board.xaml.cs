@@ -149,7 +149,9 @@ namespace Sorry
             }
             if (selectedP != null)
             {
-                pc = selectedP; pc.SetPosition(sender, null);
+                pc = selectedP;
+                MovePawn(pc, cardDeck.CardNum());
+                pc.SetPosition(sender, selectedP.position);
                 FrameworkElement button = (Button)sender;
                 if (button.Name.Contains("Slider") && button.Name.Contains("Start"))
                 {
@@ -364,7 +366,6 @@ namespace Sorry
 
             Debug.WriteLine(card);
 
-            FaceDownCard.Tapped -= FaceDownCard_Click;
         }
         private void RedPawnHomeMovement(int[] pawn)
         {
@@ -479,6 +480,7 @@ namespace Sorry
                     temp -= 15;
                     tempPosition[0] = 15;
                     tempPosition[1] += temp;
+                    Button cell = (Button) GetGridCell(tempPosition[0], tempPosition[1]);
                     if (pawn.pawnColor == color.blue && tempPosition[1] > 2 && pawn.position[1] <= 2)
                     {
                         BluePawnHomeMovement(tempPosition);
