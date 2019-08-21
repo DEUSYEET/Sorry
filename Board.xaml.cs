@@ -138,7 +138,11 @@ namespace Sorry
             {
 
 
-                sorryPawn = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
+                sorryPawn = everyPawn.FirstOrDefault(p => p.positionName.Equals(sendButton.Name));
+                if(sorryPawn is null)
+                {
+                    return;
+                }
 
                 pc.SetPosition(sender, null);
 
@@ -163,6 +167,8 @@ namespace Sorry
                 //change turn
                 if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn: Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn: Blue") TurnLabel.Text = "Turn: Yellow";
                 onGoingTurn = false;
+                ForfeitTurnButton.Visibility = Visibility.Collapsed;
+                FaceDownCard.Tapped += FaceDownCard_Click;
             }
 
 
@@ -185,7 +191,7 @@ namespace Sorry
                 {
                     if (bp1.position[0] == helper[0] && bp1.position[1] == helper[1]) selectedP = bp1; if (bp2.position[0] == helper[0] && bp2.position[1] == helper[1]) selectedP = bp2; if (bp3.position[0] == helper[0] && bp3.position[1] == helper[1]) selectedP = bp3; if (bp4.position[0] == helper[0] && bp4.position[1] == helper[1]) selectedP = bp4;
                 }
-                
+
             }
 
 
@@ -319,6 +325,11 @@ namespace Sorry
             }
             //pc.pawnColor = yp1.pawnColor;
             Debug.WriteLine(pc.pawnColor);
+            if (sendButton.Name.Contains("Home"))
+            {
+                ForfeitTurnButton.Visibility = Visibility.Collapsed;
+                FaceDownCard.Tapped += FaceDownCard_Click;
+            }
 
         }
 
@@ -348,8 +359,10 @@ namespace Sorry
 
         private void ForfeitTurnButton_Click(object sender, RoutedEventArgs e)
         {
-            if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn: Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn Blue") TurnLabel.Text = "Turn: Yellow";
+            if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn: Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn: Blue") TurnLabel.Text = "Turn: Yellow";
             onGoingTurn = false;
+            ForfeitTurnButton.Visibility = Visibility.Collapsed;
+            FaceDownCard.Tapped += FaceDownCard_Click;
         }
 
         private void FaceDownCard_Click(object sender, RoutedEventArgs e)
@@ -366,7 +379,8 @@ namespace Sorry
             }
 
             Debug.WriteLine(card);
-
+            ForfeitTurnButton.Visibility = Visibility.Visible;
+            FaceDownCard.Tapped -= FaceDownCard_Click;
         }
         private void RedPawnHomeMovement(int[] pawn)
         {
@@ -470,7 +484,7 @@ namespace Sorry
             if (tempPosition[0] >= 0 && tempPosition[1] == 0)
             {
                 tempPosition[0] += value;
-                
+
 
                 if (pawn.pawnColor == color.red && tempPosition[0] > 2 && selectedP.position[0] <= 2)
                 {
@@ -485,7 +499,7 @@ namespace Sorry
                     if (pawn.pawnColor == color.blue && tempPosition[1] > 2 && pawn.position[1] <= 2)
                     {
                         BluePawnHomeMovement(tempPosition);
-                    }  
+                    }
                 }
                 pc.SetPosition(tempPosition[0], tempPosition[1]);
             }
@@ -562,6 +576,8 @@ namespace Sorry
             }
             //highlight to show possible position
             //click moves to that positon
+            ForfeitTurnButton.Visibility = Visibility.Collapsed;
+            FaceDownCard.Tapped += FaceDownCard_Click;
         }
 
 
