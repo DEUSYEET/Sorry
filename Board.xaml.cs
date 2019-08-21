@@ -142,7 +142,7 @@ namespace Sorry
 
                 pc.SetPosition(sender, null);
 
-                if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn Blue") TurnLabel.Text = "Turn: Yellow";
+                if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn: Blue") TurnLabel.Text = "Turn: Yellow";
                 onGoingTurn = false;
 
                 sendHome(sorryPawn);
@@ -150,9 +150,10 @@ namespace Sorry
             if (selectedP != null)
             {
                 pc = selectedP;
-                MovePawn(pc, cardDeck.CardNum());
+                MovePawn(selectedP, cardDeck.CardNum());
                 pc.SetPosition(sender, selectedP.position);
                 FrameworkElement button = (Button)sender;
+
                 if (button.Name.Contains("Slider") && button.Name.Contains("Start"))
                 {
                     Slider(button);
@@ -160,7 +161,7 @@ namespace Sorry
                 selectedP = null;
                 availableSpots = null;
                 //change turn
-                if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn: Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn Blue") TurnLabel.Text = "Turn: Yellow";
+                if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn: Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn: Blue") TurnLabel.Text = "Turn: Yellow";
                 onGoingTurn = false;
             }
 
@@ -469,8 +470,9 @@ namespace Sorry
             if (tempPosition[0] >= 0 && tempPosition[1] == 0)
             {
                 tempPosition[0] += value;
+                
 
-                if (pawn.pawnColor == color.red && tempPosition[0] > 2 && pawn.position[0] <= 2)
+                if (pawn.pawnColor == color.red && tempPosition[0] > 2 && selectedP.position[0] <= 2)
                 {
                     RedPawnHomeMovement(tempPosition);
                 }
@@ -480,12 +482,12 @@ namespace Sorry
                     temp -= 15;
                     tempPosition[0] = 15;
                     tempPosition[1] += temp;
-                    Button cell = (Button) GetGridCell(tempPosition[0], tempPosition[1]);
                     if (pawn.pawnColor == color.blue && tempPosition[1] > 2 && pawn.position[1] <= 2)
                     {
                         BluePawnHomeMovement(tempPosition);
-                    }
+                    }  
                 }
+                pc.SetPosition(tempPosition[0], tempPosition[1]);
             }
             else if (tempPosition[0] == 15 && tempPosition[1] >= 0)
             {
@@ -509,6 +511,7 @@ namespace Sorry
                         YellowPawnHomeMovement(tempPosition);
                     }
                 }
+                pawn.position = tempPosition;
             }
             else if (tempPosition[0] <= 15 && tempPosition[1] == 15)
             {
@@ -532,6 +535,7 @@ namespace Sorry
                         GreenPawnHomeMovement(tempPosition);
                     }
                 }
+                pawn.position = tempPosition;
             }
             else if (tempPosition[0] == 0 && tempPosition[1] <= 15)
             {
@@ -554,6 +558,7 @@ namespace Sorry
                         RedPawnHomeMovement(tempPosition);
                     }
                 }
+                pawn.position = tempPosition;
             }
             //highlight to show possible position
             //click moves to that positon
