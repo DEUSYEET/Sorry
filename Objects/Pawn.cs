@@ -110,6 +110,8 @@ namespace Sorry.Assets
             Grid.SetRow(pawnRect, Y);
             position[0] = X;
             position[1] = Y;
+
+            
         }
 
         public void SetImage(ImageSource source)
