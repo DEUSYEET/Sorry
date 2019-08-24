@@ -157,11 +157,11 @@ namespace Sorry
                 {
                     fourCardMovement(selectedP);
                 }
-                else if(cardDeck.CardNum() == 7)
+                else if (cardDeck.CardNum() == 7)
                 {
                     //needs logic
                 }
-                else if(cardDeck.CardNum() == 10)
+                else if (cardDeck.CardNum() == 10)
                 {
                     //need logic
                 }
@@ -174,8 +174,7 @@ namespace Sorry
                     pc = selectedP;
                     MovePawn(selectedP, cardDeck.CardNum());
                     pc.SetPosition(sender, selectedP.position);
-
-            
+                }
                 selectedP = null;
                 availableSpots = null;
                 //change turn
@@ -184,6 +183,7 @@ namespace Sorry
                 ForfeitTurnButton.Visibility = Visibility.Collapsed;
                 FaceDownCard.Tapped += FaceDownCard_Click;
             }
+
 
 
             else
@@ -361,7 +361,7 @@ namespace Sorry
             pc = gp2; pc.SetPosition(GreenStart2, pos);
             pc = gp3; pc.SetPosition(GreenStart3, pos);
             pc = gp4; pc.SetPosition(GreenStart4, pos);
-            pc = rp1; pc.SetPosition(RedStart1, pos);
+            pc = rp1; pc.SetPosition(GreenSlider2End, pos);
             pc = rp2; pc.SetPosition(RedStart2, pos);
             pc = rp3; pc.SetPosition(RedStart3, pos);
             pc = rp4; pc.SetPosition(RedStart4, pos);
@@ -396,11 +396,11 @@ namespace Sorry
             ForfeitTurnButton.Visibility = Visibility.Visible;
             FaceDownCard.Tapped -= FaceDownCard_Click;
         }
-        
+
         private void fourCardMovement(Pawn pawn)
         {
             int[] tempPosition = pawn.position;
-           
+
         }
         private void RedPawnHomeMovement(int[] pawn)
         {
@@ -419,6 +419,7 @@ namespace Sorry
             else if (temp == 6)
             {
                 //minigrid
+                SetHomePosition(0, 0, RedHomeGrid, pc.pawnRect);
             }
             else
             {
@@ -644,15 +645,14 @@ namespace Sorry
             }
             //highlight to show possible position
             //click moves to that positon
-                        CheckSlide(pawn);
+            CheckSlide(pawn);
             ForfeitTurnButton.Visibility = Visibility.Collapsed;
             FaceDownCard.Tapped += FaceDownCard_Click;
         }
 
         public void SetHomePosition(int X, int Y, Grid grid, Image pawnRect)
         {
-            Grid.SetColumn(pawnRect, X);
-            Grid.SetRow(pawnRect, Y);
+
             try
             {
                 BoardGrid.Children.Remove(pawnRect);
@@ -661,6 +661,8 @@ namespace Sorry
             }
             catch (Exception)
             { }
+            Grid.SetColumn(pawnRect, X);
+            Grid.SetRow(pawnRect, Y);
         }
 
         private void CheckWin(Button b)
@@ -730,7 +732,7 @@ namespace Sorry
         //    Slider(color.green, send);
         //}
 
-       private void Slider(FrameworkElement space, Pawn pawn)
+        private void Slider(FrameworkElement space, Pawn pawn)
         {
             //int longSlide = 4;
             //int shortSlide = 3;
