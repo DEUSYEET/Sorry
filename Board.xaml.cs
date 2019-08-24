@@ -1,4 +1,4 @@
-﻿using Sorry.Assets;
+﻿﻿using Sorry.Assets;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -138,7 +138,11 @@ namespace Sorry
             {
 
 
-                sorryPawn = everyPawn.First(p => p.positionName.Equals(b.Name));
+                sorryPawn = everyPawn.FirstOrDefault(p => p.positionName.Equals(sendButton.Name));
+                if(sorryPawn is null)
+                {
+                    return;
+                }
 
                 pc.SetPosition(sender, null);
 
@@ -153,11 +157,18 @@ namespace Sorry
                 MovePawn(selectedP, cardDeck.CardNum());
                 pc.SetPosition(sender, selectedP.position);
                 FrameworkElement button = (Button)sender;
+
+                if (button.Name.Contains("Slider") && button.Name.Contains("Start"))
+                {
+                    Slider(button);
+                }
                 selectedP = null;
                 availableSpots = null;
                 //change turn
                 if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn: Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn: Blue") TurnLabel.Text = "Turn: Yellow";
                 onGoingTurn = false;
+                ForfeitTurnButton.Visibility = Visibility.Collapsed;
+                FaceDownCard.Tapped += FaceDownCard_Click;
             }
 
 
@@ -185,43 +196,13 @@ namespace Sorry
 
 
 
+
             turn t = new turn();
             int[] clickedPos = t.turns(sender);
 
             bool turn = t.OnGoingTurn();
 
             turn = false;// t.OnGoingTurn();
-        }
-
-        private void CheckSlide(Pawn p)
-        {
-            var sT = BoardGrid.Children.Where(b => b.GetType().Equals(typeof(Button)));
-            List<FrameworkElement> slideTiles = new List<FrameworkElement>();
-
-            foreach (var t in sT)
-            {
-                Button b = (Button)t;
-
-                if (b.Name.Contains("Slide") && b.Name.Contains("Start"))
-                {
-                    slideTiles.Add(b);
-                }
-            }
-
-
-            foreach (Button b in slideTiles)
-            {
-
-                if (p.position[0] == Grid.GetColumn(b) && p.position[1] == Grid.GetRow(b))
-                {
-                    Slider(b, p);
-                }
-
-
-            }
-
-
-
         }
 
         private void MiniButton_Click(object sender, RoutedEventArgs e)
@@ -344,6 +325,11 @@ namespace Sorry
             }
             //pc.pawnColor = yp1.pawnColor;
             Debug.WriteLine(pc.pawnColor);
+            if (sendButton.Name.Contains("Home"))
+            {
+                ForfeitTurnButton.Visibility = Visibility.Collapsed;
+                FaceDownCard.Tapped += FaceDownCard_Click;
+            }
 
         }
 
@@ -373,8 +359,10 @@ namespace Sorry
 
         private void ForfeitTurnButton_Click(object sender, RoutedEventArgs e)
         {
-            if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn: Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn Blue") TurnLabel.Text = "Turn: Yellow";
+            if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn: Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn: Blue") TurnLabel.Text = "Turn: Yellow";
             onGoingTurn = false;
+            ForfeitTurnButton.Visibility = Visibility.Collapsed;
+            FaceDownCard.Tapped += FaceDownCard_Click;
         }
 
         private void FaceDownCard_Click(object sender, RoutedEventArgs e)
@@ -391,6 +379,8 @@ namespace Sorry
             }
 
             Debug.WriteLine(card);
+            ForfeitTurnButton.Visibility = Visibility.Visible;
+            FaceDownCard.Tapped -= FaceDownCard_Click;
         }
         private void RedPawnHomeMovement(int[] pawn)
         {
@@ -512,8 +502,6 @@ namespace Sorry
                     }
                 }
                 pc.SetPosition(tempPosition[0], tempPosition[1]);
-
-
             }
             else if (tempPosition[0] == 15 && tempPosition[1] >= 0)
             {
@@ -538,8 +526,6 @@ namespace Sorry
                     }
                 }
                 pawn.position = tempPosition;
-
-
             }
             else if (tempPosition[0] <= 15 && tempPosition[1] == 15)
             {
@@ -564,8 +550,6 @@ namespace Sorry
                     }
                 }
                 pawn.position = tempPosition;
-
-
             }
             else if (tempPosition[0] == 0 && tempPosition[1] <= 15)
             {
@@ -589,16 +573,11 @@ namespace Sorry
                     }
                 }
                 pawn.position = tempPosition;
-
-
-
             }
-
-
-
-            CheckSlide(pawn);
             //highlight to show possible position
             //click moves to that positon
+            ForfeitTurnButton.Visibility = Visibility.Collapsed;
+            FaceDownCard.Tapped += FaceDownCard_Click;
         }
 
 
@@ -669,7 +648,7 @@ namespace Sorry
         //    Slider(color.green, send);
         //}
 
-        private void Slider(FrameworkElement space, Pawn pawn)
+       private void Slider(FrameworkElement space, Pawn pawn)
         {
             //int longSlide = 4;
             //int shortSlide = 3;
@@ -818,6 +797,7 @@ namespace Sorry
             }
             pk.SetPosition(homeTiles[0], null);
         }
+
 
         private bool checkColorMatch(FrameworkElement space)
         {
