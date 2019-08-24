@@ -64,6 +64,7 @@ namespace Sorry
 
 
         Pawn sorryPawn;
+        Pawn jerkPawn;
 
         public Board()
         {
@@ -139,17 +140,21 @@ namespace Sorry
 
 
                 sorryPawn = everyPawn.FirstOrDefault(p => p.positionName.Equals(sendButton.Name));
-                if(sorryPawn is null)
+                if (sorryPawn is null)
                 {
                     return;
                 }
 
-                pc.SetPosition(sender, null);
+                if (jerkPawn!=null)
+                {
+                    jerkPawn.SetPosition(sender, null);
 
-                if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn: Blue") TurnLabel.Text = "Turn: Yellow";
-                onGoingTurn = false;
+                    if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn: Blue") TurnLabel.Text = "Turn: Yellow";
+                    onGoingTurn = false;
 
-                sendHome(sorryPawn);
+                    sendHome(sorryPawn);
+                    jerkPawn = null;
+                }
             }
             if (selectedP != null)
             {
@@ -158,7 +163,7 @@ namespace Sorry
                 pc.SetPosition(sender, selectedP.position);
                 FrameworkElement button = (Button)sender;
 
-            
+
                 selectedP = null;
                 availableSpots = null;
                 //change turn
@@ -200,6 +205,8 @@ namespace Sorry
             bool turn = t.OnGoingTurn();
 
             turn = false;// t.OnGoingTurn();
+
+            CheckWin();
         }
 
         private void MiniButton_Click(object sender, RoutedEventArgs e)
@@ -221,7 +228,7 @@ namespace Sorry
                 {
                     if (sendButton.Name.Contains("YellowStart"))
                     {
-                        pc = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
+                        jerkPawn = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
                     }
 
                 }
@@ -248,7 +255,7 @@ namespace Sorry
                 {
                     if (sendButton.Name.Contains("GreenStart"))
                     {
-                        pc = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
+                        jerkPawn = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
                     }
 
                 }
@@ -274,7 +281,7 @@ namespace Sorry
                 {
                     if (sendButton.Name.Contains("RedStart"))
                     {
-                        pc = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
+                        jerkPawn = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
                     }
 
                 }
@@ -300,7 +307,7 @@ namespace Sorry
                 {
                     if (sendButton.Name.Contains("BlueStart"))
                     {
-                        pc = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
+                        jerkPawn = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
                     }
 
                 }
@@ -336,10 +343,10 @@ namespace Sorry
             int[] pos = null;
             StartGameButton.Click -= StartGameButton_Click;
             StartGameButton.Visibility = Visibility.Collapsed;
-            pc = yp1; pc.SetPosition(YellowStart1, pos);
-            pc = yp2; pc.SetPosition(YellowStart2, pos);
-            pc = yp3; pc.SetPosition(YellowStart3, pos);
-            pc = yp4; pc.SetPosition(YellowStart4, pos);
+            pc = yp1; pc.SetPosition(YellowSafe5, pos);
+            pc = yp2; pc.SetPosition(YellowHome2, pos);
+            pc = yp3; pc.SetPosition(YellowHome3, pos);
+            pc = yp4; pc.SetPosition(YellowHome4, pos);
             pc = gp1; pc.SetPosition(GreenSlider1End, pos);
             pc = gp2; pc.SetPosition(GreenStart2, pos);
             pc = gp3; pc.SetPosition(GreenStart3, pos);
@@ -577,7 +584,7 @@ namespace Sorry
                 else if (tempPosition[1] == 6)
                 {
                     //minibutton move -- not wokring
-                    SetHomePosition(0, 0, RedHomeGrid, pawn.pawnRect);
+                    pawn.SetPosition(0, 0, RedHomeGrid);
                 }
             }
             else if (pawn.pawnColor == color.blue && tempPosition[0] <= 14 && tempPosition[1] == 2)
@@ -590,7 +597,7 @@ namespace Sorry
                 else if (tempPosition[0] == 9)
                 {
                     //minigrid movement -- not working
-                    pc = pawn; pc.SetPosition(BlueHome1, null);
+                    pawn.SetPosition(0, 0, BlueHomeGrid);
                 }
             }
             else if (pawn.pawnColor == color.yellow && tempPosition[0] == 13 && tempPosition[1] <= 14)
@@ -603,79 +610,47 @@ namespace Sorry
                 else if (tempPosition[1] == 9)
                 {
                     //minigrid Movement -- not working
-                    pc = pawn; pc.SetPosition(YellowHome1, null);
+                    //pawn.SetPosition(0, 0, YellowHomeGrid);
+                    BoardGrid.Children.Remove(pawn.pawnRect);
+                    YellowHome1.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
                 }
             }
-            else if(pawn.pawnColor == color.green && tempPosition[1] == 13 && tempPosition[0] > 1)
+            else if (pawn.pawnColor == color.green && tempPosition[1] == 13 && tempPosition[0] > 1)
             {
                 tempPosition[0] += value;
-                if(tempPosition[0] > 6)
+                if (tempPosition[0] > 6)
                 {
                     tempPosition[0] -= value;
                 }
                 else if (tempPosition[0] == 6)
                 {
                     //minigrid Movement -- not wokring
-                    pc = pawn; pc.SetPosition(GreenHome1, null);
+                    pawn.SetPosition(0, 0, GreenHomeGrid);
                 }
             }
             //highlight to show possible position
             //click moves to that positon
-                        CheckSlide(pawn);
+            CheckSlide(pawn);
             ForfeitTurnButton.Visibility = Visibility.Collapsed;
             FaceDownCard.Tapped += FaceDownCard_Click;
         }
 
-        public void SetHomePosition(int X, int Y, Grid grid, Image pawnRect)
-        {
-            Grid.SetColumn(pawnRect, X);
-            Grid.SetRow(pawnRect, Y);
-            try
-            {
-                BoardGrid.Children.Remove(pawnRect);
-                grid.Children.Add(pawnRect);
 
-            }
-            catch (Exception)
-            { }
-        }
-
-        private void CheckWin(Button b)
+        private void CheckWin()
         {
-            var name = b.Name;
             string homeColor = "";
 
-
-
-            if (name.Contains("Home"))
-            {
                 foreach (var pl in allPawns)
                 {
                     int homeCount = 0;
                     foreach (var p in pl)
                     {
-                        switch (p.pawnColor)
-                        {
-                            case color.red:
-                                homeColor = "Red";
-                                break;
-                            case color.blue:
-                                homeColor = "Blue";
-                                break;
-                            case color.green:
-                                homeColor = "Green";
-                                break;
-                            case color.yellow:
-                                homeColor = "Yellow";
-                                break;
-                        }
+                    homeColor = checkColor(p);
 
                         try
                         {
 
-                            string spotName = ((Grid)p.pawnRect.Parent).Name;
-
-                            if (spotName.Contains(homeColor) && spotName.Contains("Home"))
+                            if (p.positionName.Contains(homeColor)&&p.positionName.Contains("Home"))
                             {
                                 homeCount += 1;
                             }
@@ -696,7 +671,7 @@ namespace Sorry
                         homeCount = 0;
                     }
 
-                }
+                
             }
         }
 
@@ -707,7 +682,7 @@ namespace Sorry
         //    Slider(color.green, send);
         //}
 
-       private void Slider(FrameworkElement space, Pawn pawn)
+        private void Slider(FrameworkElement space, Pawn pawn)
         {
             //int longSlide = 4;
             //int shortSlide = 3;
