@@ -158,10 +158,7 @@ namespace Sorry
                 pc.SetPosition(sender, selectedP.position);
                 FrameworkElement button = (Button)sender;
 
-                if (button.Name.Contains("Slider") && button.Name.Contains("Start"))
-                {
-                    Slider(button);
-                }
+            
                 selectedP = null;
                 availableSpots = null;
                 //change turn
@@ -576,6 +573,7 @@ namespace Sorry
             }
             //highlight to show possible position
             //click moves to that positon
+            CheckSlide(pawn);
             ForfeitTurnButton.Visibility = Visibility.Collapsed;
             FaceDownCard.Tapped += FaceDownCard_Click;
         }
@@ -855,6 +853,36 @@ namespace Sorry
 
         }
 
+        private void CheckSlide(Pawn p)
+        {
+            var sT = BoardGrid.Children.Where(b => b.GetType().Equals(typeof(Button)));
+            List<FrameworkElement> slideTiles = new List<FrameworkElement>();
+
+            foreach (var t in sT)
+            {
+                Button b = (Button)t;
+
+                if (b.Name.Contains("Slide") && b.Name.Contains("Start"))
+                {
+                    slideTiles.Add(b);
+                }
+            }
+
+
+            foreach (Button b in slideTiles)
+            {
+
+                if (p.position[0] == Grid.GetColumn(b) && p.position[1] == Grid.GetRow(b))
+                {
+                    Slider(b, p);
+                }
+
+
+            }
+
+
+
+        }
 
 
 
