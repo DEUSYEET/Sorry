@@ -42,7 +42,10 @@ namespace Sorry
         static Pawn bp2 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/BluePawn.png")), color.blue);
         static Pawn bp3 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/BluePawn.png")), color.blue);
         static Pawn bp4 = new Pawn(new BitmapImage(new Uri("ms-appx:///Images/BluePawn.png")), color.blue);
-        int[] ypc1 = yp1.position; int[] ypc2 = yp2.position; int[] ypc3 = yp3.position; int[] ypc4 = yp4.position; int[] gpc1 = gp1.position; int[] gpc2 = gp2.position; int[] gpc3 = gp3.position; int[] gpc4 = gp4.position; int[] rpc1 = rp1.position; int[] rpc2 = rp2.position; int[] rpc3 = rp3.position; int[] rpc4 = rp4.position; int[] bpc1 = yp1.position; int[] bpc2 = yp2.position; int[] bpc3 = yp3.position; int[] bpc4 = yp4.position;
+        int[] ypc1 = yp1.position; int[] ypc2 = yp2.position; int[] ypc3 = yp3.position; int[] ypc4 = yp4.position;
+        int[] gpc1 = gp1.position; int[] gpc2 = gp2.position; int[] gpc3 = gp3.position; int[] gpc4 = gp4.position;
+        int[] rpc1 = rp1.position; int[] rpc2 = rp2.position; int[] rpc3 = rp3.position; int[] rpc4 = rp4.position;
+        int[] bpc1 = yp1.position; int[] bpc2 = yp2.position; int[] bpc3 = yp3.position; int[] bpc4 = yp4.position;
         Pawn pc = yp1;
 
         List<Pawn> rPawns = new List<Pawn>();
@@ -142,7 +145,10 @@ namespace Sorry
 
                 pc.SetPosition(sender, null);
 
-                if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn: Blue") TurnLabel.Text = "Turn: Yellow";
+                if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green";
+                else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red";
+                else if (TurnLabel.Text == "Turn: Red") TurnLabel.Text = "Turn: Blue";
+                else if (TurnLabel.Text == "Turn: Blue") TurnLabel.Text = "Turn: Yellow";
                 onGoingTurn = false;
 
                 sendHome(sorryPawn);
@@ -151,46 +157,54 @@ namespace Sorry
             {
                 pc = selectedP;
                 MovePawn(selectedP, cardDeck.CardNum());
-                pc.SetPosition(sender, selectedP.position);
+                selectedP.SetPosition(sender, selectedP.position);
                 FrameworkElement button = (Button)sender;
-
                 if (button.Name.Contains("Slider") && button.Name.Contains("Start"))
                 {
-                    Slider(button);
+                    //Slider(button);
                 }
                 selectedP = null;
                 availableSpots = null;
                 //change turn
-                if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn: Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn: Blue") TurnLabel.Text = "Turn: Yellow";
+                if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green";
+                else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red";
+                else if (TurnLabel.Text == "Turn Red") TurnLabel.Text = "Turn: Blue";
+                else if (TurnLabel.Text == "Turn Blue") TurnLabel.Text = "Turn: Yellow";
                 onGoingTurn = false;
             }
-
-
             else
             {
                 if (TurnLabel.Text == "Turn: Yellow")
                 {
-                    if (yp1.position[0] == helper[0] && yp1.position[1] == helper[1]) selectedP = yp1; if (yp2.position[0] == helper[0] && yp2.position[1] == helper[1]) selectedP = yp2; if (yp3.position[0] == helper[0] && yp3.position[1] == helper[1]) selectedP = yp3; if (yp4.position[0] == helper[0] && yp4.position[1] == helper[1]) selectedP = yp4;
+                    if (yp1.position[0] == helper[0] && yp1.position[1] == helper[1]) selectedP = yp1;
+                    else if (yp2.position[0] == helper[0] && yp2.position[1] == helper[1]) selectedP = yp2;
+                    else if (yp3.position[0] == helper[0] && yp3.position[1] == helper[1]) selectedP = yp3;
+                    else if (yp4.position[0] == helper[0] && yp4.position[1] == helper[1]) selectedP = yp4;
                 }
                 else if (TurnLabel.Text == "Turn: Green")
                 {
-                    if (gp1.position[0] == helper[0] && gp1.position[1] == helper[1]) selectedP = gp1; if (gp2.position[0] == helper[0] && gp2.position[1] == helper[1]) selectedP = gp2; if (gp3.position[0] == helper[0] && gp3.position[1] == helper[1]) selectedP = gp3; if (gp4.position[0] == helper[0] && gp4.position[1] == helper[1]) selectedP = gp4;
+                    if (gp1.position[0] == helper[0] && gp1.position[1] == helper[1]) selectedP = gp1;
+                    if (gp2.position[0] == helper[0] && gp2.position[1] == helper[1]) selectedP = gp2;
+                    if (gp3.position[0] == helper[0] && gp3.position[1] == helper[1]) selectedP = gp3;
+                    if (gp4.position[0] == helper[0] && gp4.position[1] == helper[1]) selectedP = gp4;
                 }
                 else if (TurnLabel.Text == "Turn: Red")
                 {
-                    if (rp1.position[0] == helper[0] && rp1.position[1] == helper[1]) selectedP = rp1; if (rp2.position[0] == helper[0] && rp2.position[1] == helper[1]) selectedP = rp2; if (rp3.position[0] == helper[0] && rp3.position[1] == helper[1]) selectedP = rp3; if (rp4.position[0] == helper[0] && rp4.position[1] == helper[1]) selectedP = rp4;
+                    if (rp1.position[0] == helper[0] && rp1.position[1] == helper[1]) selectedP = rp1;
+                    if (rp2.position[0] == helper[0] && rp2.position[1] == helper[1]) selectedP = rp2;
+                    if (rp3.position[0] == helper[0] && rp3.position[1] == helper[1]) selectedP = rp3;
+                    if (rp4.position[0] == helper[0] && rp4.position[1] == helper[1]) selectedP = rp4;
 
                 }
                 else if (TurnLabel.Text == "Turn: Blue")
                 {
-                    if (bp1.position[0] == helper[0] && bp1.position[1] == helper[1]) selectedP = bp1; if (bp2.position[0] == helper[0] && bp2.position[1] == helper[1]) selectedP = bp2; if (bp3.position[0] == helper[0] && bp3.position[1] == helper[1]) selectedP = bp3; if (bp4.position[0] == helper[0] && bp4.position[1] == helper[1]) selectedP = bp4;
+                    if (bp1.position[0] == helper[0] && bp1.position[1] == helper[1]) selectedP = bp1;
+                    if (bp2.position[0] == helper[0] && bp2.position[1] == helper[1]) selectedP = bp2;
+                    if (bp3.position[0] == helper[0] && bp3.position[1] == helper[1]) selectedP = bp3;
+                    if (bp4.position[0] == helper[0] && bp4.position[1] == helper[1]) selectedP = bp4;
                 }
-                
+
             }
-
-
-
-
             turn t = new turn();
             int[] clickedPos = t.turns(sender);
 
@@ -226,7 +240,10 @@ namespace Sorry
                 {
                     if (sender == YellowStart1 || sender == YellowStart2 || sender == YellowStart3 || sender == YellowStart4)
                     {
-                        if (yp1.position[0] == helper[0] && yp1.position[1] == helper[1]) pc = yp1; if (yp2.position[0] == helper[0] && yp2.position[1] == helper[1]) pc = yp2; if (yp3.position[0] == helper[0] && yp3.position[1] == helper[1]) pc = yp3; if (yp4.position[0] == helper[0] && yp4.position[1] == helper[1]) pc = yp4;
+                        if (yp1.position[0] == helper[0] && yp1.position[1] == helper[1]) pc = yp1;
+                        if (yp2.position[0] == helper[0] && yp2.position[1] == helper[1]) pc = yp2;
+                        if (yp3.position[0] == helper[0] && yp3.position[1] == helper[1]) pc = yp3;
+                        if (yp4.position[0] == helper[0] && yp4.position[1] == helper[1]) pc = yp4;
                         if (carcheck.Contains("One"))
                         {
                             TurnLabel.Text = "Turn: Green";
@@ -328,22 +345,22 @@ namespace Sorry
             int[] pos = null;
             StartGameButton.Click -= StartGameButton_Click;
             StartGameButton.Visibility = Visibility.Collapsed;
-            pc = yp1; pc.SetPosition(YellowStart1, pos);
-            pc = yp2; pc.SetPosition(YellowStart2, pos);
-            pc = yp3; pc.SetPosition(YellowStart3, pos);
-            pc = yp4; pc.SetPosition(YellowStart4, pos);
-            pc = gp1; pc.SetPosition(GreenSlider1End, pos);
-            pc = gp2; pc.SetPosition(GreenStart2, pos);
-            pc = gp3; pc.SetPosition(GreenStart3, pos);
-            pc = gp4; pc.SetPosition(GreenStart4, pos);
-            pc = rp1; pc.SetPosition(RedStart1, pos);
-            pc = rp2; pc.SetPosition(RedStart2, pos);
-            pc = rp3; pc.SetPosition(RedStart3, pos);
-            pc = rp4; pc.SetPosition(RedStart4, pos);
-            pc = bp1; pc.SetPosition(BlueStart1, pos);
-            pc = bp2; pc.SetPosition(BlueStart2, pos);
-            pc = bp3; pc.SetPosition(BlueStart3, pos);
-            pc = bp4; pc.SetPosition(BlueStart4, pos); pc = yp1;
+            pc = yp1; pc.SetPosition(BlueSlider2End, pos);
+            //pc = yp2; pc.SetPosition(YellowStart2, pos);
+            //pc = yp3; pc.SetPosition(YellowStart3, pos);
+            //pc = yp4; pc.SetPosition(YellowStart4, pos);
+            pc = gp1; pc.SetPosition(YellowSlider2End, pos);
+            //pc = gp2; pc.SetPosition(GreenStart2, pos);
+            //pc = gp3; pc.SetPosition(GreenStart3, pos);
+            //pc = gp4; pc.SetPosition(GreenStart4, pos);
+            pc = rp1; pc.SetPosition(GreenSlider2End, pos);
+            //pc = rp2; pc.SetPosition(RedStart2, pos);
+            //pc = rp3; pc.SetPosition(RedStart3, pos);
+            //pc = rp4; pc.SetPosition(RedStart4, pos);
+            pc = bp1; pc.SetPosition(RedSlider2End, pos);
+            //pc = bp2; pc.SetPosition(BlueStart2, pos);
+            //pc = bp3; pc.SetPosition(BlueStart3, pos);
+            //pc = bp4; pc.SetPosition(BlueStart4, pos); pc = yp1;
         }
 
         private void ForfeitTurnButton_Click(object sender, RoutedEventArgs e)
@@ -375,73 +392,62 @@ namespace Sorry
             //Red Pawn Home Movement
 
             //when tempPosition[0] >= 2 move down towards home 
-            if (tempPosition[0] > 2)
+            int temp = tempPosition[0];
+            temp -= 2;
+            if (temp > 6)
             {
-                int temp = tempPosition[0];
-                temp -= 2;
-                if (temp > 6)
-                {
-                    //Player skips turn
-                    // break or return pawn.position not sure yet if need to return
-                }
-                else
-                {
-                    //sudo code fro now need check for actual home position since that spot is its own mini grid
-                    tempPosition[0] = 2;
-                    tempPosition[1] += temp;
-                }
+                //Player skips turn
+                // break or return pawn.position not sure yet if need to return
+            }
+            else
+            {
+                tempPosition[0] = 2;
+                tempPosition[1] += temp;
+            }
+            if (tempPosition[0] == 2 && tempPosition[1] == 6)
+            {
+                int[] pos = null;
+                pc = rp1;  pc.SetPosition(RedStart1, pos);
             }
         }
 
         private void BluePawnHomeMovement(int[] pawn)
         {
             int[] tempPosition = pawn;
-
-            //Red Pawn Home Movement
-
-            //when tempPosition[0] >= 2 move down towards home 
-            if (tempPosition[1] > 2)
+            int temp = tempPosition[1];
+            temp -= 2;
+            if (temp > 6)
             {
-                int temp = tempPosition[0];
-                temp -= 2;
-                if (temp > 6)
-                {
-                    //Player skips turn
-                    // break or return pawn.position not sure yet if need to return
-                }
-                else
-                {
-                    //sudo code fro now need check for actual home position since that spot is its own mini grid
-                    tempPosition[0] = 2;
-                    tempPosition[1] += temp;
-                }
+                //Player skips turn
+                // break or return pawn.position not sure yet if need to return
             }
-        }
-
-        private void YellowPawnHomeMovement(int[] pawn)
-        {
-            int[] tempPosition = pawn;
-
-            if (tempPosition[0] < 13)
+            else if (temp == 6)
             {
-                int temp = tempPosition[1];
-                temp -= 2;
-                tempPosition[0] = 13;
-                if (temp > 6)
-                {
-                    //player Skip Turn
-                    //break or return pawn.position
-                }
-                else
-                {
-                    //sudo code need check for if value is 6 because home space is its own grid
-                    tempPosition[1] -= temp;
-                }
-
+                //minigrid placement
             }
             else
             {
-                //break or return
+                //sudo code fro now need check for actual home position since that spot is its own mini grid
+                tempPosition[1] = 2;
+                tempPosition[0] -= temp;
+            }
+        }
+
+        private void YellowPawnHomeMovement(int[] pawn, int move)
+        {
+            pawn[0] = 13;
+            pawn[1] = 15;
+            if (move > 6)
+            {
+                //skip turn
+            }
+            else if (move == 6)
+            {
+                //mini grid move
+            }
+            else
+            {
+                pawn[1] -= move;
             }
         }
 
@@ -449,10 +455,13 @@ namespace Sorry
         {
             int[] tempPosition = pawn;
             int temp = tempPosition[1];
+            temp -= 15;
+            temp = temp * -1;
             temp -= 2;
             tempPosition[1] = 13;
             if (temp > 6)
             {
+                tempPosition[0] += temp;
                 //player Skip Turn
                 //break or return pawn.position
             }
@@ -470,9 +479,8 @@ namespace Sorry
             if (tempPosition[0] >= 0 && tempPosition[1] == 0)
             {
                 tempPosition[0] += value;
-                
 
-                if (pawn.pawnColor == color.red && tempPosition[0] > 2 && selectedP.position[0] <= 2)
+                if (pawn.pawnColor == color.red && tempPosition[0] > 2 && (pawn.position[0] - value) <= 2)
                 {
                     RedPawnHomeMovement(tempPosition);
                 }
@@ -482,19 +490,18 @@ namespace Sorry
                     temp -= 15;
                     tempPosition[0] = 15;
                     tempPosition[1] += temp;
-                    if (pawn.pawnColor == color.blue && tempPosition[1] > 2 && pawn.position[1] <= 2)
+                    if (pawn.pawnColor == color.blue && tempPosition[1] > 2 && (pawn.position[1] - temp) <= 2)
                     {
                         BluePawnHomeMovement(tempPosition);
-                    }  
+                    }
                 }
-                pc.SetPosition(tempPosition[0], tempPosition[1]);
             }
             else if (tempPosition[0] == 15 && tempPosition[1] >= 0)
             {
                 tempPosition[1] += value;
 
                 // Blue Home Movement
-                if (pawn.pawnColor == color.blue && tempPosition[1] > 2 && pawn.position[1] <= 2)
+                if (pawn.pawnColor == color.blue && tempPosition[1] > 2 && (pawn.position[1] - value) <= 2)
                 {
                     BluePawnHomeMovement(tempPosition);
                 }
@@ -504,45 +511,50 @@ namespace Sorry
                     //sub remaing from tempPosition[0]
                     int temp = tempPosition[1];
                     temp -= 15;
-                    tempPosition[1] = 15;
+
                     tempPosition[0] -= temp;
-                    if (pawn.pawnColor == color.yellow && tempPosition[0] < 13 && tempPosition[0] >= 13)
+                    if (pawn.pawnColor == color.yellow && tempPosition[0] < 13 && (pawn.position[0] + temp) >= 13)
                     {
-                        YellowPawnHomeMovement(tempPosition);
+                        temp -= 2;
+                        YellowPawnHomeMovement(tempPosition, temp);
+                    }
+                    else
+                    {
+                        tempPosition[1] = 15;
                     }
                 }
-                pawn.position = tempPosition;
             }
             else if (tempPosition[0] <= 15 && tempPosition[1] == 15)
             {
                 tempPosition[0] -= value;
 
                 //Yellow Home Movement
-                if (pawn.pawnColor == color.yellow && tempPosition[0] < 13 && pawn.position[0] >= 13)
+                if (pawn.pawnColor == color.yellow && tempPosition[0] < 13 && (pawn.position[0] + value) >= 13)
                 {
-                    YellowPawnHomeMovement(tempPosition);
+                    YellowPawnHomeMovement(tempPosition, value);
                 }
 
                 if (tempPosition[0] < 0)
                 {
+
                     //multiple the remaining by -1 then sub remaing from tempPosition[2]
                     int temp = tempPosition[0];
                     temp = (temp * (-1));
                     tempPosition[0] = 0;
                     tempPosition[1] -= temp;
-                    if (pawn.pawnColor == color.green && tempPosition[1] < 13 && pawn.position[1] >= 13)
+                    if (pawn.pawnColor == color.green && tempPosition[1] < 13 && (pawn.position[1] + temp) >= 13)
                     {
+
                         GreenPawnHomeMovement(tempPosition);
                     }
                 }
-                pawn.position = tempPosition;
             }
             else if (tempPosition[0] == 0 && tempPosition[1] <= 15)
             {
                 tempPosition[1] -= value;
 
                 // Green Home Movement
-                if (pawn.pawnColor == color.green && tempPosition[1] < 13 && pawn.position[1] >= 13)
+                if (pawn.pawnColor == color.green && tempPosition[1] < 13 && (pawn.position[1] + value) >= 13)
                 {
                     GreenPawnHomeMovement(tempPosition);
                 }
@@ -553,18 +565,67 @@ namespace Sorry
                     temp = (temp * (-1));
                     tempPosition[1] = 0;
                     tempPosition[0] += temp;
-                    if (pawn.pawnColor == color.red && tempPosition[0] > 2 && pawn.position[0] <= 2)
+                    if (pawn.pawnColor == color.red && tempPosition[0] > 2 && (pawn.position[0] - temp) <= 2)
                     {
                         RedPawnHomeMovement(tempPosition);
                     }
                 }
-                pawn.position = tempPosition;
+            }
+            else if (pawn.pawnColor == color.red && tempPosition[0] == 2 && tempPosition[1] >= 1)
+            {
+                tempPosition[1] += value;
+                if (tempPosition[1] > 6)
+                {
+                    tempPosition[1] -= value;
+                }
+                else if (tempPosition[1] == 6)
+                {
+                    //minibutton move
+                    SetHomePosition(0, 0, RedHomeGrid, pawn.pawnRect);
+                }
+            }
+            else if (pawn.pawnColor == color.blue && tempPosition[0] <= 14 && tempPosition[1] == 2)
+            {
+                tempPosition[0] -= value;
+                if (tempPosition[0] < 9)
+                {
+                    tempPosition[0] += value;
+                }
+                else if (tempPosition[0] == 9)
+                {
+                    //minigrid move
+                    pc = pawn; pc.SetPosition(BlueHome1, null);
+                }
+            }
+            else if (pawn.pawnColor == color.yellow && tempPosition[0] == 13 && tempPosition[1] <= 14)
+            {
+                tempPosition[1] -= value;
+                if (tempPosition[1] < 9)
+                {
+                    tempPosition[1] += value;
+                }
+                else if (tempPosition[1] == 9)
+                {
+
+                }
             }
             //highlight to show possible position
             //click moves to that positon
         }
 
+        public void SetHomePosition(int X, int Y, Grid grid, Image pawnRect)
+        {
+            Grid.SetColumn(pawnRect, X);
+            Grid.SetRow(pawnRect, Y);
+            try
+            {
+                BoardGrid.Children.Remove(pawnRect);
+                grid.Children.Add(pawnRect);
 
+            }
+            catch (Exception)
+            { }
+        }
         private void CheckWin(Button b)
         {
             var name = b.Name;
