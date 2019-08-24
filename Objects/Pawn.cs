@@ -85,9 +85,7 @@ namespace Sorry.Assets
                 position[1] = Y;
             }
 
-            positionName = o.Name;
-            Debug.WriteLine(positionName);
-
+            setPositionName();
 
 
         }
@@ -110,8 +108,8 @@ namespace Sorry.Assets
             Grid.SetRow(pawnRect, Y);
             position[0] = X;
             position[1] = Y;
+            setPositionName();
 
-            
         }
 
         public void SetImage(ImageSource source)
@@ -145,6 +143,20 @@ namespace Sorry.Assets
                 return true;
             else
                 return false;
+        }
+
+
+        public void setPositionName()
+        {
+            var gP = (Grid)pawnRect.Parent;
+            var pawnPosition = gP.Children.First(p =>
+            {
+                var fE = (FrameworkElement)p;
+                return Grid.GetColumn(fE) == position[0] && Grid.GetRow(fE) == position[1];
+            });
+            var pawnFE = (FrameworkElement)pawnPosition;
+            positionName = pawnFE.Name;
+            Debug.WriteLine(positionName + "----------------------------");
         }
     }
 }
