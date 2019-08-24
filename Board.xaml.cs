@@ -1,4 +1,4 @@
-﻿﻿using Sorry.Assets;
+﻿using Sorry.Assets;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -386,73 +386,61 @@ namespace Sorry
             //Red Pawn Home Movement
 
             //when tempPosition[0] >= 2 move down towards home 
-            if (tempPosition[0] > 2)
+            int temp = tempPosition[0];
+            temp -= 2;
+            if (temp > 6)
             {
-                int temp = tempPosition[0];
-                temp -= 2;
-                if (temp > 6)
-                {
-                    //Player skips turn
-                    // break or return pawn.position not sure yet if need to return
-                }
-                else
-                {
-                    //sudo code fro now need check for actual home position since that spot is its own mini grid
-                    tempPosition[0] = 2;
-                    tempPosition[1] += temp;
-                }
+                //Player skips turn
+                // break or return pawn.position not sure yet if need to return
+            }
+            else if (temp == 6)
+            {
+                //minigrid
+            }
+            else
+            {
+                tempPosition[0] = 2;
+                tempPosition[1] += temp;
             }
         }
 
         private void BluePawnHomeMovement(int[] pawn)
         {
             int[] tempPosition = pawn;
-
-            //Red Pawn Home Movement
-
-            //when tempPosition[0] >= 2 move down towards home 
-            if (tempPosition[1] > 2)
+            int temp = tempPosition[1];
+            temp -= 2;
+            if (temp > 6)
             {
-                int temp = tempPosition[0];
-                temp -= 2;
-                if (temp > 6)
-                {
-                    //Player skips turn
-                    // break or return pawn.position not sure yet if need to return
-                }
-                else
-                {
-                    //sudo code fro now need check for actual home position since that spot is its own mini grid
-                    tempPosition[0] = 2;
-                    tempPosition[1] += temp;
-                }
+                //Player skips turn
+                // break or return pawn.position not sure yet if need to return
             }
-        }
-
-        private void YellowPawnHomeMovement(int[] pawn)
-        {
-            int[] tempPosition = pawn;
-
-            if (tempPosition[0] < 13)
+            else if (temp == 6)
             {
-                int temp = tempPosition[1];
-                temp -= 2;
-                tempPosition[0] = 13;
-                if (temp > 6)
-                {
-                    //player Skip Turn
-                    //break or return pawn.position
-                }
-                else
-                {
-                    //sudo code need check for if value is 6 because home space is its own grid
-                    tempPosition[1] -= temp;
-                }
-
+                //minigrid placement
             }
             else
             {
-                //break or return
+                //sudo code fro now need check for actual home position since that spot is its own mini grid
+                tempPosition[1] = 2;
+                tempPosition[0] -= temp;
+            }
+        }
+
+        private void YellowPawnHomeMovement(int[] pawn, int move)
+        {
+            pawn[0] = 13;
+            pawn[1] = 15;
+            if (move > 6)
+            {
+                //skip turn
+            }
+            else if (move == 6)
+            {
+                //mini grid move
+            }
+            else
+            {
+                pawn[1] -= move;
             }
         }
 
@@ -460,12 +448,19 @@ namespace Sorry
         {
             int[] tempPosition = pawn;
             int temp = tempPosition[1];
+            temp -= 15;
+            temp = temp * -1;
             temp -= 2;
             tempPosition[1] = 13;
             if (temp > 6)
             {
+                tempPosition[0] += temp;
                 //player Skip Turn
                 //break or return pawn.position
+            }
+            else if (temp == 6)
+            {
+                //minigrid
             }
             else
             {
@@ -482,8 +477,7 @@ namespace Sorry
             {
                 tempPosition[0] += value;
 
-
-                if (pawn.pawnColor == color.red && tempPosition[0] > 2 && selectedP.position[0] <= 2)
+                if (pawn.pawnColor == color.red && tempPosition[0] > 2 && (pawn.position[0] - value) <= 2)
                 {
                     RedPawnHomeMovement(tempPosition);
                 }
@@ -493,19 +487,18 @@ namespace Sorry
                     temp -= 15;
                     tempPosition[0] = 15;
                     tempPosition[1] += temp;
-                    if (pawn.pawnColor == color.blue && tempPosition[1] > 2 && pawn.position[1] <= 2)
+                    if (pawn.pawnColor == color.blue && tempPosition[1] > 2 && (pawn.position[1] - temp) <= 2)
                     {
                         BluePawnHomeMovement(tempPosition);
                     }
                 }
-                pc.SetPosition(tempPosition[0], tempPosition[1]);
             }
             else if (tempPosition[0] == 15 && tempPosition[1] >= 0)
             {
                 tempPosition[1] += value;
 
                 // Blue Home Movement
-                if (pawn.pawnColor == color.blue && tempPosition[1] > 2 && pawn.position[1] <= 2)
+                if (pawn.pawnColor == color.blue && tempPosition[1] > 2 && (pawn.position[1] - value) <= 2)
                 {
                     BluePawnHomeMovement(tempPosition);
                 }
@@ -515,23 +508,27 @@ namespace Sorry
                     //sub remaing from tempPosition[0]
                     int temp = tempPosition[1];
                     temp -= 15;
-                    tempPosition[1] = 15;
+
                     tempPosition[0] -= temp;
-                    if (pawn.pawnColor == color.yellow && tempPosition[0] < 13 && tempPosition[0] >= 13)
+                    if (pawn.pawnColor == color.yellow && tempPosition[0] < 13 && (pawn.position[0] + temp) >= 13)
                     {
-                        YellowPawnHomeMovement(tempPosition);
+                        temp -= 2;
+                        YellowPawnHomeMovement(tempPosition, temp);
+                    }
+                    else
+                    {
+                        tempPosition[1] = 15;
                     }
                 }
-                pawn.position = tempPosition;
             }
             else if (tempPosition[0] <= 15 && tempPosition[1] == 15)
             {
                 tempPosition[0] -= value;
 
                 //Yellow Home Movement
-                if (pawn.pawnColor == color.yellow && tempPosition[0] < 13 && pawn.position[0] >= 13)
+                if (pawn.pawnColor == color.yellow && tempPosition[0] < 13 && (pawn.position[0] + value) >= 13)
                 {
-                    YellowPawnHomeMovement(tempPosition);
+                    YellowPawnHomeMovement(tempPosition, value);
                 }
 
                 if (tempPosition[0] < 0)
@@ -541,19 +538,19 @@ namespace Sorry
                     temp = (temp * (-1));
                     tempPosition[0] = 0;
                     tempPosition[1] -= temp;
-                    if (pawn.pawnColor == color.green && tempPosition[1] < 13 && pawn.position[1] >= 13)
+                    if (pawn.pawnColor == color.green && tempPosition[1] < 13 && (pawn.position[1] + temp) >= 13)
                     {
+
                         GreenPawnHomeMovement(tempPosition);
                     }
                 }
-                pawn.position = tempPosition;
             }
             else if (tempPosition[0] == 0 && tempPosition[1] <= 15)
             {
                 tempPosition[1] -= value;
 
                 // Green Home Movement
-                if (pawn.pawnColor == color.green && tempPosition[1] < 13 && pawn.position[1] >= 13)
+                if (pawn.pawnColor == color.green && tempPosition[1] < 13 && (pawn.position[1] + value) >= 13)
                 {
                     GreenPawnHomeMovement(tempPosition);
                 }
@@ -564,20 +561,84 @@ namespace Sorry
                     temp = (temp * (-1));
                     tempPosition[1] = 0;
                     tempPosition[0] += temp;
-                    if (pawn.pawnColor == color.red && tempPosition[0] > 2 && pawn.position[0] <= 2)
+                    if (pawn.pawnColor == color.red && tempPosition[0] > 2 && (pawn.position[0] - temp) <= 2)
                     {
                         RedPawnHomeMovement(tempPosition);
                     }
                 }
-                pawn.position = tempPosition;
+            }
+            else if (pawn.pawnColor == color.red && tempPosition[0] == 2 && tempPosition[1] >= 1)
+            {
+                tempPosition[1] += value;
+                if (tempPosition[1] > 6)
+                {
+                    tempPosition[1] -= value;
+                }
+                else if (tempPosition[1] == 6)
+                {
+                    //minibutton move -- not wokring
+                    SetHomePosition(0, 0, RedHomeGrid, pawn.pawnRect);
+                }
+            }
+            else if (pawn.pawnColor == color.blue && tempPosition[0] <= 14 && tempPosition[1] == 2)
+            {
+                tempPosition[0] -= value;
+                if (tempPosition[0] < 9)
+                {
+                    tempPosition[0] += value;
+                }
+                else if (tempPosition[0] == 9)
+                {
+                    //minigrid movement -- not working
+                    pc = pawn; pc.SetPosition(BlueHome1, null);
+                }
+            }
+            else if (pawn.pawnColor == color.yellow && tempPosition[0] == 13 && tempPosition[1] <= 14)
+            {
+                tempPosition[1] -= value;
+                if (tempPosition[1] < 9)
+                {
+                    tempPosition[1] += value;
+                }
+                else if (tempPosition[1] == 9)
+                {
+                    //minigrid Movement -- not working
+                    pc = pawn; pc.SetPosition(YellowHome1, null);
+                }
+            }
+            else if(pawn.pawnColor == color.green && tempPosition[1] == 13 && tempPosition[0] > 1)
+            {
+                tempPosition[0] += value;
+                if(tempPosition[0] > 6)
+                {
+                    tempPosition[0] -= value;
+                }
+                else if (tempPosition[0] == 6)
+                {
+                    //minigrid Movement -- not wokring
+                    pc = pawn; pc.SetPosition(GreenHome1, null);
+                }
             }
             //highlight to show possible position
             //click moves to that positon
-            CheckSlide(pawn);
+                        CheckSlide(pawn);
             ForfeitTurnButton.Visibility = Visibility.Collapsed;
             FaceDownCard.Tapped += FaceDownCard_Click;
         }
 
+        public void SetHomePosition(int X, int Y, Grid grid, Image pawnRect)
+        {
+            Grid.SetColumn(pawnRect, X);
+            Grid.SetRow(pawnRect, Y);
+            try
+            {
+                BoardGrid.Children.Remove(pawnRect);
+                grid.Children.Add(pawnRect);
+
+            }
+            catch (Exception)
+            { }
+        }
 
         private void CheckWin(Button b)
         {
