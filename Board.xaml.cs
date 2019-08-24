@@ -139,25 +139,44 @@ namespace Sorry
 
 
                 sorryPawn = everyPawn.FirstOrDefault(p => p.positionName.Equals(sendButton.Name));
-                if(sorryPawn is null)
+                if (sorryPawn is null)
                 {
                     return;
                 }
 
                 pc.SetPosition(sender, null);
 
-                if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn: Blue") TurnLabel.Text = "Turn: Yellow";
+                if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn: Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn: Blue") TurnLabel.Text = "Turn: Yellow";
                 onGoingTurn = false;
 
                 sendHome(sorryPawn);
             }
             if (selectedP != null)
             {
-                pc = selectedP;
-                MovePawn(selectedP, cardDeck.CardNum());
-                pc.SetPosition(sender, selectedP.position);
-                FrameworkElement button = (Button)sender;
+                if (cardDeck.CardNum() == 4)
+                {
+                    fourCardMovement(selectedP);
+                }
+                else if(cardDeck.CardNum() == 7)
+                {
+                    //needs logic
+                }
+                else if(cardDeck.CardNum() == 10)
+                {
+                    //need logic
+                }
+                else if (cardDeck.CardNum() == 11)
+                {
+                    //needs logic
+                }
+                else
+                {
+                    pc = selectedP;
+                    MovePawn(selectedP, cardDeck.CardNum());
+                    pc.SetPosition(sender, selectedP.position);
 
+                }
+                FrameworkElement button = (Button)sender;
                 if (button.Name.Contains("Slider") && button.Name.Contains("Start"))
                 {
                     Slider(button);
@@ -381,6 +400,12 @@ namespace Sorry
             Debug.WriteLine(card);
             ForfeitTurnButton.Visibility = Visibility.Visible;
             FaceDownCard.Tapped -= FaceDownCard_Click;
+        }
+        
+        private void fourCardMovement(Pawn pawn)
+        {
+            int[] tempPosition = pawn.position;
+           
         }
         private void RedPawnHomeMovement(int[] pawn)
         {
@@ -610,10 +635,10 @@ namespace Sorry
                     pc = pawn; pc.SetPosition(YellowHome1, null);
                 }
             }
-            else if(pawn.pawnColor == color.green && tempPosition[1] == 13 && tempPosition[0] > 1)
+            else if (pawn.pawnColor == color.green && tempPosition[1] == 13 && tempPosition[0] > 1)
             {
                 tempPosition[0] += value;
-                if(tempPosition[0] > 6)
+                if (tempPosition[0] > 6)
                 {
                     tempPosition[0] -= value;
                 }
