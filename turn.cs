@@ -42,11 +42,14 @@ namespace Sorry
                 return true;
         }
 
-        public bool YellowTurn(Pawn p, int[] pos)
+        public bool BumperCheck(Pawn p)
         {
-            TextBlock fieldTB = (TextBlock)this.FindName("TurnLabel");
-            fieldTB.Text = "Check";
-            return true;
+            TextBlock TurnLabel = (TextBlock)this.FindName("TurnLabel");
+            if (p.pawnColor.Equals("yellow") && TurnLabel.Equals("Turn: Yellow") || p.pawnColor.Equals("green") && TurnLabel.Equals("Turn: Green") ||
+                p.pawnColor.Equals("red") && TurnLabel.Equals("Turn: Red") || p.pawnColor.Equals("blue") && TurnLabel.Equals("Turn: Blue"))
+                return false;
+            else
+                return true;
         }
         
         public void changeTurn()
