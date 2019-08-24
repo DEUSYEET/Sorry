@@ -251,7 +251,6 @@ namespace Sorry
                 {
                     sendHome(everyPawn[i]);
                     return true;
-                    break;
                 }
             }
             return false;
