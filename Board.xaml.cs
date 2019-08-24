@@ -595,7 +595,6 @@ namespace Sorry
             }
 
 
-            pc.positionName = GetGridCell(pawn.position[0], pawn.position[1]).Name;
 
             CheckSlide(pawn);
             //highlight to show possible position
