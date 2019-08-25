@@ -143,7 +143,7 @@ namespace Sorry
                     return;
                 }
 
-                if (jerkPawn!=null)
+                if (jerkPawn != null)
                 {
                     jerkPawn.SetPosition(sender, null);
 
@@ -207,7 +207,7 @@ namespace Sorry
 
             turn = false;// t.OnGoingTurn();
 
-            CheckWin();
+            CheckWin(sendButton);
             Debug.WriteLine("" + everyPawn[0].position[0] + " " + everyPawn[0].position[1]);
         }
         public bool SafeSpace(object sender)
@@ -267,39 +267,38 @@ namespace Sorry
             {
                 if (TurnLabel.Text.Contains("Turn: Yellow"))
                 {
-                    if (carcheck.Contains("One") || carcheck.Contains("Two"))
+                    if (carcheck.Contains("Sorry"))
                     {
                         jerkPawn = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
                     }
 
-                }
-                else if (carcheck.Contains("One") || carcheck.Contains("Two"))
-                {
-                    if (sender == YellowStart1 || sender == YellowStart2 || sender == YellowStart3 || sender == YellowStart4)
+                    else if (carcheck.Contains("One") || carcheck.Contains("Two"))
                     {
-                        if (yp1.position[0] == helper[0] && yp1.position[1] == helper[1]) pc = yp1; if (yp2.position[0] == helper[0] && yp2.position[1] == helper[1]) pc = yp2; if (yp3.position[0] == helper[0] && yp3.position[1] == helper[1]) pc = yp3; if (yp4.position[0] == helper[0] && yp4.position[1] == helper[1]) pc = yp4;
-                        if (carcheck.Contains("One"))
+                        if (sender == YellowStart1 || sender == YellowStart2 || sender == YellowStart3 || sender == YellowStart4)
                         {
                             if (yp1.position[0] == helper[0] && yp1.position[1] == helper[1]) pc = yp1; if (yp2.position[0] == helper[0] && yp2.position[1] == helper[1]) pc = yp2; if (yp3.position[0] == helper[0] && yp3.position[1] == helper[1]) pc = yp3; if (yp4.position[0] == helper[0] && yp4.position[1] == helper[1]) pc = yp4;
                             if (carcheck.Contains("One"))
                             {
-                                TurnLabel.Text = "Turn: Green";
-                                pc.SetPosition(YellowSlider1End, null);
+                                if (yp1.position[0] == helper[0] && yp1.position[1] == helper[1]) pc = yp1; if (yp2.position[0] == helper[0] && yp2.position[1] == helper[1]) pc = yp2; if (yp3.position[0] == helper[0] && yp3.position[1] == helper[1]) pc = yp3; if (yp4.position[0] == helper[0] && yp4.position[1] == helper[1]) pc = yp4;
+                                if (carcheck.Contains("One"))
+                                {
+                                    TurnLabel.Text = "Turn: Green";
+                                    pc.SetPosition(YellowSlider1End, null);
+                                }
+                                else if (carcheck.Contains("Two"))
+                                    pc.SetPosition(YellowSlider1End, null);
+                                if (clickedPos == ypc2) ypc2 = pc.position; else if (clickedPos == ypc3) ypc3 = pc.position; else if (clickedPos == ypc4) ypc4 = pc.position; else if (clickedPos == ypc1) ypc1 = pc.position;
                             }
-                            else if (carcheck.Contains("Two"))
-                                pc.SetPosition(YellowSlider1End, null);
-                            if (clickedPos == ypc2) ypc2 = pc.position; else if (clickedPos == ypc3) ypc3 = pc.position; else if (clickedPos == ypc4) ypc4 = pc.position; else if (clickedPos == ypc1) ypc1 = pc.position;
                         }
                     }
                 }
                 if (TurnLabel.Text.Contains("Turn: Green"))
                 {
-                    if (carcheck.Contains("One") || carcheck.Contains("Two"))
+                    if (carcheck.Contains("Sorry"))
                     {
                         jerkPawn = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
                     }
 
-                }
                 else if (carcheck.Contains("One") || carcheck.Contains("Two"))
                 {
                     if (sender == GreenStart1 || sender == GreenStart2 || sender == GreenStart3 || sender == GreenStart4)
@@ -321,6 +320,7 @@ namespace Sorry
                             pc.SetPosition(GreenSlider1End, null);
                         if (clickedPos == gpc2) gpc2 = pc.position; else if (clickedPos == gpc3) gpc3 = pc.position; else if (clickedPos == gpc4) gpc4 = pc.position; else if (clickedPos == gpc1) gpc1 = pc.position;
                     }
+                }
                 }
             }
             if (TurnLabel.Text.Contains("Turn: Red"))
@@ -362,7 +362,6 @@ namespace Sorry
                     {
                         jerkPawn = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
                     }
-                }
                 if (TurnLabel.Text.Contains("Turn: Blue"))
                 {
                     if (carcheck.Contains("One") || carcheck.Contains("Two"))
@@ -380,6 +379,7 @@ namespace Sorry
                             if (clickedPos == bpc2) bpc2 = pc.position; else if (clickedPos == bpc3) bpc3 = pc.position; else if (clickedPos == bpc4) bpc4 = pc.position; else if (clickedPos == bpc1) bpc1 = pc.position;
                         }
                     }
+                }
                 }
                 onGoingTurn = false;
             }
@@ -717,38 +717,38 @@ namespace Sorry
         {
             string homeColor = "";
 
-                foreach (var pl in allPawns)
+            foreach (var pl in allPawns)
+            {
+                int homeCount = 0;
+                foreach (var p in pl)
                 {
-                    int homeCount = 0;
-                    foreach (var p in pl)
-                    {
                     homeColor = checkColor(p);
 
-                        try
-                        {
+                    try
+                    {
 
-                            if (p.positionName.Contains(homeColor)&&p.positionName.Contains("Home"))
-                            {
-                                homeCount += 1;
-                            }
-                        }
-                        catch (Exception)
+                        if (p.positionName.Contains(homeColor) && p.positionName.Contains("Home"))
                         {
+                            homeCount += 1;
                         }
                     }
-                    Debug.WriteLine(homeCount);
-
-                    if (homeCount == 4)
+                    catch (Exception)
                     {
-                        this.Frame.Navigate(typeof(WinPage));
-
                     }
-                    else
-                    {
-                        homeCount = 0;
-                    }
+                }
+                Debug.WriteLine(homeCount);
 
-                
+                if (homeCount == 4)
+                {
+                    this.Frame.Navigate(typeof(WinPage));
+
+                }
+                else
+                {
+                    homeCount = 0;
+                }
+
+
             }
         }
 
