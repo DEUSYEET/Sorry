@@ -143,7 +143,7 @@ namespace Sorry
                     return;
                 }
 
-                if (jerkPawn!=null)
+                if (jerkPawn != null)
                 {
                     jerkPawn.SetPosition(sender, null);
 
@@ -157,6 +157,7 @@ namespace Sorry
 
             if (selectedP != null && onGoingTurn == true)
             {
+<<<<<<< Updated upstream
                 if (cardDeck.CardNum() == 4)
                 {
                     fourCardMovement(selectedP);
@@ -174,6 +175,12 @@ namespace Sorry
                     //needs logic
                 }
                 else
+=======
+                pc = selectedP;
+                MovePawn(selectedP, cardDeck.CardNum());
+                pc.SetPosition(sender, selectedP.position);
+                if (SafeSpace(sender) == false)
+>>>>>>> Stashed changes
                 {
                     pc = selectedP;
                     MovePawn(selectedP, cardDeck.CardNum());
@@ -184,7 +191,10 @@ namespace Sorry
                 //change turn
                 if (carcheck != "Two")
                 {
-                    if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn: Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn: Blue") TurnLabel.Text = "Turn: Yellow";
+                    if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green";
+                    else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red";
+                    else if (TurnLabel.Text == "Turn: Red") TurnLabel.Text = "Turn: Blue";
+                    else if (TurnLabel.Text == "Turn: Blue") TurnLabel.Text = "Turn: Yellow";
                 }
                 onGoingTurn = false;
                 ForfeitTurnButton.Visibility = Visibility.Collapsed;
@@ -220,7 +230,7 @@ namespace Sorry
 
             turn = false;// t.OnGoingTurn();
 
-            CheckWin();
+            //CheckWin(sendButton);
             Debug.WriteLine("" + everyPawn[0].position[0] + " " + everyPawn[0].position[1]);
         }
         public bool SafeSpace(object sender)
@@ -289,19 +299,38 @@ namespace Sorry
                 {
                     if (sender == YellowStart1 || sender == YellowStart2 || sender == YellowStart3 || sender == YellowStart4)
                     {
-                        if (yp1.position[0] == helper[0] && yp1.position[1] == helper[1]) pc = yp1; if (yp2.position[0] == helper[0] && yp2.position[1] == helper[1]) pc = yp2; if (yp3.position[0] == helper[0] && yp3.position[1] == helper[1]) pc = yp3; if (yp4.position[0] == helper[0] && yp4.position[1] == helper[1]) pc = yp4;
+                        if (yp1.position[0] == helper[0] && yp1.position[1] == helper[1]) pc = yp1;
+                        if (yp2.position[0] == helper[0] && yp2.position[1] == helper[1]) pc = yp2;
+                        if (yp3.position[0] == helper[0] && yp3.position[1] == helper[1]) pc = yp3;
+                        if (yp4.position[0] == helper[0] && yp4.position[1] == helper[1]) pc = yp4;
                         if (carcheck.Contains("One"))
                         {
-                            if (yp1.position[0] == helper[0] && yp1.position[1] == helper[1]) pc = yp1; if (yp2.position[0] == helper[0] && yp2.position[1] == helper[1]) pc = yp2; if (yp3.position[0] == helper[0] && yp3.position[1] == helper[1]) pc = yp3; if (yp4.position[0] == helper[0] && yp4.position[1] == helper[1]) pc = yp4;
+                            if (yp1.position[0] == helper[0] && yp1.position[1] == helper[1]) pc = yp1;
+                            if (yp2.position[0] == helper[0] && yp2.position[1] == helper[1]) pc = yp2;
+                            if (yp3.position[0] == helper[0] && yp3.position[1] == helper[1]) pc = yp3;
+                            if (yp4.position[0] == helper[0] && yp4.position[1] == helper[1]) pc = yp4;
                             if (carcheck.Contains("One"))
                             {
                                 TurnLabel.Text = "Turn: Green";
                                 pc.SetPosition(YellowSlider1End, null);
                             }
                             else if (carcheck.Contains("Two"))
+                            {
                                 pc.SetPosition(YellowSlider1End, null);
-                            if (clickedPos == ypc2) ypc2 = pc.position; else if (clickedPos == ypc3) ypc3 = pc.position; else if (clickedPos == ypc4) ypc4 = pc.position; else if (clickedPos == ypc1) ypc1 = pc.position;
+                            }
+                            if (clickedPos == ypc2) ypc2 = pc.position;
+                            else if (clickedPos == ypc3) ypc3 = pc.position;
+                            else if (clickedPos == ypc4) ypc4 = pc.position;
+                            else if (clickedPos == ypc1) ypc1 = pc.position;
                         }
+                        else if (carcheck.Contains("Two"))
+                        {
+                            pc.SetPosition(YellowSlider1End, null);
+                        }
+                        if (clickedPos == ypc2) ypc2 = pc.position;
+                        else if (clickedPos == ypc3) ypc3 = pc.position;
+                        else if (clickedPos == ypc4) ypc4 = pc.position;
+                        else if (clickedPos == ypc1) ypc1 = pc.position;
                     }
                 }
                 if (TurnLabel.Text.Contains("Turn: Green"))
@@ -751,38 +780,38 @@ namespace Sorry
         {
             string homeColor = "";
 
-                foreach (var pl in allPawns)
+            foreach (var pl in allPawns)
+            {
+                int homeCount = 0;
+                foreach (var p in pl)
                 {
-                    int homeCount = 0;
-                    foreach (var p in pl)
-                    {
                     homeColor = checkColor(p);
 
-                        try
-                        {
+                    try
+                    {
 
-                            if (p.positionName.Contains(homeColor)&&p.positionName.Contains("Home"))
-                            {
-                                homeCount += 1;
-                            }
-                        }
-                        catch (Exception)
+                        if (p.positionName.Contains(homeColor) && p.positionName.Contains("Home"))
                         {
+                            homeCount += 1;
                         }
                     }
-                    Debug.WriteLine(homeCount);
-
-                    if (homeCount == 4)
+                    catch (Exception)
                     {
-                        this.Frame.Navigate(typeof(WinPage));
-
                     }
-                    else
-                    {
-                        homeCount = 0;
-                    }
+                }
+                Debug.WriteLine(homeCount);
 
-                
+                if (homeCount == 4)
+                {
+                    this.Frame.Navigate(typeof(WinPage));
+
+                }
+                else
+                {
+                    homeCount = 0;
+                }
+
+
             }
         }
 
