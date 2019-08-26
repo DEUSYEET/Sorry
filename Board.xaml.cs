@@ -265,46 +265,34 @@ namespace Sorry
             int[] clickedPos = t.turns(sender);
             if (onGoingTurn == true)
             {
+
+                if (carcheck.Contains("Sorry"))
+                {
+                    jerkPawn = everyPawn.First(p => p.positionName.Equals(b.Name));
+                }
                 if (TurnLabel.Text.Contains("Turn: Yellow"))
                 {
-                    if (carcheck.Contains("Sorry"))
-                    {
-                        jerkPawn = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
-                    }
-
-                    else if (carcheck.Contains("One") || carcheck.Contains("Two"))
+                    if (carcheck.Contains("One") || carcheck.Contains("Two"))
                     {
                         if (sender == YellowStart1 || sender == YellowStart2 || sender == YellowStart3 || sender == YellowStart4)
                         {
                             if (yp1.position[0] == helper[0] && yp1.position[1] == helper[1]) pc = yp1; if (yp2.position[0] == helper[0] && yp2.position[1] == helper[1]) pc = yp2; if (yp3.position[0] == helper[0] && yp3.position[1] == helper[1]) pc = yp3; if (yp4.position[0] == helper[0] && yp4.position[1] == helper[1]) pc = yp4;
                             if (carcheck.Contains("One"))
                             {
-                                if (yp1.position[0] == helper[0] && yp1.position[1] == helper[1]) pc = yp1; if (yp2.position[0] == helper[0] && yp2.position[1] == helper[1]) pc = yp2; if (yp3.position[0] == helper[0] && yp3.position[1] == helper[1]) pc = yp3; if (yp4.position[0] == helper[0] && yp4.position[1] == helper[1]) pc = yp4;
-                                if (carcheck.Contains("One"))
-                                {
-                                    TurnLabel.Text = "Turn: Green";
-                                    pc.SetPosition(YellowSlider1End, null);
-                                }
-                                else if (carcheck.Contains("Two"))
-                                    pc.SetPosition(YellowSlider1End, null);
-                                if (clickedPos == ypc2) ypc2 = pc.position; else if (clickedPos == ypc3) ypc3 = pc.position; else if (clickedPos == ypc4) ypc4 = pc.position; else if (clickedPos == ypc1) ypc1 = pc.position;
+                                TurnLabel.Text = "Turn: Green";
+                                pc.SetPosition(YellowSlider1End, null);
                             }
+                            else if (carcheck.Contains("Two"))
+                                pc.SetPosition(YellowSlider1End, null);
+                            if (clickedPos == ypc2) ypc2 = pc.position; else if (clickedPos == ypc3) ypc3 = pc.position; else if (clickedPos == ypc4) ypc4 = pc.position; else if (clickedPos == ypc1) ypc1 = pc.position;
                         }
                     }
                 }
                 if (TurnLabel.Text.Contains("Turn: Green"))
                 {
-                    if (carcheck.Contains("Sorry"))
+                    if (carcheck.Contains("One") || carcheck.Contains("Two"))
                     {
-                        jerkPawn = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
-                    }
-
-                else if (carcheck.Contains("One") || carcheck.Contains("Two"))
-                {
-                    if (sender == GreenStart1 || sender == GreenStart2 || sender == GreenStart3 || sender == GreenStart4)
-                    {
-                        if (gp1.position[0] == helper[0] && gp1.position[1] == helper[1]) pc = gp1; if (gp2.position[0] == helper[0] && gp2.position[1] == helper[1]) pc = gp2; if (gp3.position[0] == helper[0] && gp3.position[1] == helper[1]) pc = gp3; if (gp4.position[0] == helper[0] && gp4.position[1] == helper[1]) pc = gp4;
-                        if (carcheck.Contains("One"))
+                        if (sender == GreenStart1 || sender == GreenStart2 || sender == GreenStart3 || sender == GreenStart4)
                         {
                             if (gp1.position[0] == helper[0] && gp1.position[1] == helper[1]) pc = gp1; if (gp2.position[0] == helper[0] && gp2.position[1] == helper[1]) pc = gp2; if (gp3.position[0] == helper[0] && gp3.position[1] == helper[1]) pc = gp3; if (gp4.position[0] == helper[0] && gp4.position[1] == helper[1]) pc = gp4;
                             if (carcheck.Contains("One"))
@@ -316,20 +304,6 @@ namespace Sorry
                                 pc.SetPosition(GreenSlider1End, null);
                             if (clickedPos == gpc2) gpc2 = pc.position; else if (clickedPos == gpc3) gpc3 = pc.position; else if (clickedPos == gpc4) gpc4 = pc.position; else if (clickedPos == gpc1) gpc1 = pc.position;
                         }
-                        else if (carcheck.Contains("Two"))
-                            pc.SetPosition(GreenSlider1End, null);
-                        if (clickedPos == gpc2) gpc2 = pc.position; else if (clickedPos == gpc3) gpc3 = pc.position; else if (clickedPos == gpc4) gpc4 = pc.position; else if (clickedPos == gpc1) gpc1 = pc.position;
-                    }
-                }
-                }
-            }
-            if (TurnLabel.Text.Contains("Turn: Red"))
-            {
-                if (carcheck.Contains("Sorry"))
-                {
-                    if (sendButton.Name.Contains("RedStart"))
-                    {
-                        jerkPawn = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
                     }
                 }
                 if (TurnLabel.Text.Contains("Turn: Red"))
@@ -348,20 +322,8 @@ namespace Sorry
                                 pc.SetPosition(RedSlider1End, null);
                             if (clickedPos == rpc2) rpc2 = pc.position; else if (clickedPos == rpc3) rpc3 = pc.position; else if (clickedPos == rpc4) rpc4 = pc.position; else if (clickedPos == rpc1) rpc1 = pc.position;
                         }
-                        else if (carcheck.Contains("Two"))
-                            pc.SetPosition(RedSlider1End, null);
-                        if (clickedPos == rpc2) rpc2 = pc.position; else if (clickedPos == rpc3) rpc3 = pc.position; else if (clickedPos == rpc4) rpc4 = pc.position; else if (clickedPos == rpc1) rpc1 = pc.position;
                     }
                 }
-            }
-            if (TurnLabel.Text.Contains("Turn: Blue"))
-            {
-                if (carcheck.Contains("Sorry"))
-                {
-                    if (sendButton.Name.Contains("BlueStart"))
-                    {
-                        jerkPawn = everyPawn.First(p => p.positionName.Equals(sendButton.Name));
-                    }
                 if (TurnLabel.Text.Contains("Turn: Blue"))
                 {
                     if (carcheck.Contains("One") || carcheck.Contains("Two"))
@@ -379,7 +341,6 @@ namespace Sorry
                             if (clickedPos == bpc2) bpc2 = pc.position; else if (clickedPos == bpc3) bpc3 = pc.position; else if (clickedPos == bpc4) bpc4 = pc.position; else if (clickedPos == bpc1) bpc1 = pc.position;
                         }
                     }
-                }
                 }
                 onGoingTurn = false;
             }
