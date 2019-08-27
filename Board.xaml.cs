@@ -50,6 +50,11 @@ namespace Sorry
         List<Pawn> yPawns = new List<Pawn>();
         List<Pawn> bPawns = new List<Pawn>();
 
+        int RedPawnsAtHome = 0;
+        int YellowPawnsAtHome = 0;
+        int BluePawnsAtHome = 0;
+        int GreenPawnsAtHome = 0;
+
         List<List<Pawn>> allPawns = new List<List<Pawn>>();
         List<Pawn> everyPawn = new List<Pawn>();
 
@@ -147,8 +152,8 @@ namespace Sorry
                 {
                     jerkPawn.SetPosition(sender, null);
 
-                if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn: Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn: Blue") TurnLabel.Text = "Turn: Yellow";
-                onGoingTurn = false;
+                    if (TurnLabel.Text == "Turn: Yellow") TurnLabel.Text = "Turn: Green"; else if (TurnLabel.Text == "Turn: Green") TurnLabel.Text = "Turn: Red"; else if (TurnLabel.Text == "Turn: Red") TurnLabel.Text = "Turn: Blue"; else if (TurnLabel.Text == "Turn: Blue") TurnLabel.Text = "Turn: Yellow";
+                    onGoingTurn = false;
 
                     sendHome(sorryPawn);
                     jerkPawn = null;
@@ -162,8 +167,7 @@ namespace Sorry
                 pc.SetPosition(sender, selectedP.position);
                 if (SafeSpace(sender) == false)
                 {
-                    pc = selectedP;
-                    MovePawn(selectedP, cardDeck.CardNum());
+                    CheckOverlap(sender);
                     pc.SetPosition(sender, selectedP.position);
                 }
                 selectedP = null;
@@ -368,7 +372,7 @@ namespace Sorry
             int[] pos = null;
             StartGameButton.Click -= StartGameButton_Click;
             StartGameButton.Visibility = Visibility.Collapsed;
-            pc = yp1; pc.SetPosition(YellowStart1, pos);
+            pc = yp1; pc.SetPosition(YellowStart2, pos);
             pc = yp2; pc.SetPosition(YellowStart2, pos);
             pc = yp3; pc.SetPosition(YellowStart3, pos);
             pc = yp4; pc.SetPosition(YellowStart4, pos);
@@ -376,14 +380,15 @@ namespace Sorry
             pc = gp2; pc.SetPosition(GreenStart2, pos);
             pc = gp3; pc.SetPosition(GreenStart3, pos);
             pc = gp4; pc.SetPosition(GreenStart4, pos);
-            pc = rp1; pc.SetPosition(GreenSlider2End, pos);
+            pc = rp1; pc.SetPosition(RedStart1, pos);
             pc = rp2; pc.SetPosition(RedStart2, pos);
             pc = rp3; pc.SetPosition(RedStart3, pos);
             pc = rp4; pc.SetPosition(RedStart4, pos);
             pc = bp1; pc.SetPosition(BlueStart1, pos);
             pc = bp2; pc.SetPosition(BlueStart2, pos);
             pc = bp3; pc.SetPosition(BlueStart3, pos);
-            pc = bp4; pc.SetPosition(BlueStart4, pos); pc = yp1;
+            pc = bp4; pc.SetPosition(BlueStart4, pos);
+            pc = yp1;
             ypc1 = yp1.position; ypc2 = yp2.position; ypc3 = yp3.position; ypc4 = yp4.position; gpc1 = gp1.position; gpc2 = gp2.position; gpc3 = gp3.position; gpc4 = gp4.position; rpc1 = rp1.position; rpc2 = rp2.position; rpc3 = rp3.position; rpc4 = rp4.position; bpc1 = yp1.position; bpc2 = yp2.position; bpc3 = yp3.position; int[] bpc4 = yp4.position;
         }
         private void ForfeitTurnButton_Click(object sender, RoutedEventArgs e)
@@ -465,8 +470,31 @@ namespace Sorry
             }
             else if (temp == 6)
             {
-                //minigrid
-                SetHomePosition(0, 0, RedHomeGrid, pc.pawnRect);
+                switch (RedPawnsAtHome)
+                {
+                    case 0:
+                        RedPawnsAtHome++;
+                        BoardGrid.Children.Remove(pc.pawnRect);
+                        RedHome1.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                        break;
+                    case 1:
+                        RedPawnsAtHome++;
+                        BoardGrid.Children.Remove(pc.pawnRect);
+                        RedHome2.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                        break;
+                    case 2:
+                        RedPawnsAtHome++;
+                        BoardGrid.Children.Remove(pc.pawnRect);
+                        RedHome3.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                        break;
+                    case 3:
+                        RedPawnsAtHome++;
+                        BoardGrid.Children.Remove(pc.pawnRect);
+                        RedHome4.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                        break;
+                    default:
+                        break;
+                }
             }
             else
             {
@@ -487,7 +515,31 @@ namespace Sorry
             }
             else if (temp == 6)
             {
-                //minigrid placement
+                switch (BluePawnsAtHome)
+                {
+                    case 0:
+                        BluePawnsAtHome++;
+                        BoardGrid.Children.Remove(pc.pawnRect);
+                        BlueHome1.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                        break;
+                    case 1:
+                        BluePawnsAtHome++;
+                        BoardGrid.Children.Remove(pc.pawnRect);
+                        BlueHome2.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                        break;
+                    case 2:
+                        BluePawnsAtHome++;
+                        BoardGrid.Children.Remove(pc.pawnRect);
+                        BlueHome3.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                        break;
+                    case 3:
+                        BluePawnsAtHome++;
+                        BoardGrid.Children.Remove(pc.pawnRect);
+                        BlueHome4.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                        break;
+                    default:
+                        break;
+                }
             }
             else
             {
@@ -507,7 +559,31 @@ namespace Sorry
             }
             else if (move == 6)
             {
-                //mini grid move
+                switch (YellowPawnsAtHome)
+                {
+                    case 0:
+                        YellowPawnsAtHome++;
+                        BoardGrid.Children.Remove(pc.pawnRect);
+                        YellowHome1.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                        break;
+                    case 1:
+                        YellowPawnsAtHome++;
+                        BoardGrid.Children.Remove(pc.pawnRect);
+                        YellowHome2.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                        break;
+                    case 2:
+                        YellowPawnsAtHome++;
+                        BoardGrid.Children.Remove(pc.pawnRect);
+                        YellowHome3.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                        break;
+                    case 3:
+                        YellowPawnsAtHome++;
+                        BoardGrid.Children.Remove(pc.pawnRect);
+                        YellowHome4.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                        break;
+                    default:
+                        break;
+                }
             }
             else
             {
@@ -531,7 +607,31 @@ namespace Sorry
             }
             else if (temp == 6)
             {
-                //minigrid
+                switch (GreenPawnsAtHome)
+                {
+                    case 0:
+                        GreenPawnsAtHome++;
+                        BoardGrid.Children.Remove(pc.pawnRect);
+                        GreenHome1.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                        break;
+                    case 1:
+                        GreenPawnsAtHome++;
+                        BoardGrid.Children.Remove(pc.pawnRect);
+                        GreenHome2.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                        break;
+                    case 2:
+                        GreenPawnsAtHome++;
+                        BoardGrid.Children.Remove(pc.pawnRect);
+                        GreenHome3.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                        break;
+                    case 3:
+                        GreenPawnsAtHome++;
+                        BoardGrid.Children.Remove(pc.pawnRect);
+                        GreenHome4.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                        break;
+                    default:
+                        break;
+                }
             }
             else
             {
@@ -647,8 +747,31 @@ namespace Sorry
                 }
                 else if (tempPosition[1] == 6)
                 {
-                    //minibutton move -- not wokring
-                    pawn.SetPosition(0, 0, RedHomeGrid);
+                    switch (RedPawnsAtHome)
+                    {
+                        case 0:
+                            RedPawnsAtHome++;
+                            BoardGrid.Children.Remove(pawn.pawnRect);
+                            RedHome1.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                            break;
+                        case 1:
+                            RedPawnsAtHome++;
+                            BoardGrid.Children.Remove(pawn.pawnRect);
+                            RedHome2.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                            break;
+                        case 2:
+                            RedPawnsAtHome++;
+                            BoardGrid.Children.Remove(pawn.pawnRect);
+                            RedHome3.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                            break;
+                        case 3:
+                            RedPawnsAtHome++;
+                            BoardGrid.Children.Remove(pawn.pawnRect);
+                            RedHome4.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
             else if (pawn.pawnColor == color.blue && tempPosition[0] <= 14 && tempPosition[1] == 2)
@@ -660,8 +783,31 @@ namespace Sorry
                 }
                 else if (tempPosition[0] == 9)
                 {
-                    //minigrid movement -- not working
-                    pawn.SetPosition(0, 0, BlueHomeGrid);
+                    switch (BluePawnsAtHome)
+                    {
+                        case 0:
+                            BluePawnsAtHome++;
+                            BoardGrid.Children.Remove(pawn.pawnRect);
+                            BlueHome1.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                            break;
+                        case 1:
+                            BluePawnsAtHome++;
+                            BoardGrid.Children.Remove(pawn.pawnRect);
+                            BlueHome2.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                            break;
+                        case 2:
+                            BluePawnsAtHome++;
+                            BoardGrid.Children.Remove(pawn.pawnRect);
+                            BlueHome3.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                            break;
+                        case 3:
+                            BluePawnsAtHome++;
+                            BoardGrid.Children.Remove(pawn.pawnRect);
+                            BlueHome4.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
             else if (pawn.pawnColor == color.yellow && tempPosition[0] == 13 && tempPosition[1] <= 14)
@@ -675,11 +821,34 @@ namespace Sorry
                 {
                     //minigrid Movement -- not working
                     //pawn.SetPosition(0, 0, YellowHomeGrid);
-                    BoardGrid.Children.Remove(pawn.pawnRect);
-                    YellowHome1.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                    switch (YellowPawnsAtHome)
+                    {
+                        case 0:
+                            YellowPawnsAtHome++;
+                            BoardGrid.Children.Remove(pawn.pawnRect);
+                            YellowHome1.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                            break;
+                        case 1:
+                            YellowPawnsAtHome++;
+                            BoardGrid.Children.Remove(pawn.pawnRect);
+                            YellowHome2.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                            break;
+                        case 2:
+                            YellowPawnsAtHome++;
+                            BoardGrid.Children.Remove(pawn.pawnRect);
+                            YellowHome3.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                            break;
+                        case 3:
+                            YellowPawnsAtHome++;
+                            BoardGrid.Children.Remove(pawn.pawnRect);
+                            YellowHome4.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                            break;
+                        default:
+                            break;
+                    }
                 }
             }
-            else if (pawn.pawnColor == color.green && tempPosition[1] == 13 && tempPosition[0] > 1)
+            else if (pawn.pawnColor == color.green && tempPosition[1] == 13 && tempPosition[0] >= 1)
             {
                 tempPosition[0] += value;
                 if (tempPosition[0] > 6)
@@ -688,8 +857,34 @@ namespace Sorry
                 }
                 else if (tempPosition[0] == 6)
                 {
-                    //minigrid Movement -- not wokring
-                    pawn.SetPosition(0, 0, GreenHomeGrid);
+                    //minigrid Movement 
+                    // pawn.SetPosition(0, 0, GreenHomeGrid);
+                    switch (GreenPawnsAtHome)
+                    {
+                        case 0:
+                            GreenPawnsAtHome++;
+                            BoardGrid.Children.Remove(pawn.pawnRect);
+                            GreenHome1.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                            break;
+                        case 1:
+                            GreenPawnsAtHome++;
+                            BoardGrid.Children.Remove(pawn.pawnRect);
+                            GreenHome2.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                            break;
+                        case 2:
+                            GreenPawnsAtHome++;
+                            BoardGrid.Children.Remove(pawn.pawnRect);
+                            GreenHome3.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                            break;
+                        case 3:
+                            GreenPawnsAtHome++;
+                            BoardGrid.Children.Remove(pawn.pawnRect);
+                            GreenHome4.Background = new SolidColorBrush(Color.FromArgb(255, 0, 255, 255));
+                            break;
+                        default:
+                            break;
+                    }
+
                 }
             }
             //highlight to show possible position
