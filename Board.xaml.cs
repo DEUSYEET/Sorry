@@ -372,7 +372,7 @@ namespace Sorry
             int[] pos = null;
             StartGameButton.Click -= StartGameButton_Click;
             StartGameButton.Visibility = Visibility.Collapsed;
-            pc = yp1; pc.SetPosition(YellowStart2, pos);
+            pc = yp1; pc.SetPosition(YellowStart1, pos);
             pc = yp2; pc.SetPosition(YellowStart2, pos);
             pc = yp3; pc.SetPosition(YellowStart3, pos);
             pc = yp4; pc.SetPosition(YellowStart4, pos);
@@ -936,7 +936,24 @@ namespace Sorry
 
                 if (homeCount == 4)
                 {
-                    this.Frame.Navigate(typeof(WinPage));
+                    switch (homeColor)
+                    {
+                        case "Green":
+                            this.Frame.Navigate(typeof(WinPageG));
+                            break;
+                        case "Blue":
+                            this.Frame.Navigate(typeof(WinPageB));
+                            break;
+                        case "Yellow":
+                            this.Frame.Navigate(typeof(WinPageY));
+                            break;
+                        case "Red":
+                            this.Frame.Navigate(typeof(WinPageR));
+                            break;
+
+
+                    }
+
 
                 }
                 else

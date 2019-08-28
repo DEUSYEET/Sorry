@@ -7,3 +7,14 @@
 !*.png
 */ARM/Debug/
 */x86/Debug/
+obj/x86/Release/App.g.cs
+obj/x86/Release/App.g.i.cs
+obj/x86/Release/Board.g.cs
+obj/x86/Release/Board.g.i.cs
+obj/x86/Release/MainPage.g.cs
+obj/x86/Release/MainPage.g.i.cs
+obj/x86/Release/PawnTest.g.cs
+obj/x86/Release/PawnTest.g.i.cs
+obj/x86/Release/WinPage.g.cs
+obj/x86/Release/WinPage.g.i.cs
+obj/x86/Release/XamlTypeInfo.g.cs
