@@ -17,9 +17,8 @@
         <Rectangle Fill="Yellow" Margin="496,496,0,0"/>-->
         <!--<TextBlock Text="Sorry!" FontSize="100" Margin="371,72,369,780"/>-->
         <Image Source="Assets/menuback.png"/>
-        <Rectangle Fill="#E5FFFFFF" Margin="133,286,132,250"/>
-        <Button x:Name="StartGameButton" Content="Start New Game" HorizontalAlignment="Center" RenderTransformOrigin="0.459,2.547" FontSize="95" Margin="0,306,0,0" VerticalAlignment="Top" Click="StartGameButton_Click" FontFamily="Impact" Background="#33000000" Width="662"/>
-        <Button x:Name="LoadGameButton" Content="Load Existing Game" Margin="0,472,0,0" VerticalAlignment="Top" FontSize="72" HorizontalAlignment="Center" Width="661" FontFamily="Impact"/>
-        <Button x:Name="ExitButton" Content="quit" FontSize="60" Margin="0,639,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Click="ExitButton_Click" FontFamily="Impact" Width="182"/>
+        <Rectangle Fill="#E5FFFFFF" Margin="133,337,132,281"/>
+        <Button x:Name="StartGameButton" Content="Start New Game" HorizontalAlignment="Center" RenderTransformOrigin="0.459,2.547" FontSize="95" Margin="0,398,0,0" VerticalAlignment="Top" Click="StartGameButton_Click" FontFamily="Impact" Background="#33000000" Width="662"/>
+        <Button x:Name="ExitButton" Content="quit" FontSize="60" Margin="0,569,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Click="ExitButton_Click" FontFamily="Impact" Width="182"/>
     </Grid>
 </Page>
